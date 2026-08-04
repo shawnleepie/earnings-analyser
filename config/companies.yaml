@@ -1,70 +1,347 @@
 # Master entity list for earnings-analyser.
-# Add new companies here (or via /add-company) — this is the single source of
-# truth the fetcher, extractor, and Telegram listener all read from.
+# Mapped from news-crawler's config/cares-list.yaml (Aug 2026) — ticker,
+# exchange, full_name, and sector carried over directly from that file.
 #
-# Schema per entity:
-#   ticker:            exchange ticker as used in the archive/ folder name
-#   exchange:           ASX | NZX
-#   full_name:          legal/listed name
-#   aliases:            free-text names/nicknames the Telegram listener should
-#                       match against (people don't type tickers on Telegram)
-#   sector:             short sector tag
-#   fiscal_year_end:    month, e.g. "June" or "December"
-#   reporting_cadence:  half_yearly | quarterly | annual
-#   currency:           AUD | NZD
-#   ir_page_url:        investor relations landing page
-#   announcements_url:  ASX/NZX announcements page for this entity
-#   factset_id:         FactSet identifier if known (leave blank if unconfirmed
-#                       — do not guess; confirm via FactSet MCP lookup instead)
-#   segments:           known reporting segments, for divisional revenue tables
-#                       (leave empty list if not yet confirmed)
-#   notes:              anything idiosyncratic (seasonality, recent divisional
-#                       restructure, one-off items to watch for going forward)
+# fiscal_year_end / reporting_cadence / currency were NOT tracked in
+# news-crawler (it didn't need them) — these are seeded as exchange-based
+# DEFAULTS ONLY (ASX -> June FYE / AUD, NZX -> March FYE / NZD) and are
+# explicitly UNCONFIRMED. Don't treat them as fact. document-fetcher always
+# verifies the actual period against what each lodged document itself
+# states, so a wrong default here gets corrected on first fetch rather than
+# silently propagated — but correct it in this file too as you confirm each
+# one, so later runs don't repeat the same lookup.
+#
+# Add new companies via /add-company. Keep this file as the single source
+# of truth for earnings-analyser; if news-crawler's cares-list.yaml changes
+# (new coverage added/dropped), re-sync manually or ask Claude to diff them.
 
 entities:
-  - ticker: SKS
+  - ticker: MYG
     exchange: ASX
-    full_name: SKS Technologies Group Limited
-    aliases: ["SKS", "SKS Technologies"]
-    sector: Electrical infrastructure / data centre services
-    fiscal_year_end: June
+    full_name: Mayfield Group Holdings
+    aliases: ["Mayfield", "Mayfield Group", "MYG"]
+    sector: Electrical infrastructure / switchboard manufacturing
+    fiscal_year_end: "June (unconfirmed)"
     reporting_cadence: half_yearly
     currency: AUD
-    ir_page_url: ""
-    announcements_url: ""
-    factset_id: ""
     segments: []
-    notes: "Data centre electrical infrastructure thematic; watch offshore comps (Comfort Systems, EMCOR, MYR Group) for read-through on margin trajectory."
+    notes: "Recently acquired Nilsen's Switchboards Division (announced 13 Jul 2026) — watch for segment/divisional restructure disclosure and integration costs in next 1-2 results."
+
+  - ticker: SKS
+    exchange: ASX
+    full_name: SKS Technologies Group
+    aliases: ["SKS Technologies", "SKS"]
+    sector: Electrical/AV/IT systems integration — data centre fit-out
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Data centre electrical fit-out thematic (AirTrunk MEL01/MEL2, NextDC, Stack). Labour-driven cost base rather than equipment-supplier dependent — margin sensitivity is mostly wage/subcontractor cost, not input pricing."
+
+  - ticker: IPG
+    exchange: ASX
+    full_name: IPD Group
+    aliases: ["IPD Group", "IPD"]
+    sector: Electrical products distribution
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "ABB is ~26% of product supply (largest single-supplier concentration) — any ABB pricing/terms change is a genuine margin risk worth checking each release."
+
+  - ticker: ACF
+    exchange: ASX
+    full_name: Acrow
+    aliases: ["Acrow"]
+    sector: Formwork / falsework / scaffolding
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "SE Queensland branch concentration; Main Roads WA Esperance corridor ($200m) is a named material contract to track through to completion/renewal."
+
+  - ticker: SHA
+    exchange: ASX
+    full_name: SHAPE Australia
+    aliases: ["SHAPE Australia", "SHAPE"]
+    sector: Commercial fit-out / refurbishment / construction
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Recent project-win growth flagged in education, industrial/data-centre, and aged care segments — check whether divisional disclosure breaks these out."
+
+  - ticker: SYL
+    exchange: ASX
+    full_name: Symal Group
+    aliases: ["Symal", "Symal Group"]
+    sector: Civil construction / infrastructure (Victoria-centric, vertically integrated)
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Vertically integrated via owned quarries — less third-party input cost exposure than peers; working capital dynamics may differ from typical contractor comparables as a result."
+
+  - ticker: SRG
+    exchange: ASX
+    full_name: SRG Global
+    aliases: ["SRG Global", "SRG"]
+    sector: Engineering, maintenance, mining services
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Multiple long-dated maintenance contracts (Alcoa to 2030, Rio Tinto to 2030, South32 to 2032, Roy Hill to 2030, Tianqi to 2029) — contract renewal/repricing news is a genuine revenue-visibility signal to watch each release."
+
+  - ticker: DUR
+    exchange: ASX
+    full_name: Duratec
+    aliases: ["Duratec"]
+    sector: Asset protection / remediation / marine / defence infrastructure
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "AUKUS/Defence exposure via Duratec Ertech JV (50:50) — JV earnings are typically equity-accounted, not consolidated line-by-line; check note disclosure for JV performance detail."
 
   - ticker: GNP
     exchange: ASX
-    full_name: GenusPlus Group Limited
-    aliases: ["GenusPlus", "GNP"]
-    sector: Electrical/engineering services, transmission & distribution
-    fiscal_year_end: June
+    full_name: GenusPlus Group
+    aliases: ["GenusPlus", "GenusPlus Group", "GNP"]
+    sector: Electrical/power & communications infrastructure services
+    fiscal_year_end: "June (unconfirmed)"
     reporting_cadence: half_yearly
     currency: AUD
-    ir_page_url: ""
-    announcements_url: ""
-    factset_id: ""
     segments: []
-    notes: "MPC Kinetic acquisition and REZ project footprint are recurring segment/backlog watch items; TasNetworks NWTD head contract is a named material contract."
+    notes: "MGC Group (rail) and CommTel (comms) acquisitions are diversifying revenue beyond core power infrastructure — watch for a new/expanded segment breakdown reflecting this. TasNetworks NWTD head contract (up to $950m over 5 years) is the single largest disclosed contract."
 
-  - ticker: DXN
+  - ticker: LYL
     exchange: ASX
-    full_name: DXN Limited
-    aliases: ["DXN"]
-    sector: Data centre infrastructure
-    fiscal_year_end: June
+    full_name: Lycopodium
+    aliases: ["Lycopodium"]
+    sector: Engineering / EPCM — minerals processing, primarily gold
+    fiscal_year_end: "June (unconfirmed)"
     reporting_cadence: half_yearly
     currency: AUD
-    ir_page_url: ""
-    announcements_url: ""
-    factset_id: ""
     segments: []
-    notes: "Direct-to-chip liquid cooling moat claim under scrutiny — converging differentiator, check each release for updated competitive commentary."
+    notes: "EPCM revenue is project-award-driven and lumpy — HoH/YoY comparisons need context on where each named project (Doropo, Nyanzaga, Kiaka, Séguéla, Yanqul) sits in its lifecycle."
 
-  # ... remaining cares-list entities to be added via /add-company.
-  # Populate the rest of the 30-name list here (or point this file at the
-  # same source as news-crawler's config/cares-list.yaml so tickers stay in
-  # sync between the two projects — recommended over maintaining two lists).
+  - ticker: SPZ
+    exchange: ASX
+    full_name: Smart Parking
+    aliases: ["Smart Parking"]
+    sector: ANPR / car park technology and management
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Hardware largely in-house designed — capex is mostly self-funded product development rather than third-party equipment purchase; check capex classification (growth vs maintenance) carefully."
+
+  - ticker: WGN
+    exchange: ASX
+    full_name: Wagners Holding Company
+    aliases: ["Wagners", "Wagners Holding Company"]
+    sector: Construction materials — cement, concrete, precast, composite fibre
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Owns its own quarries (vertically integrated) — highly concentrated end market (Boral/Adbri/Holcim/Hanson >2/3 of ready-mixed concrete sales) means Wagners' pricing power is genuinely worth scrutinising each period."
+
+  - ticker: TRA
+    exchange: NZX
+    full_name: Turners Automotive Group
+    aliases: ["Turners", "Turners Automotive", "Turners Automotive Group"]
+    sector: Used car retail, finance, insurance, credit management
+    fiscal_year_end: "March (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: NZD
+    segments: ["Automotive retail", "Finance", "Insurance", "Credit management"]
+    notes: "Multi-segment reporter (retail/finance/insurance/credit) — divisional revenue and margin breakdown is genuinely available and should be used in the profitability table. 2 Cheap Cars flagged weaker FY26 trading as a competitive read-through."
+
+  - ticker: SK1
+    exchange: ASX
+    full_name: SkinKandy
+    aliases: ["SkinKandy"]
+    sector: Body piercing retail & jewellery, AU/NZ, expanding to US/UK/South Africa
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Recently listed (21 May 2026) — only has 1-2 periods of public results so far; backfill will be thin until more history accumulates. Gold/silver/titanium input cost inflation (historic 2025-26 rally) is a live margin watch item given jewellery inputs."
+
+  - ticker: SCL
+    exchange: NZX
+    full_name: Scales Corporation
+    aliases: ["Scales", "Scales Corporation"]
+    sector: Agribusiness — pet food ingredients (Global Proteins), horticulture (Mr Apple), logistics
+    fiscal_year_end: "December (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: NZD
+    segments: ["Global Proteins", "Horticulture (Mr Apple)", "Logistics"]
+    notes: "Multi-segment reporter — divisional breakdown should be used directly. Esro Petfood BV JV (50%) has an open regulatory question (Dutch NVWA investigation into parent Esro Food Group, which subsequently filed for bankruptcy) — check disclosure for any updated risk language on JV insulation."
+
+  - ticker: GDG
+    exchange: ASX
+    full_name: Generation Development Group
+    aliases: ["Generation Development", "Generation Development Group", "Generation Life"]
+    sector: Financial services — investment bonds (Generation Life), asset consulting/ratings (Lonsec), managed accounts (Evidentia)
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: ["Generation Life (investment bonds)", "Lonsec", "Evidentia (managed accounts)"]
+    notes: "Multi-segment reporter following the Lonsec/Evidentia combination — check whether segment reporting has changed structure period to period as these businesses integrate."
+
+  - ticker: L1G
+    exchange: ASX
+    full_name: L1 Group
+    aliases: ["L1 Group", "L1 Capital", "Platinum Asset Management"]
+    sector: Global investment manager (L1 Capital + Platinum Asset Management merger)
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Post-merger entity (L1 Capital + Platinum) — first several periods of results will have real noise from merger accounting/integration costs; treat early QoE flags accordingly rather than assuming steady-state. FUM-linked revenue means market moves materially affect headline numbers independent of flows."
+
+  - ticker: COG
+    exchange: ASX
+    full_name: COG Financial Services
+    aliases: ["COG Financial Services", "COG"]
+    sector: Equipment finance broking/aggregation; novated leasing
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Sector undergoing active M&A consolidation (PEP/SG Fleet/FleetPartners, Smartgroup) — any corporate activity involving COG itself or its close comparables is directly earnings-relevant, not just background noise."
+
+  - ticker: AYA
+    exchange: ASX
+    full_name: Artrya
+    aliases: ["Artrya"]
+    sector: Cardiac AI diagnostics
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Pre-revenue or early-revenue medtech — profitability table will likely show minimal/no NPAT; cash runway and burn rate become the more important comparatives than traditional profitability metrics. Salix Flow 510(k) status is a material regulatory catalyst to check each release."
+
+  - ticker: EPI
+    exchange: ASX
+    full_name: Epiminder
+    aliases: ["Epiminder"]
+    sector: Implantable EEG monitoring for epilepsy (FDA De Novo authorised)
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Clinical-stage/early commercial medtech — cash runway and trial enrolment progress (DETECT study) are as important as traditional P&L comparatives. Track Medicare reimbursement rate changes (2026 ruling set at US$27,700) as an ASP assumption input."
+
+  - ticker: DXB
+    exchange: ASX
+    full_name: Dimerix
+    aliases: ["Dimerix"]
+    sector: Biopharma — DMX-200 for FSGS (rare kidney disease), new AKI asset
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Pre-revenue biopharma — licensing milestone payments (Everest Medicines, Advanz, Taiba Rare, Fuso, Amicus/BioMarin) are the main P&L-relevant cash inflows; treat these as one-off/lumpy rather than recurring revenue in QoE terms."
+
+  - ticker: AR9
+    exchange: ASX
+    full_name: archTIS
+    aliases: ["archTIS", "AR9"]
+    sector: Data-centric security software for defence/government (zero trust, ABAC)
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Recurring licence revenue (Australian Defence renewal) vs lumpy custom development revenue (US DoD) should be distinguished in the revenue table if disclosure allows — different earnings quality."
+
+  - ticker: KYP
+    exchange: ASX
+    full_name: Kinatico
+    aliases: ["Kinatico"]
+    sector: RegTech — background screening (CVCheck), workforce compliance (ComplianceX)
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Management is highlighting ComplianceX as the margin-expansion driver — check whether segment disclosure actually breaks this out separately from legacy CVCheck screening revenue, or if it's still commentary-only."
+
+  - ticker: IKE
+    exchange: "NZX/ASX (dual-listed)"
+    full_name: ikeGPS Group
+    aliases: ["ikeGPS", "ikeGPS Group", "IKE"]
+    sector: Utility/telecom pole measurement and structural analysis software (PoleOS)
+    fiscal_year_end: "March (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: "NZD (unconfirmed — some NZX dual-listed reporters with heavy US revenue report in USD; confirm on first fetch)"
+    segments: []
+    notes: "PolePilot (AI module) enabled a ~10% price increase without churn impact per prior disclosure — worth checking each release whether this shows up in ARPU/subscription revenue metrics. 'Grid super-cycle' framing (US utility infrastructure investment) is management's core demand narrative — watch for tone consistency."
+
+  - ticker: STH
+    exchange: ASX
+    full_name: StepChange Holdings
+    aliases: ["StepChange", "StepChange Holdings"]
+    sector: SAP ERP consulting — mining, oil & gas, resources, government
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "BroadReach Group acquisition (Nov 2025) added public-safety/justice/health-aged-care government ICT advisory — check for new segment disclosure. FY26 guidance (>$55m revenue, ~$5m EBITDA) vs the June-quarter run rate ($15m revenue/$1.5m EBITDA annualised) already looked meaningfully ahead of the full-year guide as of the last update — a good candidate for the guidance bridge analysis."
+
+  - ticker: CIP
+    exchange: ASX
+    full_name: Centuria Industrial REIT
+    aliases: ["Centuria Industrial", "Centuria Industrial REIT", "CIP"]
+    sector: Industrial property REIT (Australia's largest pure-play)
+    fiscal_year_end: "June (unconfirmed — many AREITs use Dec, confirm)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "REIT — profitability analysis should include NTA/NAV per unit, cap rate movements, and distribution per unit alongside standard P&L metrics. Live data-centre conversion pipeline (Clayton, Thomastown, Toowoomba) is a capex/development item distinct from core leasing capex."
+
+  - ticker: APZ
+    exchange: ASX
+    full_name: Aspen Group
+    aliases: ["Aspen Group", "Aspen"]
+    sector: Affordable accommodation REIT — residential, retirement/land-lease, tourism/parks, CoVE co-living
+    fiscal_year_end: "June (unconfirmed — confirm, REIT/trust structures vary)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Development profit (realised on land-lease site sales) is genuinely lumpy and period-dependent — treat as distinct from recurring rental income in the QoE assessment, not blended into one 'earnings' figure."
+
+  - ticker: CWP
+    exchange: ASX
+    full_name: Cedar Woods Properties
+    aliases: ["Cedar Woods", "Cedar Woods Properties"]
+    sector: Residential & commercial property developer — WA/VIC/QLD/SA
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Project-based developer — revenue/margin recognition timing (settlement-driven) makes HoH comparisons lumpy by nature; check for JV-related equity-accounted earnings (Tokyo Gas, QIC) reported separately from consolidated figures."
+
+  - ticker: GDF
+    exchange: ASX
+    full_name: Garda Property Group
+    aliases: ["Garda", "Garda Property Group", "GDF"]
+    sector: Industrial/office REIT — predominantly Brisbane, eastern seaboard
+    fiscal_year_end: "June (unconfirmed — confirm, REIT/trust structures vary)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Top 10 tenants = 65.6% of gross income (high concentration) — any tenant-level disclosure change (lease expiry, rent review, vacancy) is disproportionately material given this concentration."
+
+  - ticker: LGI
+    exchange: ASX
+    full_name: LGI Limited
+    aliases: ["LGI", "LGI Limited"]
+    sector: Landfill gas-to-energy, carbon abatement (ACCUs/LGCs), battery storage
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "ACCU/LGC revenue is regulatorily exposed (Nov 2025 method change, LGC revenue expected to decline/cease by 2030) — treat carbon credit revenue as a separate, declining-quality line from generation revenue in the profitability table, not blended together. Wholesale electricity price collapse (NEM-wide) is a genuine headwind management has already flagged — check whether hedging adjustments show up in guidance."
