@@ -1,0 +1,70 @@
+# Master entity list for earnings-analyser.
+# Add new companies here (or via /add-company) — this is the single source of
+# truth the fetcher, extractor, and Telegram listener all read from.
+#
+# Schema per entity:
+#   ticker:            exchange ticker as used in the archive/ folder name
+#   exchange:           ASX | NZX
+#   full_name:          legal/listed name
+#   aliases:            free-text names/nicknames the Telegram listener should
+#                       match against (people don't type tickers on Telegram)
+#   sector:             short sector tag
+#   fiscal_year_end:    month, e.g. "June" or "December"
+#   reporting_cadence:  half_yearly | quarterly | annual
+#   currency:           AUD | NZD
+#   ir_page_url:        investor relations landing page
+#   announcements_url:  ASX/NZX announcements page for this entity
+#   factset_id:         FactSet identifier if known (leave blank if unconfirmed
+#                       — do not guess; confirm via FactSet MCP lookup instead)
+#   segments:           known reporting segments, for divisional revenue tables
+#                       (leave empty list if not yet confirmed)
+#   notes:              anything idiosyncratic (seasonality, recent divisional
+#                       restructure, one-off items to watch for going forward)
+
+entities:
+  - ticker: SKS
+    exchange: ASX
+    full_name: SKS Technologies Group Limited
+    aliases: ["SKS", "SKS Technologies"]
+    sector: Electrical infrastructure / data centre services
+    fiscal_year_end: June
+    reporting_cadence: half_yearly
+    currency: AUD
+    ir_page_url: ""
+    announcements_url: ""
+    factset_id: ""
+    segments: []
+    notes: "Data centre electrical infrastructure thematic; watch offshore comps (Comfort Systems, EMCOR, MYR Group) for read-through on margin trajectory."
+
+  - ticker: GNP
+    exchange: ASX
+    full_name: GenusPlus Group Limited
+    aliases: ["GenusPlus", "GNP"]
+    sector: Electrical/engineering services, transmission & distribution
+    fiscal_year_end: June
+    reporting_cadence: half_yearly
+    currency: AUD
+    ir_page_url: ""
+    announcements_url: ""
+    factset_id: ""
+    segments: []
+    notes: "MPC Kinetic acquisition and REZ project footprint are recurring segment/backlog watch items; TasNetworks NWTD head contract is a named material contract."
+
+  - ticker: DXN
+    exchange: ASX
+    full_name: DXN Limited
+    aliases: ["DXN"]
+    sector: Data centre infrastructure
+    fiscal_year_end: June
+    reporting_cadence: half_yearly
+    currency: AUD
+    ir_page_url: ""
+    announcements_url: ""
+    factset_id: ""
+    segments: []
+    notes: "Direct-to-chip liquid cooling moat claim under scrutiny — converging differentiator, check each release for updated competitive commentary."
+
+  # ... remaining cares-list entities to be added via /add-company.
+  # Populate the rest of the 30-name list here (or point this file at the
+  # same source as news-crawler's config/cares-list.yaml so tickers stay in
+  # sync between the two projects — recommended over maintaining two lists).
