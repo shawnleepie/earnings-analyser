@@ -21,13 +21,13 @@ import markdown
 from xhtml2pdf import pisa
 
 CSS = """
-@page { size: A4; margin: 2cm; }
-body { font-family: 'Georgia', 'Times New Roman', serif; font-size: 10.5pt; line-height: 1.4; color: #1a1a1a; }
-h1 { font-size: 16pt; border-bottom: 2px solid #1a1a1a; padding-bottom: 6px; }
-h2 { font-size: 13pt; margin-top: 20px; border-bottom: 1px solid #999; padding-bottom: 3px; }
-h3 { font-size: 11pt; margin-top: 14px; }
-table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 9pt; }
-th, td { border: 1px solid #ccc; padding: 4px 8px; text-align: right; }
+@page { size: A4 landscape; margin: 1.3cm; }
+body { font-family: 'Georgia', 'Times New Roman', serif; font-size: 9.5pt; line-height: 1.35; color: #1a1a1a; }
+h1 { font-size: 15pt; border-bottom: 2px solid #1a1a1a; padding-bottom: 6px; }
+h2 { font-size: 12.5pt; margin-top: 18px; border-bottom: 1px solid #999; padding-bottom: 3px; }
+h3 { font-size: 10.5pt; margin-top: 12px; }
+table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 7.3pt; }
+th, td { border: 1px solid #ccc; padding: 2px 4px; text-align: right; word-wrap: break-word; }
 th, td:first-child { text-align: left; }
 th { background: #f0f0f0; font-weight: bold; }
 ul, ol { margin: 6px 0; padding-left: 20px; }
