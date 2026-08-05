@@ -1,4 +1,4 @@
----
+﻿---
 description: Add a new company to the earnings-analyser cares list and create its archive folder, optionally kicking off a backfill.
 ---
 
@@ -12,8 +12,12 @@ Usage: `/add-company <TICKER> <EXCHANGE> "<FULL NAME>"`
 
 2. Create `archive/<ticker>/` (empty — document-fetcher populates it).
 
-3. Ask whether to run `/backfill-archive <ticker>` now or later; if the user
-   confirms now, run it.
+3. Automatically run `/backfill-archive <ticker>` immediately after creating
+   the folder — don't ask whether to do it now or later. Same reasoning as
+   `/analyse-earnings`: this command may run headlessly (e.g. triggered
+   remotely) with no one able to answer a question, so a sensible default
+   (backfill now) beats a blocking ask. State in the completion summary that
+   a backfill was kicked off automatically.
 
 4. Confirm the addition and, if relevant, remind the user this ticker can
    now also be triggered via Telegram using any of its configured aliases.
