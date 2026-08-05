@@ -13,6 +13,7 @@ source_urls:
   transcript: null
 downloaded_at: "2026-08-04T00:00:00+10:00"
 extraction_flags:
+  - "RESOLVED (analyst-verified, 5 Aug 2026): the 1H24 comparative working-capital figure originally flagged in structured-financials.yaml as a possible cross-period mismatch was checked directly against results-announcement.pdf p.3 — confirmed mislabeled in SKS's own published document, not an extraction error. Use FY24H1's own filing for the correct 1H24 comparative, not FY25H1's restated presentation of it."
   - "investor-presentation.pdf not located for FY25H1 — could not confirm via ASX/marketindex/hotcopper in this fetch whether a separate slide deck was lodged for this half (as distinct from FY24 annual and FY26H1, where one was confirmed)."
   - "transcript.pdf not located for FY25H1."
   - "Segment reporting: Note 9 of financial-statements.pdf confirms SKS's statutory single-operating-segment position is unchanged from FY24/FY23 (companies.yaml segments: [] left as-is). However, the voluntary non-statutory data-centre-vs-traditional revenue $ split (first seen in FY24's investor-presentation.pdf p.6) was NOT repeated this period — likely because no investor presentation was lodged this half (see flag above), not necessarily a withdrawal of the disclosure. Re-check when FY25 annual is extracted."
