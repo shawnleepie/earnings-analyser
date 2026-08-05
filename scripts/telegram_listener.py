@@ -95,8 +95,14 @@ def trigger_analysis(ticker):
             capture_output=True,
             text=True,
         )
-        log(f"{ticker} run finished. Last 500 chars of output:\n{result.stdout[-500:]}")
-        send_telegram_message(f"{ticker} analysis run finished — check Telegram for the report, or archive/{ticker}/analysis/ if delivery didn't fire.")
+        analysis_dir = os.path.join(os.path.dirname(__file__), "..", "archive", ticker, "analysis")
+        reports = [f for f in os.listdir(analysis_dir) if f.endswith(".md")] if os.path.isdir(analysis_dir) else []
+        if not reports:
+            log(f"{ticker} run exited cleanly but produced NO report file — likely stopped early (e.g. asked a question with no one to answer). Last 800 chars:\n{result.stdout[-800:]}")
+            send_telegram_message(f"{ticker} run finished without erroring, but no report was produced — it may have stopped partway through. Check the terminal log or run it interactively to see what happened.")
+        else:
+            log(f"{ticker} run finished, report confirmed on disk. Last 500 chars of output:\n{result.stdout[-500:]}")
+            send_telegram_message(f"{ticker} analysis run finished — check Telegram for the report, or archive/{ticker}/analysis/ if delivery didn't fire.")
     except subprocess.TimeoutExpired:
         log(f"{ticker} run exceeded 1 hour timeout — killed.")
         send_telegram_message(f"{ticker} analysis run exceeded 1 hour and was stopped — check logs before retrying.")

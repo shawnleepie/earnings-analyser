@@ -1,4 +1,4 @@
----
+﻿---
 description: Run the full earnings analysis workflow for a company — fetch the latest (or a named) release, extract structured financials, run all four analysis subagents, assemble the report, produce a PDF, save to archive, and deliver via Telegram.
 ---
 
@@ -11,9 +11,16 @@ the latest release not yet archived.
    names, not tickers).
 
 2. If `archive/<ticker>/` doesn't exist yet or has fewer than ~4 archived
-   periods, warn that this ticker hasn't been backfilled and ask whether to
-   run `/backfill-archive <ticker>` first — comparisons need history to be
-   meaningful, and a same-session backfill is cheap insurance.
+   periods, automatically run `/backfill-archive <ticker>` first before
+   proceeding — don't ask permission. This command runs in both interactive
+   (Claude Code, local) and fully headless (Telegram-triggered, `claude -p`)
+   contexts, and a headless invocation has no way to receive an answer to a
+   clarifying question — it will just exit with the question as its final
+   output, having done nothing. Since backfilling first is cheap insurance
+   and comparisons are the whole point of this pipeline, auto-proceeding is
+   the correct default in both contexts, not just a headless workaround.
+   State plainly in the final report/summary that a backfill was run first
+   and why, so this isn't a silent behavior change from the user's perspective.
 
 3. Spawn **document-fetcher** for `<ticker>` and the target period (or
    `latest`). Confirm the resolved period label before proceeding.
