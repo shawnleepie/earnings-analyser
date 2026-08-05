@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 report_to_pdf.py
 
@@ -31,6 +31,8 @@ th, td { border: 1px solid #ccc; padding: 2px 4px; text-align: right; word-wrap:
 th, td:first-child { text-align: left; }
 th { background: #f0f0f0; font-weight: bold; }
 ul, ol { margin: 6px 0; padding-left: 20px; }
+blockquote { border-left: 4px solid #b8860b; background: #fdf6e3; padding: 6px 14px; margin: 10px 0; font-size: 9pt; }
+hr { border: none; border-top: 1.5px solid #1a1a1a; margin: 14px 0; }
 code { background: #f5f5f5; padding: 1px 4px; }
 """
 
