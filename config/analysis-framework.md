@@ -12,6 +12,54 @@ Comparatives required throughout: **HoH** (vs immediately prior half), **YoY/PCP
 comparison needs a number AND a one-line "why" — never a table with no
 commentary, never commentary with no number behind it.
 
+
+
+---
+
+## 0. Executive summary (page 1 — read this section standalone)
+
+Sits at the very top of the report, before Section 1, written by
+report-synthesizer after all four analysis agents' outputs are in — same
+timing as Section 5, just reordered to the front and compressed hard for a
+30-60 second read on reporting day. **Hard length ceiling: roughly half a
+page to one page.** This is a constraint to enforce, not an aspiration —
+if it's running long, cut findings, don't shrink the font.
+
+**Non-negotiable rule: the executive summary may not contain any claim or
+number that doesn't also appear, fully sourced, in Sections 1-5 below.**
+It is a distillation and reordering of the same material, never a separate
+or additional analysis pass. Preserve hedging/uncertainty language exactly
+as it appears in the full sections — don't strip "n/a" or "not confirmed"
+qualifiers for the sake of brevity.
+
+Required contents, in this order:
+
+1. **One-sentence verdict**: beat/miss/in-line vs PCP (and vs consensus,
+   when available), guidance status (raised/reiterated/cut/withdrawn/none),
+   and a one-phrase quality-of-earnings read (clean / structurally soft /
+   acutely flagged).
+2. **Compact scorecard table**: Revenue, EBITDA (or the company's primary
+   EBITDA variant), NPAT, EPS only — HoH%, YoY%, vs-consensus columns.
+   No margins, no PBT/tax breakdown, no segment detail — that's what
+   Section 1's full table is for.
+3. **Guidance snapshot** (omit entirely if no guidance was given): status,
+   and the bridge/asymmetry call in one line — e.g. "H2 needs only +X% YoY
+   vs H1's own +Y% delivered — an easy/hard bar."
+4. **Top 3-5 ranked findings**, one line each, each tagged with a section
+   cross-reference (e.g. "(§2.1)") so the reader can jump straight to the
+   source discussion. Pulled from the same material Section 5.1 covers, but
+   capped at 5 and ordered strictly by decision-relevance — not by which
+   section they happened to come from.
+5. **Tone/topic shift** — one sentence.
+6. **Market reaction view** — 2-3 sentences max, condensed from Section
+   5.3, same "this is a view, not a prediction" framing preserved.
+7. **"Read past the headline" callout** — 1-3 bullets, formatted as a
+   markdown blockquote (renders as a shaded callout in the PDF), covering
+   only the items where a reader who stops at the press release would be
+   genuinely misled. This is the single highest-value piece of the whole
+   summary — the asymmetric-setup flag the framework already requires,
+   surfaced where it will actually get read on a busy reporting day.
+
 ---
 
 ## 1. Profitability analysis
