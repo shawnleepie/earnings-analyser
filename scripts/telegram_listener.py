@@ -78,13 +78,32 @@ def send_telegram_message(text):
 
 
 def trigger_analysis(ticker):
-    send_telegram_message(f"Got it — running earnings analysis for {ticker} now. This can take a few minutes.")
+    send_telegram_message(f"Got it — running earnings analysis for {ticker} now. This can take a while (expect 15-40+ minutes).")
     try:
+        # --allowedTools pre-authorizes these tool types so the headless (-p)
+        # run doesn't stall on a permission prompt nobody's there to click.
+        # This is a genuinely broader grant than news-crawler's daily-briefing.ps1
+        # (which only needed WebSearch/WebFetch/Read/Write) because this
+        # pipeline's document-fetcher and financial-data-extractor agents rely
+        # heavily on Bash (curl downloads, python parsing scripts, file ops) —
+        # see CLAUDE.md for the reasoning. A Telegram-triggered run therefore
+        # executes with pre-approved Bash access and zero per-command human
+        # review, unlike an interactive session. Acceptable here because the
+        # blast radius is limited to this project folder and public web
+        # fetches, but worth remembering this is a different trust model than
+        # watching an interactive session step by step.
         subprocess.run(
-            ["claude", "-p", f"/analyse-earnings {ticker}"],
+            ["claude", "-p", f"/analyse-earnings {ticker}",
+             "--allowedTools", "WebSearch", "WebFetch", "Read", "Write", "Bash",
+             "--max-turns", "150",
+             "--output-format", "json"],
             cwd=os.path.join(os.path.dirname(__file__), ".."),
             check=True,
+            timeout=3600,  # 1 hour safety ceiling — kill it rather than hang forever
         )
+        send_telegram_message(f"{ticker} analysis run finished — check Telegram for the report, or archive/{ticker}/analysis/ if delivery didn't fire.")
+    except subprocess.TimeoutExpired:
+        send_telegram_message(f"{ticker} analysis run exceeded 1 hour and was stopped — check logs before retrying.")
     except subprocess.CalledProcessError as e:
         send_telegram_message(f"Analysis run for {ticker} failed: {e}")
 
