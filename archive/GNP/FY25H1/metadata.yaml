@@ -1,0 +1,21 @@
+ticker: GNP
+period: FY25H1
+period_type: half_year
+period_end_date: "2024-12-31"
+fiscal_year_end: "30 June"
+currency: AUD
+release_datetime: "2025-02-24T00:00:00+08:00"  # confirmed from financial-statements.pdf's own Directors' Declaration ("Perth, 24 February 2025") and multiple press reports of the release/teleconference date. Time-of-day defaulted to 00:00 AWST.
+source_urls:
+  financial_statements: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a0113112ec572ea9cd5e0c0_HY25%20Report%20and%20Accounts.pdf"
+  appendix_4d: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a0113112ec572ea9cd5e0c0_HY25%20Report%20and%20Accounts.pdf"
+  investor_presentation: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a011c06403f450c68aa1451_HY25%20Results%20Presentation.pdf"
+  results_announcement: null
+  transcript: null
+downloaded_at: "2026-08-05T00:00:00+10:00"
+extraction_flags:
+  - "financial-statements.pdf and appendix-4d.pdf are the SAME lodged document (Appendix 4D + Interim Financial Report for the half-year ended 31 December 2024, combined in one 33-page PDF) — archived under both standard filenames per convention. Confirmed by cover page: 'Appendix 4D — Preliminary financial statements for the half-year ended 31 December 2024 as required by ASX listing rule 4.2A'."
+  - "DOCUMENT QUALITY: the Directors' Declaration signature block in this document reads 'as at 31 December 2023' in its second clause (an apparent copy-paste carryover from the FY24H1 template) despite being dated/signed 'Perth, 24 February 2025' and titled throughout as 'For the half-year ended 31 December 2024'. Same pattern as a documented SKS FY25 boilerplate-carryover flag — does not appear to affect any extracted financial figure, flagged for completeness only."
+  - "investor-presentation.pdf downloaded successfully (22 pages, first-party genus.com.au source) but returned EMPTY text on extraction in this fetch — likely an image/slide-based PDF with no embedded text layer, or all-graphic content. Flagged as non-searchable; a future extraction pass should check whether OCR is needed or whether the figures it presents are fully covered by financial-statements.pdf instead."
+  - "results-announcement.pdf (separate short-form ASX Release/commentary letter) could not be independently located for FY25H1 in this fetch. A candidate PDF (ir.miraqle.com, dated 20 February 2025) was checked and found to be only a conference-call logistics notice ('GNP Half Year FY2025 Financial Results Investor Presentation Conference Call'), not the actual results release — discarded rather than mis-archived under the wrong filename."
+  - "transcript.pdf not located for FY25H1."
+notes: "FY25H1 = half-year ended 31 December 2024 (first half of GenusPlus's FY25). Revenue $332,874,405 (up 33.17% vs pcp per Appendix 4D cover page). Press coverage (not independently verified against the financial statements line-by-line): revenue A$332.9m, NPAT A$13.7m (H1 2025 in FY26H1's own comparative table)."

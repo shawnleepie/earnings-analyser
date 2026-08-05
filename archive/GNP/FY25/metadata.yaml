@@ -1,0 +1,19 @@
+ticker: GNP
+period: FY25
+period_type: annual
+period_end_date: "2025-06-30"
+fiscal_year_end: "30 June"
+currency: AUD
+release_datetime: "2025-08-27T00:00:00+08:00"  # confirmed from financial-statements.pdf's own Directors' Declaration ("Dated the 27th day of August 2025") and press coverage of the release/investor-call date (call held 28 August 2025).
+source_urls:
+  financial_statements: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a0111ff7e9f9ffbb5dba85e_FY25%20Annual%20Financial%20Report.pdf"
+  appendix_4e: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a0111ff7e9f9ffbb5dba85e_FY25%20Annual%20Financial%20Report.pdf"
+  investor_presentation: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a011bbeb7f8bdc95946d4ce_FY25%20Results%20Presentation.pdf"
+  results_announcement: null
+  transcript: null
+downloaded_at: "2026-08-05T00:00:00+10:00"
+extraction_flags:
+  - "financial-statements.pdf and appendix-4e.pdf are the SAME lodged document (Appendix 4E + full financial statements for the year ended 30 June 2025, combined in one PDF) — archived under both standard filenames per convention. Confirmed by cover page: 'Appendix 4E — Preliminary financial statements for the year ended 30 June 2025 as required by ASX listing rule 4.2A'."
+  - "results-announcement.pdf (separate short-form ASX Release/commentary letter, comparable to the confirmed FY24 and FY26H1 examples in this backfill) could not be independently located for FY25 in this fetch. A MarketIndex listing page (marketindex.com.au/asx/gnp/announcements/fy2025-results-announcement-6A1280467) confirms such a document WAS lodged on 27 Aug 2025 (per its own title/metadata), but the page returned HTTP 403 to automated fetch in this session and the underlying PDF URL could not be independently retrieved — flagged as a known gap rather than guessed at."
+  - "transcript.pdf not located for FY25 — press coverage references an investor conference call on 28 August 2025 hosted by MD David Riches, but no publicly available transcript could be independently confirmed."
+notes: "FY25 = annual report for the year ended 30 June 2025. Revenue $751,265,713 (up 36.30% YoY per Appendix 4E cover page, vs $551,189,613 in FY24); net profit before tax $52,564,332 (up 89.66%). Directors declared a final fully franked dividend of 3.6cps, record date 1 Oct 2025, payable 31 Oct 2025, per press coverage (not yet independently verified against the financial statements line-by-line)."

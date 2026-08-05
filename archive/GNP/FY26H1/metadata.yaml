@@ -1,0 +1,19 @@
+ticker: GNP
+period: FY26H1
+period_type: half_year
+period_end_date: "2025-12-31"
+fiscal_year_end: "30 June"
+currency: AUD
+release_datetime: "2026-02-23T00:00:00+08:00"  # confirmed both from the separate ASX Release cover page ("ASX Release 23 February 2026 For immediate release to the market") and from financial-statements.pdf's own Directors' Declaration ("Perth, 23 February 2026").
+source_urls:
+  financial_statements: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a011098604992735e6f6a7e_HY26%20Report%20and%20Accounts.pdf"
+  appendix_4d: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a011098604992735e6f6a7e_HY26%20Report%20and%20Accounts.pdf"
+  investor_presentation: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a011a92bb15b3a4c372f3bc_HY26%20Results%20Presentation.pdf"
+  results_announcement: "https://ir.miraqle.com/DownloadFile.axd?file=%2FReport%2FComNews%2F20260223%2F03059273.pdf"
+  transcript: null
+downloaded_at: "2026-08-05T00:00:00+10:00"
+extraction_flags:
+  - "financial-statements.pdf and appendix-4d.pdf are the SAME lodged document (Appendix 4D + Interim Financial Report for the half-year ended 31 December 2025, combined in one 32-page PDF) — archived under both standard filenames per convention. Confirmed by cover page: 'Appendix 4D — Preliminary financial statements for the half-year ended 31 December 2025 as required by ASX listing rule 4.2A'."
+  - "results-announcement.pdf IS a genuinely separate document from financial-statements.pdf for this period — a 4-page ASX Release/commentary letter ('GENUSPLUS GROUP – FINANCIAL RESULTS FOR H1 FY2026') with MD commentary, distinct from the Appendix 4D cover-page summary table. Verified by opening the PDF (via ir.miraqle.com, GenusPlus's own IR distribution platform), not just filename matching. Bank Guarantee/Surety Bond limits confirmed increased to $515m (up from $260m at 30 June 2025) with $278.6m headroom at 31 December 2025."
+  - "transcript.pdf not located for FY26H1."
+notes: "FY26H1 = half-year ended 31 December 2025 (first half of GenusPlus's FY26, the most recent period as of this backfill, run 5 August 2026). Revenue $535,416,624 (up 61% vs pcp per Appendix 4D cover page / results-announcement.pdf); normalised EBITDA $46.3m (up 69% from $27.4m HY2025); NPAT $24.9m (up 82%). Fully franked interim dividend of A$0.02/share declared, payable 24 April 2026, per results-announcement.pdf."

@@ -1,0 +1,21 @@
+ticker: GNP
+period: FY23
+period_type: annual
+period_end_date: "2023-06-30"
+fiscal_year_end: "30 June"
+currency: AUD
+release_datetime: "2023-08-22T00:00:00+08:00"  # directly confirmed from financial-statements.pdf's own Directors' Declaration ("Dated the 22nd day of August 2023"); time-of-day defaulted to 00:00 AWST as the exact lodgement timestamp isn't in the document text.
+source_urls:
+  financial_statements: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a01162e2b104a420730e9ad_FY23%20Annual%20Financial%20Report.pdf"
+  appendix_4e: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a01162e2b104a420730e9ad_FY23%20Annual%20Financial%20Report.pdf"
+  investor_presentation: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a011d6c60227626c9b42634_FY23%20Results%20Presentation.pdf"
+  results_announcement: null
+  transcript: null
+downloaded_at: "2026-08-05T00:00:00+10:00"
+extraction_flags:
+  - "financial-statements.pdf and appendix-4e.pdf are the SAME lodged document (Appendix 4E + full financial statements for the year ended 30 June 2023, combined in one PDF, as confirmed by its own cover page: 'Appendix 4E — Preliminary financial statements for the year ended 30 June 2023 as required by ASX listing rule 4.2A') — archived under both standard filenames per convention (same approach used for SKS), rather than picking one."
+  - "results-announcement.pdf (a separate short-form ASX Release/commentary letter, distinct from the Appendix 4E cover-page 'Results for announcement to the market' summary) could not be independently located for FY23 in this fetch. Confirmed separate ASX Release letters DO exist for FY24 and FY26H1 in this same backfill, so their absence here may be a search-coverage gap rather than a genuine non-lodgement — worth re-checking directly against ASX's own announcements platform if a future session has less-restricted access to announcements.asx.com.au / asx.com.au (both returned only navigation shells to WebFetch in this session, not the underlying announcement list)."
+  - "transcript.pdf not located for FY23 — no evidence a call transcript was ever publicly lodged/distributed for this smaller-cap issuer."
+  - "Document sourced from GenusPlus's own official investor relations page (genus.com.au/investor-relations/annual-and-interim-reports), first-party source, verified by opening the PDF and confirming the ABN (86 620 283 561) and period-end date match GenusPlus Group Ltd's own cover page — not just filename matching."
+  - "Two other candidate 'Appendix 4E for year ended 30 June 2023' PDFs surfaced by generic web search (announcements.asx.com.au/asxpdf/20230828 and /20230830) were downloaded and verified to belong to OTHER companies (APM Human Services International, Ansarada Group) — discarded as false positives rather than archived. Flagging so a future run doesn't re-attempt the same dead end."
+notes: "FY23 = GenusPlus's annual report for the year ended 30 June 2023 (first period in this 6-half backfill window). Revenue $444,178,894 (down 1.50% YoY per Appendix 4E cover page), net profit before tax $16,693,733 (down ~16% YoY). Fiscal year end CONFIRMED as 30 June directly from this and all other periods' lodged documents in this backfill — companies.yaml has been updated accordingly (previously marked 'June (unconfirmed)')."

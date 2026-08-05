@@ -1,0 +1,19 @@
+ticker: GNP
+period: FY24
+period_type: annual
+period_end_date: "2024-06-30"
+fiscal_year_end: "30 June"
+currency: AUD
+release_datetime: "2024-08-26T00:00:00+08:00"  # confirmed both from the separate ASX Release cover page ("ASX Release 26 August 2024 For immediate release to the market") and from financial-statements.pdf's own Directors' Declaration ("Dated the 26th day of August 2024"). Time-of-day defaulted to 00:00 AWST.
+source_urls:
+  financial_statements: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a01148f2458279087f6e5e2_FY24%20Annual%20Financial%20Report.pdf"
+  appendix_4e: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a01148f2458279087f6e5e2_FY24%20Annual%20Financial%20Report.pdf"
+  investor_presentation: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a011c9e8db6c9e908393290_FY24%20Results%20Presentation.pdf"
+  results_announcement: "https://www.aspecthuntley.com.au/asxdata/20240826/pdf/02842767.pdf"
+  transcript: null
+downloaded_at: "2026-08-05T00:00:00+10:00"
+extraction_flags:
+  - "financial-statements.pdf and appendix-4e.pdf are the SAME lodged document (Appendix 4E + full financial statements for the year ended 30 June 2024, combined in one PDF) — archived under both standard filenames per convention, rather than picking one. Confirmed by cover page: 'Appendix 4E — Preliminary financial statements for the year ended 30 June 2024 as required by ASX listing rule 4.2A'."
+  - "results-announcement.pdf IS a genuinely separate document from financial-statements.pdf for this period — a 3-page ASX Release/commentary letter ('GENUSPLUS GROUP – FINANCIAL RESULTS FOR FY2024') with CEO commentary, distinct from the Appendix 4E cover-page summary table. Verified by opening the PDF, not just filename matching."
+  - "transcript.pdf not located for FY24 — GenusPlus hosted an investor conference call but no publicly available transcript could be independently confirmed."
+notes: "FY24 = annual report for the year ended 30 June 2024. Revenue $551,189,613 (up 24.09% YoY per Appendix 4E cover page); net profit before tax $27,715,161 (up 66.02%). Directors declared a final fully franked dividend of 2.5cps for FY24 (up from 2.0cps FY23) per press coverage. Cash balance $101.0m (up 116% from $46.7m FY23); net cash $77.3m (up from $22.4m FY23) per company commentary."

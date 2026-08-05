@@ -1,0 +1,20 @@
+ticker: GNP
+period: FY24H1
+period_type: half_year
+period_end_date: "2023-12-31"
+fiscal_year_end: "30 June"
+currency: AUD
+release_datetime: "2024-02-23T00:00:00+08:00"  # confirmed from financial-statements.pdf's own Directors' Declaration ("Perth, 23 February 2024"); also matches the ASX-lodged PDF's own URL date-path (announcements.asx.com.au/asxpdf/20240223/...). Time-of-day defaulted to 00:00 AWST.
+source_urls:
+  financial_statements: "https://announcements.asx.com.au/asxpdf/20240223/pdf/060qj7m493fl4c.pdf"
+  appendix_4d: "https://announcements.asx.com.au/asxpdf/20240223/pdf/060qj7m493fl4c.pdf"
+  investor_presentation: "https://cdn.prod.website-files.com/69eae9908010adc14e71d197/6a011d1fae7faa078de0a387_HY24%20Results%20Presentation.pdf"
+  results_announcement: null
+  transcript: null
+downloaded_at: "2026-08-05T00:00:00+10:00"
+extraction_flags:
+  - "financial-statements.pdf and appendix-4d.pdf are the SAME lodged document (Appendix 4D + Interim Financial Report for the half-year ended 31 December 2023, combined in one 31-page PDF, as GenusPlus does not lodge these separately) — archived under both standard filenames per convention (same approach used for SKS), rather than picking one. Sourced directly from ASX's own announcement mirror (announcements.asx.com.au), confirmed by opening the PDF: cover page reads 'Appendix 4D — Preliminary financial statements for the half-year ended 31 December 2023 as required by ASX listing rule 4.2A'."
+  - "investor-presentation.pdf sourced from GenusPlus's own official IR page (genus.com.au/investor-relations/presentations) — confirmed by cover page text 'HY2024 Results Presentation / For the 6 months ended 31 December 2023'."
+  - "results-announcement.pdf (a separate short-form ASX Release/commentary letter, distinct from the Appendix 4D cover-page 'Results for announcement to the market' summary) could not be independently located for FY24H1 in this fetch — same caveat as FY23 (search-coverage gap, not necessarily non-lodgement)."
+  - "transcript.pdf not located for FY24H1."
+notes: "FY24H1 = half-year ended 31 December 2023 (first half of GenusPlus's FY24, June fiscal year end). Total revenue $249,956,459 (up 11.33% vs pcp per Appendix 4D cover page); normalised profit from ordinary activities after tax $9,574,172 (up 45.24%); net profit attributable to members $9,049,466 (up 42.11%)."

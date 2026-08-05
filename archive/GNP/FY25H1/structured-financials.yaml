@@ -1,0 +1,491 @@
+ticker: GNP
+period: FY25H1
+period_type: half_year
+period_end_date: "2024-12-31"
+fiscal_year_end: "30 June"
+currency: AUD
+source_documents:
+  - financial-statements.pdf   # = appendix-4d.pdf (identical MD5, confirmed byte-for-byte: 65a7a7c98d1ac6af8b289594c0fbcf4b) — Appendix 4D + Interim Financial Report for the half-year ended 31 December 2024, 33 pages
+  - appendix-4d.pdf
+  - investor-presentation.pdf   # 22 pages, but text layer near-empty on most pages (financial-summary/reconciliation slides are image-only) — see extraction_flags
+  # results-announcement.pdf and transcript.pdf not located for this period (already flagged by document-fetcher in metadata.yaml)
+
+document_quality_flag: >
+  Directors' Declaration (p.31) contains a stale boilerplate carryover: clause (b) reads "...financial
+  position as at 31 December 2023..." despite the document being dated/signed "Perth, 24 February 2025"
+  and titled throughout "For the half-year ended 31 December 2024". Same pattern already flagged in
+  metadata.yaml and consistent with a documented SKS FY25 boilerplate-carryover issue. Does not affect
+  any extracted financial figure — flagged for completeness only.
+
+balance_sheet_continuity_check_vs_FY24_closing:
+  result: >
+    CONFIRMED clean on every major line, with ONE genuine (small) restatement flagged explicitly per
+    instruction: a $(203,891) "Opening balance adjustment" to retained earnings was recognised in the
+    Statement of Changes in Equity between the 30 June 2024 closing position and the 1 July 2024 opening
+    position carried into HY25 — see restatement_flag below. All other lines tie exactly (or to $1
+    rounding) to archive/GNP/FY24/structured-financials.yaml's closing (30 June 2024) figures.
+  items_checked:
+    - {item: "Cash (cash equiv + restricted cash)", fy24_closing: 100966681, fy25h1_opening_comparative: 100966681, match: true, note: "86,937,885 unrestricted + 14,028,796 restricted = 100,966,681"}
+    - {item: "Total trade and other receivables", fy24_closing: 52023295, fy25h1_opening_comparative: 52023295, match: true}
+    - {item: "Trade receivables net of ECL (Note 5/16)", fy24_closing: 49362910, fy25h1_opening_comparative: 49362909, match: true, note: "$1 rounding, immaterial"}
+    - {item: "Allowance for ECL on trade receivables", fy24_closing: 206658, fy25h1_opening_comparative: 206658, match: true}
+    - {item: "Contract assets", fy24_closing: 39472365, fy25h1_opening_comparative: 39472365, match: true}
+    - {item: "Inventory", fy24_closing: 2840598, fy25h1_opening_comparative: 2840598, match: true}
+    - {item: "Contract liabilities", fy24_closing: 33384790, fy25h1_opening_comparative: 33384790, match: true}
+    - {item: "Intangible assets total", fy24_closing: 30960959, fy25h1_opening_comparative: 30960959, match: true}
+    - {item: "Goodwill (Note 12/24 opening balance at cost)", fy24_closing: 22774555, fy25h1_opening_comparative: 22774556, match: true, note: "$1 rounding, immaterial"}
+    - {item: "Bank borrowings current", fy24_closing: 1580000, fy25h1_opening_comparative: 1580000, match: true}
+    - {item: "Bank borrowings non-current", fy24_closing: 2700000, fy25h1_opening_comparative: 2700000, match: true}
+    - {item: "Lease liabilities current", fy24_closing: 10317098, fy25h1_opening_comparative: 10317098, match: true}
+    - {item: "Lease liabilities non-current", fy24_closing: 14655827, fy25h1_opening_comparative: 14655827, match: true}
+    - {item: "Provisions current", fy24_closing: 65754, fy25h1_opening_comparative: 65754, match: true}
+    - {item: "Provisions non-current / relabelled 'Other loans' non-current", fy24_closing: 650000, fy25h1_opening_comparative: 650000, match: true,
+       note: "VALUE ties exactly, but the LABEL changed: FY24's own balance sheet showed this $650,000 under 'Provisions' (non-current); FY25H1's comparative column for the identical 30-Jun-2024 date shows the same $650,000 under a new line item 'Other loans' (non-current). This resolves (rather than deepens) the ambiguity FY24's own extraction flagged — that the $650k non-current 'Provisions' balance was suspected to actually be the Blue Tongue Energy contingent consideration (FVTPL) mislabelled. The relabelling to 'Other loans' this half is consistent with that suspicion. Flagged as a presentation reclassification, not a discontinuity."}
+    - {item: "Trade and other payables (balance sheet face)", fy24_closing: 75097353, fy25h1_opening_comparative: 75097353, match: true}
+    - {item: "Total equity (pre-adjustment)", fy24_closing: 121166442, fy25h1_opening_comparative: 121166442, match: true, note: "See restatement_flag below for the subsequent opening retained-earnings adjustment applied to this balance"}
+  restatement_flag: >
+    GENUINE (small) restatement identified — flagged per instruction rather than silently accepted:
+    the Statement of Changes in Equity (financial-statements.pdf p.10) shows "Balance at 1 July 2024:
+    Retained earnings $65,418,644, Total equity $121,166,442" (ties exactly to FY24's closing figures),
+    immediately followed by a line "Opening balance adjustment: Retained earnings $(203,891), Total
+    equity $(203,891)" and a "Restated Balance at 1 July 2024: Retained earnings $65,214,753, Total
+    equity $120,962,551" before HY25's profit is added. No note or narrative in the interim report
+    explains the nature of this $203,891 adjustment (it is not flagged as a prior-period error correction,
+    accounting policy change, or reclassification in the text available). Immaterial in size (0.17% of
+    opening equity) but genuinely unexplained — flagged for the disclosure-tone-analyst / balance-sheet-
+    cashflow-analyst to probe if a transcript or subsequent filing sheds light on it.
+  net_debt_continuity: {fy24_closing_net_cash: -71713756, fy25h1_opening_comparative_net_cash: -71713756, match: true, note: "Bank borrowings 4,280,000 + leases 24,972,925 - cash 100,966,681, both files"}
+  conclusion: "No material restatement, restructure, or extraction error. One small ($203,891) unexplained opening retained-earnings adjustment flagged above; one presentation relabelling (Provisions -> Other loans) flagged as a clarification, not a discontinuity."
+
+pnl:
+  revenue_total:
+    value: 332874405
+    source: "financial-statements.pdf p.8 (Condensed Consolidated Statement of P&L, 'Revenue from continuing operations'); confirmed p.1 Appendix 4D cover ('Total revenue from ordinary activities', up 33.17%) and p.4 Directors' Report ('33% increase in revenue')"
+    pcp_hy24: 249956459
+    change_pct_yoy: 33.17
+    h2fy24_derived: 301233154
+    change_pct_hoh: 10.53
+    hoh_source: "h2fy24_derived from archive/GNP/FY24/structured-financials.yaml (derived_fy24h2_by_subtraction.revenue_total.h2fy24_derived)"
+    disaggregation_by_type:
+      Construction: {value: 213003965, pcp_hy24: 174012652, source: "financial-statements.pdf p.16 (Note 5 Revenue)"}
+      Services: {value: 119870440, pcp_hy24: 75943807, source: "financial-statements.pdf p.16 (Note 5 Revenue)"}
+  revenue_by_segment:
+    # Statutory EXTERNAL segment revenue (Note 4, p.13) — reconciles EXACTLY to Group revenue_total this half
+    # (unlike FY24 annual, where the equivalent row had a $495,870 unresolved gap — that gap has NOT recurred this half).
+    Infrastructure:
+      value: 192101118
+      source: "financial-statements.pdf p.13 (Note 4 Segment Reporting, 'Revenues' row, Half-Year to 31 Dec 2024)"
+      pcp_hy24: 158797325
+      change_pct_yoy: 20.98
+      h2fy24_derived: 170149255
+      change_pct_hoh: 12.91
+    Communications:
+      value: 48122302
+      source: "financial-statements.pdf p.13 (Note 4 Segment Reporting, 'Revenues' row)"
+      pcp_hy24: 33695313
+      change_pct_yoy: 42.81
+      h2fy24_derived: 37478028
+      change_pct_hoh: 28.37
+    Industrial Services:
+      value: 92650985
+      source: "financial-statements.pdf p.13 (Note 4 Segment Reporting, 'Revenues' row)"
+      pcp_hy24: 57463821
+      change_pct_yoy: 61.19
+      h2fy24_derived: 94101741
+      change_pct_hoh: -1.54
+      flag: "Industrial Services is the only segment DOWN half-on-half (-1.5%) despite being up +61% YoY — H2FY24 was itself an unusually strong half for this segment (derived PBT surge already flagged in FY24's own extraction). Not a deterioration signal on its own, but the YoY framing alone (which is all the company's own IR deck highlights on p.3) masks this HoH flattening."
+    reconciliation_note: "Sum of the three external segment revenues above ($332,874,405) ties EXACTLY to Group statutory revenue ($332,874,405) this half."
+  revenue_by_segment_gross_incl_intersegment:
+    note: "Not directly comparable to the statutory net figures above. Matches the one piece of extractable text from investor-presentation.pdf p.3 (a rare page with a real text layer, unlike most of the deck)."
+    Infrastructure: {value: 198490575, source: "financial-statements.pdf p.13 (Note 4, 'Segment revenues' incl. inter-segment $6,389,457); investor-presentation.pdf p.3 states '$198m, Up 22% on PCP' (22.4% on a gross-vs-gross basis)"}
+    Industrial_Services: {value: 93372471, source: "financial-statements.pdf p.13 (Note 4); investor-presentation.pdf p.3 states '$93m, Up 60% on PCP'"}
+    Communications: {value: 48122302, source: "financial-statements.pdf p.13 (Note 4, no inter-segment this half); investor-presentation.pdf p.3 states '$48m, Up 43% on PCP'"}
+  segment_operating_profit:
+    # Note 4 label this half is "Segment operating profit" (pretax, pre-interest) — same concept as prior
+    # periods' "segment profit before income tax" but the note's own label changed slightly; recorded as
+    # disclosed rather than relabelled.
+    Infrastructure: {value: 13913626, pcp_hy24: 13267086, source: "financial-statements.pdf p.13 (Note 4, 'Segment operating profit')"}
+    Communications: {value: 3605251, pcp_hy24: -1425643, source: "financial-statements.pdf p.13 (Note 4)"}
+    Industrial Services: {value: 5546199, pcp_hy24: 1052750, source: "financial-statements.pdf p.13 (Note 4)"}
+    total_segments: {value: 23065076, pcp_hy24: 12894193, source: "financial-statements.pdf p.13 (Note 4) — reconciles to Group operating profit via Note 4 continued (p.15): + other income 345,267 - unallocated/corporate overheads 3,820,541 = 19,589,802"}
+    flag: "Communications swung from a $(1,425,643) segment loss (HY24) to a $3,605,251 segment profit this half — the largest proportional swing of the three segments, partly attributable to the CommTel acquisition (22 Oct 2024, ~$60m p.a. revenue run-rate per Directors' Report) though no revenue/profit was recognised for CommTel or Partum this half as both were deemed immaterial/too close to period-end (Note 18)."
+  segment_balance_sheet_supplementary:
+    note: "Note 4 (p.13) also discloses segment assets/liabilities at 31 Dec 2024 — included for capital-intensity context, not a core P&L/BS extraction target."
+    Infrastructure: {assets: 176836382, liabilities: 69850177}
+    Communications: {assets: 30388290, liabilities: 29192254}
+    Industrial_Services: {assets: 46077725, liabilities: 37034705}
+    source: "financial-statements.pdf p.13 (Note 4)"
+  ir_deck_available_extract:
+    note: "Almost all of investor-presentation.pdf returned an empty text layer this period (image-based slides) — see extraction_flags. The only usable text found: p.3 (segment revenue headlines, captured above) and p.6 (Orderbook & Pipeline chart data-labels, captured under guidance_and_outlook below). All other IR-deck-sourced supplementary metrics available in prior periods' files (EBIT-A, NPAT-A, Normalised NPAT-A, segment non-IFRS EBITDA/EBIT, company-reported net debt/net cash, cash-conversion %, gearing) are NOT available this period and are recorded as not_available rather than guessed at."
+  gross_profit: {value: not_disclosed, source: null}
+  gross_margin_pct:
+    value: not_available
+    source: null
+    note: "Same as FY23/FY24H1/FY24 — GenusPlus presents its P&L 'by nature' with no cost-of-sales/gross-profit subtotal. Genuinely not reported in this format, not an extraction gap."
+  ebitda:
+    value: 26308587
+    source: "derived: financial-statements.pdf p.8 — Operating profit 19,589,802 + Depreciation and amortisation expense 6,718,785 (same methodology as prior periods' 'statutory EBITDA')"
+    pcp_hy24: 22658180
+    change_pct_yoy: 16.08
+    h2fy24_derived: 22217468
+    change_pct_hoh: 18.42
+    hoh_source: "h2fy24_derived from archive/GNP/FY24/structured-financials.yaml (derived_fy24h2_by_subtraction.ebitda_statutory)"
+  ebitda_margin_pct:
+    value: 7.91
+    source: "derived: ebitda 26,308,587 / revenue_total 332,874,405"
+    pcp_hy24: 9.07
+    flag: "Statutory EBITDA margin CONTRACTED ~116bps YoY (9.07% -> 7.91%) — statutory EBITDA grew 16.1% while revenue grew 33.2%, i.e. revenue growth is materially outpacing statutory earnings growth this half. The company's own framing (Directors' Report: '33% increase in revenue... 25.1% increase in normalised EBITDA') implicitly acknowledges the same dilution on a normalised basis. See ebitda_normalised_margin_pct below."
+  ebitda_normalised:
+    value: 27364918
+    source: "financial-statements.pdf p.4 (Directors' Report: 'reported a 25.1% increase in normalised EBITDA... to $27,364,918 (HY24: $21,867,207)')"
+    pcp_hy24: 21867207
+    change_pct_yoy: 25.14
+    normalisation_addback_pretax: "Acquisition costs $863,058 (after tax $604,141) + loss from ECM claims $354,019 (after tax $247,813) = $1,217,077 pretax / $851,954 after-tax, per Directors' Report (p.4) and Appendix 4D footnote (p.1). Restructure costs NIL this half (HY24: $555,482 after tax)."
+    unreconciled_bridge_flag: >
+      The Directors' Report's own EBITDA bridge does not cleanly tie: statutory-equivalent EBITDA
+      (Operating profit 19,589,802 + D&A 6,718,785 = 26,308,587) + disclosed pretax normalisations
+      (863,058 + 354,019 = 1,217,077) = 27,525,664, which is $160,746 ABOVE the disclosed Normalised
+      EBITDA of $27,364,918. The $160,746 gap is suspiciously close to the period's $160,747 "Loss on
+      revaluation of investment" (a below-the-line P&L item that sits below Operating profit and
+      shouldn't affect an EBITDA build in either direction) — but no note explains this. Recorded as-is;
+      flagged as an unresolved internal inconsistency in the company's own EBITDA bridge, consistent
+      with the recurring disclosure-quality pattern noted in FY23/FY24H1/FY24.
+  ebitda_normalised_margin_pct:
+    value: 8.22
+    source: "derived: ebitda_normalised 27,364,918 / revenue_total 332,874,405"
+    pcp_hy24: 8.75
+    flag: "Normalised EBITDA margin also contracted YoY (8.75% -> 8.22%), consistent with the statutory-margin dilution noted above."
+  ebit:
+    value: 19589802
+    label: "Operating profit (per P&L face) — excludes JV share of results, finance income/costs, and loss on revaluation of investment"
+    source: "financial-statements.pdf p.8 (Statement of P&L, 'Operating profit')"
+    pcp_hy24: 15080767
+    change_pct_yoy: 29.90
+    h2fy24_derived: 14940630
+    change_pct_hoh: 31.10
+    hoh_source: "h2fy24_derived from archive/GNP/FY24/structured-financials.yaml (derived_fy24h2_by_subtraction.ebit_statutory)"
+  ebit_alt_ir_deck: {value: not_available, note: "IR-deck 'EBIT' figure (a broader measure than statutory Operating profit, per prior periods) not extractable this half — investor-presentation.pdf's relevant slides returned no text."}
+  ebit_normalised_a: {value: not_available, note: "IR-deck 'Normalised EBIT-A' figure not extractable this half (image-only slide) — available in FY23/FY24H1/FY24 files, not this period."}
+  net_interest_income_expense:
+    value: -660589
+    label: "Finance costs 1,132,486 LESS Finance income 1,793,075 = net finance INCOME of $660,589 (negative value = net income, consistent sign convention with prior periods' 'net_interest_expense' field)"
+    source: "derived: financial-statements.pdf p.8"
+    pcp_hy24: 540847
+    flag: "Genuine swing from a net finance EXPENSE of $540,847 (HY24) to a net finance INCOME of $660,589 this half — a ~$1.2m favourable swing, driven by finance income rising from $385,929 to $1,793,075 (higher average cash balances following FY24's strong cash generation) while finance costs rose only modestly ($926,776 -> $1,132,486). This is a genuine tailwind to PBT/NPAT this half, not a one-off — but it is directly a function of the large cash balance being partly deployed into HY25 acquisitions (see cash_flow.acquisition_cash_flows), so is unlikely to repeat at the same scale in H2FY25/FY26 on an unchanged cash base."
+  pbt:
+    value: 20089644
+    source: "financial-statements.pdf p.8 (Statement of P&L, 'Profit before income tax expense from continuing operations')"
+    pcp_hy24: 12999367
+    change_pct_yoy: 54.55
+    h2fy24_derived: 14715794
+    change_pct_hoh: 36.53
+    hoh_source: "h2fy24_derived from archive/GNP/FY24/structured-financials.yaml (derived_fy24h2_by_subtraction.pbt)"
+  tax:
+    value: 6388507
+    source: "financial-statements.pdf p.8 (Statement of P&L, 'Income tax expense')"
+    pcp_hy24: 3949901
+    effective_tax_rate_pct: {hy25: 31.81, hy24: 30.40}
+    h2fy24_derived: 4503222
+    change_pct_hoh: 41.88
+    hoh_source: "h2fy24_derived from archive/GNP/FY24/structured-financials.yaml (derived_fy24h2_by_subtraction.tax)"
+  npat_statutory:
+    value: 13701137
+    source: "financial-statements.pdf p.8 (Statement of P&L, 'Profit after income tax for the half-year')"
+    pcp_hy24: 9049466
+    change_pct_yoy: 51.46
+    h2fy24_derived: 10212572
+    change_pct_hoh: 34.16
+    hoh_source: "h2fy24_derived from archive/GNP/FY24/structured-financials.yaml (derived_fy24h2_by_subtraction.npat_statutory)"
+    minor_discrepancy_flag: "Appendix 4D cover (p.1) states 'Net Profit attributable to members $13,701,135' — a $2 difference vs the Statement of P&L face figure of $13,701,137 used here (also matches the Directors' Report narrative rounding to '$13,701,137'). Immaterial ($2), flagged for completeness."
+    margin_pct: {hy25: 4.12, hy24: 3.62, flag: "NPAT margin IMPROVED YoY despite the EBITDA/EBIT margin contraction noted above — driven mainly by the net finance income swing (net_interest_income_expense) and a much smaller 'loss on revaluation of investment' this half ($160,747 vs HY24's $1,528,970 Blue Tongue Energy impairment), which more than offset the operating-margin dilution."}
+  npat_underlying:
+    value: not_a_single_figure
+    source: null
+    note: >
+      Recurring quality-of-earnings pattern (also flagged FY23, FY24H1, FY24): this half's IR deck being
+      image-only means only ONE normalised-NPAT variant is extractable this period (the Appendix 4D
+      "Normalised Profit" figure) rather than the usual 3-4 variants — not because the company converged
+      on one measure, but because the supplementary IR-deck variants (NPAT-A, Normalised NPAT-A) are not
+      text-extractable this half. Do not read the reduced variant count as improved disclosure discipline.
+    variants:
+      appendix_4d_normalised_profit:
+        value: 14962710
+        source: "financial-statements.pdf p.1 (Appendix 4D cover, 'Normalised Profit from ordinary activities after tax'), up 56.28% on pcp"
+        pcp_hy24: 9574172
+        reconciling_items_after_tax:
+          - "Acquisition legal & advisory costs during the period $604,141 (HY24: $1,117,220 including Blue Tongue Energy FV adjustment)"
+          - "Net (proceeds)/costs from ECM claim $247,813 (HY24: $(1,147,995))"
+          - "Restructure costs NIL (HY24: $555,482)"
+        unreconciled_bridge_flag: >
+          The disclosed after-tax reconciling items sum to $851,954 (604,141 + 247,813 + 0), which bridges
+          statutory NPAT ($13,701,135, Appendix 4D basis) to only $14,553,089 — a full $409,621 SHORT of
+          the disclosed Normalised Profit of $14,962,710. This is a genuine, unexplained gap in the
+          company's own headline ASX regulatory disclosure (the exact figure that drives the 56.28%
+          "up" headline). Tried and ruled out: (a) using pretax rather than after-tax addbacks
+          (863,058 + 354,019 = 1,217,077; NPAT + this = 14,918,212, still $44,498 short); (b) tax-effecting
+          at the period's own effective rate of 31.8% (results in ~14,531,185, further off). No combination
+          of disclosed items reconciles exactly — flagged as an unresolved disclosure-quality item for the
+          profitability-earnings-analyst, consistent with the recurring QoE flags raised in every prior
+          GNP extraction.
+    ir_deck_variants_unavailable: "NPAT-A and Normalised NPAT-A (IR-deck variants used in FY23/FY24H1/FY24 files) not extractable this half — investor-presentation.pdf's relevant slides (equivalent to prior periods' 'Reconciliation of Non-IFRS Financial Information' appendix) returned no text layer."
+    flag: "Per the established convention (FY23/FY24H1/FY24), the Appendix 4D 'Normalised Profit' figure remains the primary regulatory disclosure to treat as 'the' underlying NPAT reference point for this period, WITH the caveat that its own bridge from statutory NPAT does not reconcile per the flag above."
+  eps:
+    basic_cents: {value: 7.69, source: "financial-statements.pdf p.8 and p.20 (Note 8)"}
+    diluted_cents: {value: 7.56, source: "financial-statements.pdf p.20 (Note 8) — dilutive effect of performance rights (3,196,462 shares) reduces diluted EPS below basic for the first time since FY24's LTI grant"}
+    weighted_avg_shares_basic: {value: 178086064, source: "financial-statements.pdf p.20 (Note 8)"}
+    weighted_avg_shares_diluted: {value: 181282526, source: "financial-statements.pdf p.20 (Note 8)"}
+    pcp_hy24: {basic_cents: 5.09, diluted_cents: 5.09, weighted_avg_shares_basic: 177724948}
+    change_pct_basic_yoy: 51.08
+    note: "Weighted-average basic shares increased from 177,724,948 (HY24/FY24) to 178,086,064 this half, reflecting partial-period weighting of the 2,460,937 new shares issued 2 Dec 2024 as part of the Partum Engineering acquisition consideration."
+  dps:
+    value: 0
+    unit: "cents per share — Nil interim dividend declared"
+    source: "financial-statements.pdf p.1 (Appendix 4D cover, 'Interim dividend declared2: Nil') and p.5 Directors' Report: 'No dividend has been declared for the half year period to 31 December 2024.'"
+    note: "Consistent with GNP's established pattern (no interim dividend, only a final dividend per fiscal year — see FY23/FY24H1/FY24 files). A dividend of 2.5cps ($4,443,121, fully franked) WAS paid in cash during this half (1 Nov 2024), but that related to FY24's full-year result, not HY25 earnings — see cash_flow.financing_cash_flows.dividends_paid."
+
+balance_sheet:
+  cash:
+    value: 89876723
+    components: {unrestricted: 61693789, restricted: 28182934}
+    source: "financial-statements.pdf p.9 (Statement of Financial Position, 'Cash and cash equivalents' + 'Restricted cash and cash equivalents') and p.11 (Statement of Cash Flows, closing balance)"
+    comparative_30jun24: 100966681
+    change_pct_hoh: -10.98
+    note: "Restricted cash increased sharply this half (14,028,796 -> 28,182,934) — likely related to the Acciona/Samsung JV cash held per Note 7 ('Cash held at any joint arrangements is held as restricted cash... not freely available to the group')."
+  total_debt_by_facility:
+    bank_borrowings:
+      facility: "Bank borrowings — secured by floating charge over Group assets (no per-tranche breakdown disclosed in this interim report, consistent with prior interim periods; annual reports itemise CBA/Toyota/ANZ/Westpac facilities separately)"
+      drawn_current: 1580000
+      drawn_non_current: 1910000
+      drawn_total: 3490000
+      comparative_30jun24_total: 4280000
+      interest_rate: "Variable, average 4.47% p.a. at 31 Dec 2024 (30 Jun 2024: 4.44%)"
+      fixed_floating: "Floating"
+      undrawn_headroom: not_disclosed_separately_this_half
+      source: "financial-statements.pdf p.21-22 (Note 10 Financial assets and liabilities)"
+    other_loans_contingent_consideration:
+      facility: "'Other loans' (non-current) — presumed to be the residual Blue Tongue Energy contingent/deferred acquisition consideration, based on continuity with FY24's relabelled $650,000 balance (see balance_sheet_continuity_check_vs_FY24_closing)"
+      drawn_non_current: 44917
+      comparative_30jun24: 650000
+      change: "-605,083 this half — a large reduction, consistent with the deferred consideration largely settling/expiring, though not separately narrated in the text available"
+      caveat: "Note 10's own financial-instrument categorisation table (p.21) shows 'Non-current contingent consideration' as '-' (nil) at 31 Dec 2024, which does not exactly match the balance sheet's 'Other loans' figure of $44,917 — a small unreconciled gap, flagged rather than resolved."
+      source: "financial-statements.pdf p.9 (SOFP) and p.21 (Note 10)"
+    lease_liabilities_total:
+      drawn_current: 11502306
+      drawn_non_current: 16388442
+      drawn_total: 27890748
+      comparative_30jun24_total: 24972925
+      interest_rate: "Interest expense on ROU lease liabilities $760,506 for the half (HY24: $665,525) — Note 11 p.24"
+      source: "financial-statements.pdf p.9 and p.23-24 (Note 11 Lease liabilities)"
+    guarantee_facility_cba:
+      facility: "Secured guarantee to company's bankers (CBA), supported by floating charge over Group assets — off-balance-sheet contingent liability, not drawn debt"
+      limit: 120000000
+      comparative_30jun24_limit: 120000000
+      utilised: 41882609
+      comparative_30jun24_utilised: 31731181
+      undrawn_headroom: 78117391
+      source: "financial-statements.pdf p.28 (Note 17 Contingent assets and liabilities)"
+    surety_bond_facility:
+      facility: "Surety bonds secured by Group assets — off-balance-sheet contingent liability, not drawn debt"
+      limit: 110000000
+      comparative_30jun24_limit: 90000000
+      limit_increased_this_half: true
+      utilised: 72708686
+      comparative_30jun24_utilised: 38386445
+      undrawn_headroom: 37291314
+      source: "financial-statements.pdf p.28 (Note 17)"
+    combined_contingent_headroom: {limit: 230000000, utilised: 114591295, headroom: 115408705, comparative_30jun24_utilised: 70117626, source: "financial-statements.pdf p.28 (Note 17) — utilisation nearly doubled half-on-half"}
+    company_reported_total_debt_per_ir_deck: {value: not_available, note: "IR-deck 'Corporate Overview' slide (used in FY23/FY24H1/FY24) not text-extractable this half."}
+    covenants:
+      note: "No capital-management/covenant note (equivalent to FY24 annual Note 40) is included in this interim report — AASB 134 interim reports omit annual-only notes, consistent with FY24H1. No disclosed covenant breach."
+      source: "financial-statements.pdf p.12 (Note 2 — statements to be read in conjunction with FY24 annual report)"
+  net_debt:
+    statutory_bank_debt_and_leases_less_cash:
+      value: -58495975
+      note: "Net CASH position (negative = net cash) = bank borrowings 3,490,000 + lease liabilities 27,890,748 - cash 89,876,723"
+      comparative_30jun24: -71713756
+      change_hoh: "Net cash (this basis) DETERIORATED (i.e. shrank) by ~$13.2m half-on-half, despite strong operating cash flow — driven by $15.8m cash spent on the CommTel/Partum acquisitions, $4.4m dividend paid, and $8.1m cash capex, only partially offset by $24.5m net operating cash inflow."
+      source: "derived from financial-statements.pdf p.9 balance sheet lines"
+    statutory_incl_other_loans: {value: -58451058, note: "As above plus the $44,917 'Other loans' non-current liability", source: "derived"}
+    company_reported_net_cash_per_ir_deck: {value: not_available, note: "IR-deck 'Net Cash' bridge slide (used in FY23/FY24H1/FY24) not text-extractable this half."}
+  gearing_ratio_as_reported:
+    value: not_disclosed_this_half
+    source: null
+    note: "No capital-management note (FY24 annual Note 40 equivalent, which gave 0.30 at 30 June 2024) appears in this interim report, consistent with the AASB134 reduced-disclosure pattern already seen in FY24H1. Re-check at next annual (FY25) reporting date."
+  nta_per_security:
+    dec_2024: 0.50
+    jun_2024: 0.48
+    dec_2023: 0.41
+    source: "financial-statements.pdf p.1 (Appendix 4D cover, 'Net tangible assets per security')"
+  trade_debtors:
+    net_of_ecl: {value: 59593083, comparative_30jun24: 49362909, source: "financial-statements.pdf p.16 (Note 5, 'Trade receivables')"}
+    allowance_for_ecl: {value: 206658, comparative_30jun24: 206658, source: "financial-statements.pdf p.16 (Note 5) — unchanged half-on-half"}
+    total_trade_and_other_receivables: {value: 60431422, comparative_30jun24: 52023295, source: "financial-statements.pdf p.9"}
+    note: "Trade receivables presented net of ECL only this half (no gross figure), consistent with prior interim periods' reduced AASB134 disclosure."
+  trade_creditors:
+    total_trade_and_other_payables: {value: 70469471, comparative_30jun24_per_balance_sheet_face: 75097353, comparative_30jun24_per_note10_amortised_cost: 62685145, source: "financial-statements.pdf p.9 (balance sheet) and p.21 (Note 10)"}
+    note: "Same recurring face-vs-note discrepancy pattern flagged in FY24H1: Note 10's amortised-cost categorisation table captures only the financial-instrument portion of trade and other payables ($62,685,145 for the 30 Jun 2024 comparative), excluding non-financial-instrument components (GST payable, accrued wages) that FY24's own annual Note 25 itemised separately (GST $1.63m + accrued wages $4.32m + sundry $41.15m, alongside trade payables $28.0m). NOT a genuine discontinuity — a recurring disclosure-granularity nuance."
+    change_hoh: "Payables DECREASED 6.2% half-on-half (75,097,353 -> 70,469,471) despite revenue growing 10.5% HoH — a mild favourable-to-cash-conversion divergence worth flagging for the balance-sheet-cashflow-analyst (payables not growing in line with activity, i.e. less supplier financing of working capital than the growth in the business might suggest)."
+  inventory:
+    value: 2598637
+    comparative_30jun24: 2840598
+    source: "financial-statements.pdf p.9"
+  contract_assets:
+    value: 47250717
+    comparative_30jun24: 39472365
+    change_pct_hoh: 19.70
+    source: "financial-statements.pdf p.9 and p.19 (Note 9)"
+  contract_liabilities:
+    value: 53755938
+    comparative_30jun24: 33384790
+    change_pct_hoh: 61.02
+    source: "financial-statements.pdf p.9 and p.22 (Note 13) — short-term advances for construction services"
+    note: "Continues the sharp growth trend already flagged in FY24 (near-doubling for the full year); another +61% this half alone. Company attributes this pattern (in FY24) to 'increase in the Group's customer base, and the prepaid revenue received' — consistent narrative, not independently re-confirmed this half as the interim Directors' Report does not repeat the explanation."
+  provisions:
+    current: {value: 744533, comparative_30jun24: 65754, source: "financial-statements.pdf p.9 (SOFP, 'Provisions' line — no note cross-reference given, consistent with FY24's own lack of a standalone Provisions note)"}
+    non_current: {value: not_disclosed_as_provisions_this_half, note: "The FY24 non-current 'Provisions' $650,000 balance is now shown under 'Other loans' this half — see balance_sheet_continuity_check_vs_FY24_closing and total_debt_by_facility.other_loans_contingent_consideration above."}
+    change_flag: "Current provisions increased more than 11x half-on-half ($65,754 -> $744,533, +$678,779) with NO explanation in the text available (no standalone Provisions note in this interim report). Could relate to warranty/DOCA-fund items from the CommTel acquisition (Note 18 references a $10.1m DOCA fund contribution and a $5,050,000 'Contingent assets' line in CommTel's opening balance sheet) or to the Western Power CELN contract awarded 10 Jan 2025 (post-period, so unlikely to be the direct driver of a 31 Dec 2024 balance) — genuinely unresolved from available disclosure, flagged for the balance-sheet-cashflow-analyst."
+  goodwill:
+    value: 37648342
+    comparative_30jun24: 22774555
+    movement: "+$14,873,786 acquired through business combination (CommTel Network Solutions $5,050,000 + Partum Engineering $9,800,000 = $14,850,000 per the Note 18 PPA table — a small $23,786 gap vs the $14,873,786 movement shown in Note 12's own goodwill roll-forward, immaterial and likely a provisional-accounting rounding/timing difference)"
+    source: "financial-statements.pdf p.9 and p.25 (Note 12) — 'No adjustments to Goodwill were recognised during the reporting period' (i.e. no impairment)"
+    by_cgu: not_disclosed_this_half
+    note: "CGU-level goodwill breakdown (FY24 annual Note 24 equivalent, which showed CGUs realigned to the 3 operating segments) not repeated in this interim report — annual-only disclosure. Both CommTel and Partum acquisitions remain on PROVISIONAL accounting (IFRS 3) as at 31 Dec 2024, with fair-value assessments to be finalised within 12 months — expect goodwill/intangible allocations to shift at FY25 annual reporting."
+  intangibles_total:
+    value: 44736072
+    comparative_30jun24: 30960959
+    source: "financial-statements.pdf p.9 and p.25 (Note 12) — goodwill $37,648,342 + Intellectual Property (net) $2,885,404 + Customer contracts (net) $4,202,326"
+  impairment_charges:
+    value: 160747
+    label: "'Loss on revaluation of investment' (P&L, below Operating profit) — source asset not identifiable from the disclosure available this half"
+    source: "financial-statements.pdf p.8 (P&L line 'Loss on revaluation of investment')"
+    goodwill_impairment: {value: 0, source: "financial-statements.pdf p.25 (Note 12): 'No adjustments to Goodwill were recognised during the reporting period.'"}
+    pcp_hy24: 1528970
+    note: "Materially smaller than HY24's $1,528,970 Blue Tongue Energy step-acquisition impairment (which was a one-off, fully recognised in H1FY24 with no incremental impairment in H2FY24 per the FY24 file). This half's $160,747 charge does not map cleanly to any single disclosed financial-asset balance (Note 10's 'Listed equity securities' at FVTPL is unchanged at $691,500 both periods) — flagged as an unidentified-source item rather than guessed at. Coincidentally the same magnitude as the unreconciled gap in the Normalised EBITDA bridge (see pnl.ebitda_normalised.unreconciled_bridge_flag) — noted as a possible (unconfirmed) connection."
+
+cash_flow:
+  net_operating_cash_flow:
+    value: 24505592
+    comparative_hy24: 19484313
+    change_pct_yoy: 25.78
+    source: "financial-statements.pdf p.11 (Statement of Cash Flows)"
+  growth_capex: {value: not_split_disclosed, source: null}
+  maintenance_capex: {value: not_split_disclosed, source: null}
+  total_capex_disclosed:
+    cash_ppe_purchases: {value: 8138612, comparative_hy24: 3946838, source: "financial-statements.pdf p.11 (Statement of Cash Flows, 'Purchase of property, plant, equipment')"}
+    rou_noncash_additions: {value: 9162584, comparative_hy24: 8619684, source: "financial-statements.pdf p.24 (Note 11) — 'non-cash additions to right-of-use assets and lease liabilities of $9,162,584 for the half-year to 31 December 2024'"}
+    total_per_directors_report: {value: 17200000, comparative_hy24: 8400000, source: "financial-statements.pdf p.5 (Directors' Report): 'invested $17.2 million in capital expenditure during the half-year... Of the capital expenditure $9.1 million (HY24: $4.4 million) was acquired under finance contract agreements'"}
+    reconciliation_check: "Cash PP&E purchases 8,138,612 + non-cash ROU additions 9,162,584 = 17,301,196 ≈ $17.2m (rounds to $17.3m, a ~$0.1m/0.6% rounding gap vs the Directors' Report's stated $17.2m) — a MUCH better tie-out than the ~$4.2m internal inconsistency flagged in FY24H1's equivalent disclosure. The finance-contract-acquired sub-component ($9.1m per Directors' Report vs $9,162,584 per Note 11, i.e. ~$9.2m) also ties reasonably well this half."
+    note: "No growth/maintenance split disclosed (same recurring gap as FY23/FY24H1/FY24). Directors' Report narrative: capex growth 'mainly attributable to increases in recurring works for PFA; and in preparation for significant projects awarded to Genus being Transgrid's HumeLink, TasNetworks NWTD and Western Power's CELN projects' — capex more than doubled YoY ($8.4m -> $17.2m), consistent with pre-mobilisation spend ahead of these named contracts."
+  capex_intensity:
+    capex_pct_of_revenue: {hy25: 5.20, hy24: 3.36, methodology: "total_per_directors_report / revenue_total"}
+    capex_pct_of_ebitda_normalised: {hy25: 62.86, hy24: 38.42, methodology: "total_per_directors_report / ebitda_normalised"}
+    flag: "Capex intensity increased materially both as a % of revenue and of normalised EBITDA — consistent with the Directors' Report's own framing of pre-mobilisation investment ahead of HumeLink/NWTD/CELN, but a genuine cash-flow item to monitor into H2FY25/FY26 (does this step-up reverse once mobilisation is complete, or is it a new higher run-rate)."
+  free_cash_flow:
+    value: 16366980
+    methodology: "Net operating cash flow 24,505,592 less cash PP&E purchases 8,138,612 (consistent with prior periods' methodology — does NOT deduct lease principal repayments of $7,767,901, which would give a lease-inclusive FCF of ~$8.6m)"
+    source: "derived from financial-statements.pdf p.11"
+    comparative_hy24: 15537475
+  acquisition_cash_flows:
+    acquisition_of_subsidiaries_net_of_cash:
+      value: -15800000
+      comparative_hy24: -2419556
+      source: "financial-statements.pdf p.11; detail in Note 18 (p.28-29) — CommTel Network Solutions $(10,100,000) cash + Partum Engineering $(5,700,000) cash = $(15,800,000), ties exactly to the cash-flow statement line"
+  financing_cash_flows:
+    proceeds_from_borrowings: {value: 0, comparative_hy24: 0, source: "financial-statements.pdf p.11 — no new borrowings drawn this half"}
+    repayments_of_borrowings: {value: -790000, comparative_hy24: -790000, source: "financial-statements.pdf p.11"}
+    receipts_of_sublease_instalments: {value: 161702, comparative_hy24: 153506, source: "financial-statements.pdf p.11"}
+    payment_of_lease_liabilities_principal: {value: -7767901, comparative_hy24: -5494245, source: "financial-statements.pdf p.11"}
+    dividends_paid:
+      value: -4443122
+      comparative_hy24: -3554499
+      source: "financial-statements.pdf p.11 — this is the FY24 final dividend (2.5cps, $4,443,121 per Note 15, $1 rounding vs the cash-flow statement's $4,443,122); HY24 comparative was the FY23 final dividend (2.0cps). Neither payment relates to the half-year's own earnings — see pnl.dps note."
+    interest_received: {value: 1793073, comparative_hy24: 385929, source: "financial-statements.pdf p.11"}
+    finance_costs_paid: {value: -1132486, comparative_hy24: -926776, source: "financial-statements.pdf p.11"}
+    equity_issued_cash: {value: 0, comparative_hy24: 0, source: "financial-statements.pdf p.9-10 (Statement of Changes in Equity) — the $6,300,000 Partum acquisition share consideration was a non-cash equity issue, not a cash financing inflow"}
+    net_financing_cash_flow: {value: -12178734, comparative_hy24: -10226085, source: "financial-statements.pdf p.11"}
+  cash_conversion:
+    statutory_post_tax_basis: {value_pct: 93.15, methodology: "Net operating cash flow (post-tax) / statutory EBITDA = 24,505,592 / 26,308,587 — for comparability with FY23's originally-disclosed methodology (116% for FY23)", source: "derived"}
+    pretax_vs_normalised_ebitda_basis: {value_pct: 129.90, methodology: "(Net operating CF 24,505,592 + tax paid 11,041,556) / Normalised EBITDA 27,364,918 — for comparability with HY24's originally-disclosed methodology (125% for HY24)", source: "derived"}
+    company_disclosed_pct: {value: not_available, note: "IR-deck cash-conversion slide (used in FY23/FY24H1/FY24) not text-extractable this half — cannot confirm which of the THREE different methodologies GenusPlus has used in the past three periods (116% / 125% / 208%-relabelled-'FCF conversion') it would use this half, or the resulting %."}
+    flag: "Both derived like-for-like measures show cash conversion DOWN this half vs the equivalent prior-period basis (93.2% vs FY23's 116% post-tax basis; 129.9% vs HY24's 125% pretax/normalised basis — this one is actually slightly UP). Net take: working-capital investment (contract assets +19.7% HoH, contract liabilities +61% HoH, receivables +16% HoH) is running ahead of the historical conversion rate, consistent with the revenue growth and pre-mobilisation capex narrative, but genuinely worth monitoring."
+
+half_on_half_and_yoy_summary:
+  note: >
+    HoH figures below use H2FY24 derived by subtraction (FY24 full year minus FY24H1), per project
+    convention, sourced from archive/GNP/FY24/structured-financials.yaml's own derived_fy24h2_by_subtraction
+    section — not re-derived independently in this file except where noted.
+  revenue: {hy25: 332874405, h2fy24_derived: 301233154, hoh_change_pct: 10.53, hy24_pcp: 249956459, yoy_change_pct: 33.17}
+  ebitda_statutory: {hy25: 26308587, h2fy24_derived: 22217468, hoh_change_pct: 18.42, hy24_pcp: 22658180, yoy_change_pct: 16.08}
+  ebitda_normalised: {hy25: 27364918, h2fy24_derived: 23469042, hoh_change_pct: 16.60, hy24_pcp: 21867207, yoy_change_pct: 25.14}
+  ebit_statutory: {hy25: 19589802, h2fy24_derived: 14940630, hoh_change_pct: 31.10, hy24_pcp: 15080767, yoy_change_pct: 29.90}
+  pbt: {hy25: 20089644, h2fy24_derived: 14715794, hoh_change_pct: 36.53, hy24_pcp: 12999367, yoy_change_pct: 54.55}
+  npat_statutory: {hy25: 13701137, h2fy24_derived: 10212572, hoh_change_pct: 34.16, hy24_pcp: 9049466, yoy_change_pct: 51.46}
+
+guidance_and_outlook:
+  fy25_ebitda_growth_guidance_status:
+    prior_guidance_given_at_fy24: "At least 20% growth in EBITDA in FY2025 (per archive/GNP/FY24/structured-financials.yaml)"
+    hy25_progress: "Normalised EBITDA growth of 25.1% YoY this half is tracking AHEAD of the >=20% FY25 full-year guide, though H2 typically carries a different mix (see FY24's own H1/H2 EBITDA split) — no explicit re-guidance for FY25 found in the text available this half (Directors' Report does not restate or update FY25 guidance)."
+    source: "financial-statements.pdf p.4 (Directors' Report); comparison guidance figure from archive/GNP/FY24/structured-financials.yaml"
+  orderbook_pipeline_fy25f_per_ir_deck_chart:
+    note: >
+      investor-presentation.pdf p.6 contains an 'Orderbook & Pipeline (A$ millions)' bar chart whose
+      underlying data-label text (unusually) DID extract, despite the chart graphics themselves being
+      images. Values below inferred from the label sequence, cross-checked against archive/GNP/FY24/
+      structured-financials.yaml's own FY23/FY24 figures (which match exactly), giving confidence in the
+      FY2025F column's interpretation.
+    recurring_works_pa: {fy23: 170000000, fy24: 224000000, fy25f: 276000000}
+    orderbook: {fy23: 192000000, fy24: 519000000, fy25f: 1461000000}
+    tender_pipeline: {fy23: 1863000000, fy24: 2003000000, fy25f: 2174000000}
+    source: "investor-presentation.pdf p.6 (chart data labels)"
+    flag: "Orderbook (FY2025F $1,461m) has nearly TRIPLED from FY24's $519m per this chart — consistent with HumeLink/NWTD/CELN mobilisation, but note this FY2025F figure is presented as a presentation-date snapshot, not independently reconciled to any statutory disclosure. The Western Power CELN contract (~$270m, awarded 10 Jan 2025 — AFTER the 31 Dec 2024 balance date, per Note 19 Events after reporting date) is NOT yet reflected in the 31 Dec 2024 financial position and may or may not be included in this presentation's FY2025F orderbook figure depending on the presentation's as-at date (not stated in the extractable text)."
+  material_events_after_reporting_date:
+    events:
+      - "7 January 2025: completed acquisition of Geographe Tree Services Pty Ltd (GTS), per SPA announced 29 November 2024 — terms not disclosed in the text available."
+      - "10 January 2025: awarded Western Power Clean Energy Link – North Region contract, ~$270 million value, work commenced January 2025, scheduled completion mid-2027."
+    source: "financial-statements.pdf p.29 (Note 19 Events after the reporting date)"
+  new_jv_disclosure:
+    note: >
+      First half with full summarised financial information (assets/liabilities/revenue/profit) disclosed
+      for the Acciona Genus (HumeLink East, 25% interest) and Samsung Genus (Melbourne Renewable Energy
+      Hub, 30% interest) joint arrangements (Note 7) — both accounted for via "proportional consolidation"
+      per the Group's own characterisation of AASB 11 joint-operation accounting. In prior periods these
+      JVs were referenced only qualitatively (order pipeline commentary); this is a genuine disclosure
+      expansion, not a new business activity — flagged for the disclosure-tone-analyst per framework
+      section 4.
+    Acciona_Genus_JV: {group_share_of_revenue_100pct: 32941636, group_share_pct: 25, group_share_of_comprehensive_income: 188310, source: "financial-statements.pdf p.17-18 (Note 7)"}
+    Samsung_Genus_JV: {group_share_of_revenue_100pct: 53531540, group_share_pct: 30, group_share_of_comprehensive_income: 1143827, source: "financial-statements.pdf p.19 (Note 7)"}
+
+consensus:
+  source: "FactSet AI-Ready Data MCP connector confirmed UNAVAILABLE this session per explicit instruction (not retried) — unavailable for a fourth consecutive GNP extraction (FY23, FY24H1, FY24, FY25H1). Per project guardrails, no consensus figure has been inferred from web search or broker notes as a substitute."
+  as_at_date: not_available
+  revenue: {value: not_available}
+  ebitda: {value: not_available}
+  npat: {value: not_available}
+  eps: {value: not_available}
+  dps: {value: not_available}
+
+extraction_flags:
+  - "FactSet MCP unavailable this session per explicit instruction — not retried. All consensus fields recorded as not_available rather than sourced from web search or broker notes, per project guardrails."
+  - "config/companies.yaml is permission-blocked for editing this session per explicit instruction — not retried. The pending update remains outstanding across FOUR consecutive sessions now (FY23, FY24H1, FY24, FY25H1): segments: [\"Infrastructure\", \"Communications\", \"Industrial Services\"] (reconfirmed stable again this half — 'no changes from the previous reporting period ended 30 June 2024 in the measurement methods used to determine operating segments', financial-statements.pdf p.13 Note 4), plus the FY24-vintage note about the goodwill CGU realignment to match these segments."
+  - "investor-presentation.pdf (22 pages) returned an EMPTY or near-empty text layer on the large majority of pages (0 chars on 13 of 22 pages) — confirmed genuinely image-based for its financial-summary and non-IFRS-reconciliation slides, consistent with the document-fetcher's flag in metadata.yaml. Usable text was found on only 2 pages with real financial content: p.3 (segment revenue headline %, cross-checked and consistent with the statutory Note 4 gross-of-intersegment figures) and p.6 (an Orderbook & Pipeline chart whose data-labels extracted as text — cross-checked against FY24's own figures and found consistent). ALL other IR-deck-sourced supplementary metrics available in prior periods (IR-deck EBIT, NPAT-A, Normalised NPAT-A, segment non-IFRS EBITDA/EBIT-A margins, company-reported net debt/net cash bridge, company-disclosed cash-conversion %, shareholder/NTA bridge detail, gearing) are NOT available this period and have been recorded as not_available rather than guessed at, per instruction. financial-statements.pdf (fully text-searchable) is the primary and in most cases sole source for this period's figures."
+  - "GENUINE (small) restatement: a $(203,891) unexplained 'Opening balance adjustment' to retained earnings was recognised in the Statement of Changes in Equity between FY24's 30 June 2024 close and the 1 July 2024 opening position carried into HY25 (financial-statements.pdf p.10). No note or narrative explains its nature. Immaterial in size (0.17% of opening equity) but flagged explicitly per instruction rather than silently absorbed — see balance_sheet_continuity_check_vs_FY24_closing.restatement_flag."
+  - "Presentation reclassification (not a discontinuity): the $650,000 non-current balance shown as 'Provisions' in FY24's own balance sheet is shown as 'Other loans' in FY25H1's comparative column for the identical 30 June 2024 date. This resolves (in the direction suspected) the ambiguity FY24's own extraction flagged about whether this balance was actually mislabelled contingent consideration."
+  - "UNEXPLAINED: current 'Provisions' increased from $65,754 to $744,533 half-on-half (>11x) with no note or narrative explaining the driver — no standalone Provisions note exists in this interim report (consistent with the AASB134 reduced-disclosure pattern already seen in FY24H1, but the sheer size of the swing this half makes the absence of explanation more material than in prior periods). See balance_sheet.provisions.change_flag."
+  - "UNRESOLVED internal inconsistency in the company's own Normalised EBITDA bridge: statutory-equivalent EBITDA + disclosed pretax normalisations sums to $160,746 MORE than the disclosed Normalised EBITDA figure of $27,364,918 — the gap is suspiciously close in size to the period's $160,747 'Loss on revaluation of investment' (a below-EBITDA P&L line that should not affect an EBITDA build) but no note confirms this connection. See pnl.ebitda_normalised.unreconciled_bridge_flag."
+  - "UNRESOLVED gap in the Appendix 4D 'Normalised Profit' bridge: disclosed after-tax reconciling items ($851,954 total) bridge statutory NPAT to only $14,553,089 — a full $409,621 short of the disclosed Normalised Profit of $14,962,710 (the exact figure underpinning the ASX release's headlined 'Up 56.28%' claim). No combination of pretax/after-tax treatment of the disclosed items closes this gap. See pnl.npat_underlying.variants.appendix_4d_normalised_profit.unreconciled_bridge_flag — this is the most material QoE flag in this extraction, since it means the single most-quoted normalised-earnings figure in the release cannot be independently verified from the company's own footnoted detail."
+  - "Statutory AND normalised EBITDA margins both contracted YoY (statutory 9.07% -> 7.91%; normalised 8.75% -> 8.22%) even as revenue grew 33.2% and normalised EBITDA grew 25.1% — the company's own framing (Directors' Report) implicitly concedes this margin dilution by contrasting the two growth rates directly. NPAT margin nonetheless IMPROVED (3.62% -> 4.12%), materially assisted by a ~$1.2m favourable swing in net finance income/expense and a much smaller loss-on-revaluation charge than HY24's Blue Tongue Energy impairment — i.e. below-EBIT items, not operating performance, are doing the work of the NPAT-margin improvement this half. See pnl.ebitda_margin_pct.flag and pnl.npat_statutory.margin_pct.flag."
+  - "Net finance position swung from a net EXPENSE ($540,847, HY24) to a net INCOME ($660,589) this half — a genuine ~$1.2m favourable tailwind driven by higher average cash balances, but one that is mechanically a function of the large cash balance that was PARTLY DEPLOYED into the CommTel/Partum acquisitions and capex this half — unlikely to repeat at the same scale on an unchanged cash base going into H2FY25. See pnl.net_interest_income_expense.flag."
+  - "Net cash position (statutory basis) DETERIORATED by ~$13.2m half-on-half (-$71.7m net cash at 30 Jun 2024 to -$58.5m at 31 Dec 2024) — driven by $15.8m cash paid for CommTel/Partum, $4.4m dividend, and $8.1m cash capex, only partially offset by $24.5m net operating cash inflow. Company-reported (non-IFRS) net cash figure not available this half for cross-check (IR deck image-only)."
+  - "Industrial Services segment revenue is DOWN 1.5% half-on-half (using the H2FY24-derived comparator) despite being up 61.2% YoY — the YoY framing alone (the only comparison the extractable IR-deck text emphasises, p.3) masks this HoH flattening. H2FY24 was itself an unusually strong half for this segment per FY24's own extraction notes."
+  - "Trade and other payables DECREASED 6.2% half-on-half while revenue grew 10.5% HoH and receivables/contract assets/contract liabilities all grew faster than revenue — a working-capital divergence worth the balance-sheet-cashflow-analyst's attention alongside the cash-conversion-ratio decline noted in cash_flow.cash_conversion.flag."
+  - "Cash conversion (both derived like-for-like bases) is DOWN vs the equivalent prior-period methodology on a post-tax/statutory-EBITDA basis (93.2% vs FY23's originally-disclosed 116%), though roughly flat-to-up on a pretax/normalised-EBITDA basis (129.9% vs HY24's 125%). Company's own disclosed cash-conversion % for this half is not available (IR deck image-only) — cannot confirm which of the three different methodologies used in the past three periods (116% / 125% / 208%-as-'FCF conversion') the company would apply, or the resulting like-for-like comparison. See cash_flow.cash_conversion.flag."
+  - "No growth vs maintenance capex split disclosed (same recurring gap as FY23/FY24H1/FY24). Capex intensity (both as % of revenue and % of normalised EBITDA) increased materially this half, consistent with the Directors' Report's own pre-mobilisation-spend narrative ahead of HumeLink/TasNetworks NWTD/Western Power CELN — but the cash-flow-to-capex reconciliation itself ties out much better this half (~$0.1m gap) than FY24H1's ~$4.2m unreconciled gap. See cash_flow.total_capex_disclosed and cash_flow.capex_intensity."
+  - "Segment revenue reconciliation (Note 4 external 'Revenues' row) ties EXACTLY to Group statutory revenue this half ($332,874,405 = $332,874,405) — the $495,870 unresolved gap flagged in FY24's annual extraction has NOT recurred, i.e. that gap appears to have been specific to the FY24 annual note construction rather than an ongoing issue."
+  - "New disclosure this half: full summarised financial information (assets, liabilities, revenue, profit) for the Acciona Genus and Samsung Genus joint arrangements (Note 7), both using 'proportional consolidation' per the Group's characterisation — a genuine disclosure expansion vs prior periods where these JVs were only referenced qualitatively. Flagged for the disclosure-tone-analyst per framework section 4."
+  - "Both acquisitions completed this half (CommTel Network Solutions, Partum Engineering) remain on PROVISIONAL IFRS 3 accounting as at 31 Dec 2024, with fair-value assessments to be finalised within 12 months — expect the goodwill/intangible/contingent-asset allocations disclosed this half (including the unusual $5,050,000 'Contingent assets' line in CommTel's opening balance sheet, tied to the $10.1m DOCA-fund cash consideration) to potentially shift at FY25 annual reporting. No revenue or profit was recognised for either acquired company this half (deemed immaterial by management given proximity to period-end)."
+  - "The $160,747 'Loss on revaluation of investment' this half cannot be traced to a specific disclosed financial-asset balance from the notes available (Note 10's FVTPL 'Listed equity securities' is unchanged at $691,500 both periods) — recorded as a P&L line item without a confirmed underlying asset. See balance_sheet.impairment_charges.note."
+  - "Minor ($2) discrepancy between the Appendix 4D cover's 'Net Profit attributable to members' ($13,701,135) and the Statement of P&L face figure ($13,701,137) used as the primary npat_statutory value in this file — immaterial, flagged for completeness."
+  - "Document-quality carryover (already flagged in metadata.yaml): the Directors' Declaration (p.31) states the financial position is 'as at 31 December 2023' — a stale boilerplate error, the document is otherwise unambiguously for the half-year ended 31 December 2024. Does not affect any extracted figure."
+  - "No results-announcement.pdf or transcript.pdf located for FY25H1 (already flagged by document-fetcher in metadata.yaml) — commentary/tone extraction for this period relies on the Directors' Report (within financial-statements.pdf) only; the usual IR-deck qualitative commentary is also unavailable due to the image-only presentation."
+  - "Balance-sheet continuity vs FY24's closing (30 June 2024) position is CONFIRMED clean on every major line item checked, with the two specific exceptions called out above (the $203,891 opening retained-earnings adjustment, and the Provisions->Other loans relabelling) — see balance_sheet_continuity_check_vs_FY24_closing for full detail."

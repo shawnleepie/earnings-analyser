@@ -1,0 +1,411 @@
+ticker: GNP
+period: FY24H1
+period_type: half_year
+period_end_date: "2023-12-31"
+fiscal_year_end: "30 June"
+currency: AUD
+source_documents:
+  - financial-statements.pdf   # = appendix-4d.pdf (identical lodged 31-page document: Appendix 4D + Interim Financial Report for half-year ended 31 December 2023)
+  - appendix-4d.pdf
+  - investor-presentation.pdf
+  # results-announcement.pdf and transcript.pdf not located for this period (already flagged by document-fetcher in metadata.yaml)
+
+prior_period_comparison_basis: >
+  This is an interim (half-year) period. PCP comparison below uses the 31 Dec 2022 (HY23) comparatives
+  embedded directly within the FY24H1 statutory accounts (same document), per project convention — NOT
+  the FY23 full-year (30 June 2023) figures. Balance-sheet CONTINUITY is separately checked against
+  archive/GNP/FY23/structured-financials.yaml's closing (30 June 2023) position, since the FY24H1 balance
+  sheet's own comparative column is 30 June 2023. HoH (half-on-half, vs H2 FY23 = Jan-Jun 2023) figures are
+  derived below as FY23 full year minus HY23, since H2FY23 has no standalone archived period of its own.
+
+balance_sheet_continuity_check_vs_FY23_closing:
+  result: "CONFIRMED — no discontinuity. Every FY24H1 balance-sheet line's own 30 June 2023 comparative column
+    ties EXACTLY to archive/GNP/FY23/structured-financials.yaml's closing (30 June 2023) figures."
+  items_checked:
+    - {item: "Cash", fy23_closing: 46737238, fy24h1_opening_comparative: 46737238, match: true}
+    - {item: "Total trade and other receivables", fy23_closing: 56948784, fy24h1_opening_comparative: 56948784, match: true}
+    - {item: "Contract assets", fy23_closing: 37595573, fy24h1_opening_comparative: 37595573, match: true}
+    - {item: "Inventory", fy23_closing: 3796472, fy24h1_opening_comparative: 3796472, match: true}
+    - {item: "Contract liabilities", fy23_closing: 16876882, fy24h1_opening_comparative: 16876882, match: true}
+    - {item: "Intangible assets total", fy23_closing: 31063401, fy24h1_opening_comparative: 31063401, match: true}
+    - {item: "Goodwill", fy23_closing: 19614788, fy24h1_opening_comparative: 19614788, match: true}
+    - {item: "Bank borrowings current", fy23_closing: 1580000, fy24h1_opening_comparative: 1580000, match: true}
+    - {item: "Bank borrowings non-current", fy23_closing: 4280000, fy24h1_opening_comparative: 4280000, match: true}
+    - {item: "Lease liabilities current", fy23_closing: 9007690, fy24h1_opening_comparative: 9007690, match: true}
+    - {item: "Lease liabilities non-current", fy23_closing: 12861963, fy24h1_opening_comparative: 12861963, match: true}
+    - {item: "Total equity", fy23_closing: 104976133, fy24h1_opening_comparative: 104976133, match: true}
+    - {item: "Company-reported net cash (IR deck non-IFRS metric)", fy23_closing: 22400000, fy24h1_opening_comparative: 22400000, match: true}
+  one_apparent_but_resolved_discrepancy: >
+    FY24H1's own document contains TWO different 30-Jun-2023 comparatives for "trade and other payables":
+    the face of the balance sheet (p.8) shows $51,043,122, while Note 9 Financial assets and liabilities
+    (p.17, amortised-cost table) shows $50,993,122 for the identical date — a $50,000 internal difference.
+    This reconciles exactly to the $50,000 "provisions" balance disclosed separately in FY23's Note 29
+    (expected losses/writedowns) — i.e. Note 9 in this interim report captures only financial-instrument
+    payables at amortised cost (excluding the non-financial $50k provision), while the balance-sheet face
+    figure appears to bundle the provision into "trade and other payables". Net conclusion: NOT a genuine
+    discontinuity, just a disclosure-presentation nuance — flagged for awareness rather than as an error.
+
+pnl:
+  revenue_total:
+    value: 249956459
+    source: "financial-statements.pdf p.7 (Condensed Consolidated Statement of P&L, 'Revenue from continuing operations'); confirmed p.1 Appendix 4D cover ('Total revenue from ordinary activities') and p.4 Directors' Report"
+    pcp_hy23: 224509845
+    change_pct: 11.33
+  revenue_by_segment:
+    # Statutory EXTERNAL segment revenue (Note 4, p.12) — reconciles exactly to Group revenue_total above.
+    # NOTE: investor-presentation.pdf slides 11-14 show segment revenue GROSS of inter-segment transfers
+    # instead (Infrastructure $162m, Industrial Services $58m, Communications $34m) — same non-comparable-
+    # basis issue flagged in the FY23 extraction; figures below use the statutory net-of-intersegment basis.
+    Infrastructure:
+      value: 158797325
+      source: "financial-statements.pdf p.12 (Note 4 Segment Reporting, 'Revenues' column, Half-Year to 31 Dec 2023)"
+      pcp_hy23: 158337442
+      change_pct: 0.29
+    Communications:
+      value: 33695313
+      source: "financial-statements.pdf p.12 (Note 4 Segment Reporting, 'Revenues' column)"
+      pcp_hy23: 28813769
+      change_pct: 16.94
+    Industrial Services:
+      value: 57463821
+      source: "financial-statements.pdf p.12 (Note 4 Segment Reporting, 'Revenues' column)"
+      pcp_hy23: 37481343
+      change_pct: 53.31
+  revenue_by_segment_gross_incl_intersegment_per_investor_presentation:
+    note: "Not directly comparable to the statutory net figures above — included for reference only, matches IR deck framing of +/-% moves."
+    Infrastructure: {value_approx: 162100000, source: "investor-presentation.pdf slide 12", change_pct_per_ir_deck: -1.0}
+    Industrial_Services: {value_approx: 58400000, source: "investor-presentation.pdf slide 13", change_pct_per_ir_deck: 34.7}
+    Communications: {value_approx: 33700000, source: "investor-presentation.pdf slide 14", change_pct_per_ir_deck: 16.9}
+  segment_profit_before_tax:
+    # Supplementary — Note 4 segment PBT (statutory basis), useful for margin/QoE work
+    Infrastructure: {value: 13267086, pcp_hy23: 9256193, source: "financial-statements.pdf p.12-13 (Note 4, 'Segment profit before income tax')"}
+    Communications: {value: -1425643, pcp_hy23: -2966439, source: "financial-statements.pdf p.12-13 (Note 4)"}
+    Industrial Services: {value: 1052750, pcp_hy23: 1557431, source: "financial-statements.pdf p.12-13 (Note 4)"}
+    total_segments: {value: 12894193, pcp_hy23: 7724476, source: "financial-statements.pdf p.14 (Note 4 continued, reconciliation to Group operating profit — not directly PBT)"}
+  segment_non_ifrs_summary_per_investor_presentation:
+    # Company's own non-IFRS segment EBIT/EBITDA cuts (A$m, rounded) — investor-presentation.pdf slides 12-14
+    Infrastructure: {revenue: 162.1, normalised_ebitda: 19.5, normalised_ebit_a: 14.6, ebit: 13.3, pcp_hy23_ebit: 9.3}
+    Industrial_Services: {revenue: 58.4, normalised_ebitda: 1.3, normalised_ebit_a: 1.1, ebit: 1.1, pcp_hy23_ebit: 1.6}
+    Communications: {revenue: 33.7, normalised_ebitda: 0.2, normalised_ebit_a: -0.5, ebit: -1.4, pcp_hy23_ebit: -3.0}
+    source: "investor-presentation.pdf slides 12-14"
+  revenue_by_end_market_per_investor_presentation:
+    note: "Alternative cut by END MARKET, not operating segment — supplementary disclosure, not reconcilable line-by-line to segment revenue"
+    Power_Infrastructure_pct: 48
+    Mining_pct: 31
+    Communications_pct: 14
+    Private_Other_pct: 7
+    source: "investor-presentation.pdf slide 3 (Group Snapshot)"
+  gross_profit: {value: not_disclosed, source: null}
+  gross_margin_pct:
+    value: not_available
+    source: null
+    note: "Same as FY23 — GenusPlus presents its P&L 'by nature' with no cost-of-sales/gross-profit subtotal. Genuinely not reported in this format, not an extraction gap."
+  ebitda:
+    value: 22658180
+    source: "derived: financial-statements.pdf p.7 — Operating profit 15,080,767 + Depreciation and amortisation expense 7,577,413 (same methodology as FY23 file's 'statutory EBITDA')"
+    pcp_hy23: 14697474
+  ebitda_margin_pct:
+    value: 9.07
+    source: "derived: ebitda 22,658,180 / revenue_total 249,956,459"
+  ebitda_normalised:
+    value: 21867207
+    source: "financial-statements.pdf p.4 (Directors' Report, 'Normalised EBITDA... $21,867,207'); confirmed investor-presentation.pdf slides 4, 10, 26 ($21.9m)"
+    pcp_hy23: 17197115
+    change_pct: 27.2
+    normalisation_addback_pretax: "Acquisition costs and FV impairment on remaining-50% Blue Tongue Energy acquisition $1,596,028; Restructuring costs $793,545; less net gain from ECM claims $(1,639,994) = net addback of $749,579 vs statutory EBITDA-equivalent PBT base"
+  ebitda_normalised_margin_pct:
+    value: 8.75
+    source: "derived: ebitda_normalised 21,867,207 / revenue_total 249,956,459; investor-presentation.pdf p.10 states 8.7% (rounded)"
+  ebit:
+    value: 15080767
+    label: "Operating profit (per P&L face) — excludes JV share of results, finance income/costs, and loss on revaluation of investment"
+    source: "financial-statements.pdf p.7 (Statement of P&L, 'Operating profit')"
+    pcp_hy23: 7402008
+  ebit_alt_per_investor_presentation:
+    value_approx: 13540000
+    label: "Company's IR-deck 'EBIT' ($13.5m) — a BROADER measure than the statutory 'Operating profit' line above; approximates statutory PBT (12,999,367) + net finance costs (540,847) = 13,540,214, i.e. it INCLUDES the $1,528,970 loss on revaluation of the Blue Tongue JV investment and the JV share-of-results line, which the statutory 'Operating profit' line excludes"
+    source: "investor-presentation.pdf p.10 ('EBIT 13.5'); derivation cross-checked from financial-statements.pdf p.7"
+    pcp_hy23_approx: 7300000
+    flag: "Two non-interchangeable 'EBIT' concepts co-exist in GNP's own disclosures this half — the statutory P&L face figure and the IR-deck figure differ by ~$1.5m (the JV investment impairment). Analysts should specify which EBIT they mean."
+  ebit_normalised_a:
+    value_approx: 15900000
+    source: "investor-presentation.pdf p.10 and p.26 (Appendix reconciliation) 'Normalised EBIT-A' $15.9m — only disclosed to 1 decimal place this half, unlike FY23 annual Director's Report table which gave an exact dollar figure"
+    pcp_hy23: 11600000
+    change_pct: 37.6
+  net_interest_expense:
+    value: 540847
+    source: "derived: financial-statements.pdf p.7 — Finance costs 926,776 less Finance income 385,929 = 540,847"
+    pcp_hy23: 662402
+  pbt:
+    value: 12999367
+    source: "financial-statements.pdf p.7 (Statement of P&L, 'Profit before income tax expense from continuing operations')"
+    pcp_hy23: 6662884
+  tax:
+    value: 3949901
+    source: "financial-statements.pdf p.7 (Statement of P&L, 'Income tax expense')"
+    pcp_hy23: 295154
+    effective_tax_rate_pct: {hy24: 30.4, hy23: 4.4}
+    note: "HY23's unusually low 4.4% effective rate is explained in investor-presentation.pdf p.26 footnote: a prior-year (2020/2021) chattel-mortgage tax-base rectification increased the DTA and reduced HY23 tax expense by ~$1.58m one-off; absent that, HY23's effective rate would have been ~28%. HY24's 30.4% rate is not distorted by an equivalent one-off (Appendix 4D footnote states 'Tax expense HY24 adjustment $NIL')."
+  npat_statutory:
+    value: 9049466
+    source: "financial-statements.pdf p.7 (Statement of P&L, 'Profit after income tax for the half-year'); confirmed p.1 Appendix 4D cover ('Net Profit attributable to members')"
+    pcp_hy23: 6367730
+    change_pct: 42.11
+  npat_underlying:
+    value: not_a_single_figure
+    source: null
+    note: >
+      Same quality-of-earnings pattern as FY23 recurs this half: GenusPlus discloses at least FOUR distinct
+      "normalised/adjusted" NPAT figures across its own HY24 documents, each excluding a different combination
+      of items. Recorded as variants below rather than picking one as "the" underlying figure — feeds directly
+      into profitability-earnings-analyst QoE work.
+    variants:
+      appendix_4d_normalised_profit:
+        value: 9574172
+        source: "financial-statements.pdf p.1 (Appendix 4D cover, 'Normalised Profit from ordinary activities after tax'), up 45.24% on pcp"
+        reconciling_items_after_tax:
+          - "Restructure costs $555,482 (HY23: $958,300)"
+          - "Acquisition costs (incl. Blue Tongue Energy FV adjustment) $1,117,220 (HY23: $803,600)"
+          - "Net proceeds/(costs) from ECM claim $(1,147,995) (HY23: $41,554)"
+          - "Tax expense HY24 adjustment $NIL (HY23: $(1,579,095))"
+      investor_presentation_npat_a:
+        value: 10200000
+        source: "investor-presentation.pdf p.10 and p.26 Appendix — 'NPAT-A' = statutory NPAT + amortisation of acquisition intangibles ONLY ($1.1m), a narrower normalisation than the Appendix 4D variant above (does NOT add back restructuring/acquisition/ECM items)"
+        pcp_hy23: 7500000
+        change_pct: 35.2
+      investor_presentation_normalised_npat_a:
+        value: 10700000
+        source: "investor-presentation.pdf p.26 (Appendix reconciliation) — 'Normalised NPAT-A' = NPAT-A ($10.2m) + acquisition costs $0.0m + BTE FV adjustment $1.1m + restructure costs $0.6m - ECM claim gain $1.1m ≈ $10.7m; i.e. NPAT-A PLUS the same non-recurring items used in the Appendix 4D variant, giving the broadest of the four figures"
+        pcp_hy23: 7800000
+        reconciles_to_appendix_4d_variant: "Normalised NPAT-A ($10.7m) minus acquisition-intangible amortisation addback (~$1.1m) ≈ Appendix 4D's Normalised Profit ($9.57m) — consistent methodology, just a different bundling of addbacks"
+    flag: "Recurring disclosure-quality observation (also flagged in FY23): GenusPlus does not converge on a single 'underlying NPAT' definition period to period. The profitability-earnings-analyst should treat the Appendix 4D 'Normalised Profit' figure as the primary regulatory disclosure (it is the one headlined in the ASX Appendix 4D 'Results for announcement to the market' table) and treat the IR-deck NPAT-A/Normalised NPAT-A variants as supplementary."
+  eps:
+    basic_cents: {value: 5.09, source: "financial-statements.pdf p.7 and p.16 (Note 7)"}
+    diluted_cents: {value: 5.09, source: "financial-statements.pdf p.16 (Note 7) — no dilutive instruments, basic = diluted"}
+    weighted_avg_shares: {value: 177724948, source: "financial-statements.pdf p.16 (Note 7)"}
+    pcp_hy23: {basic_cents: 3.60, diluted_cents: 3.60, weighted_avg_shares: 176842273}
+    change_pct: 41.4
+  dps:
+    value: 0
+    unit: "cents per share — Nil interim dividend declared"
+    source: "financial-statements.pdf p.1 (Appendix 4D cover, 'Interim dividend declared: Nil') and p.4 Directors' Report: 'The Board has resolved not to pay a dividend in respect of the half-year ended 31 December 2023.'"
+    note: "GenusPlus does not pay an interim dividend (FY23H1 comparative also Nil) — only a single FINAL dividend per fiscal year. A dividend of 2.0cps ($3,554,499, fully franked) WAS paid in cash during this half (26 Oct 2023), but that related to FY23's full-year result, not FY24H1 earnings — see cash_flow.financing_cash_flows.dividends_paid."
+
+balance_sheet:
+  cash:
+    value: 50260920
+    source: "financial-statements.pdf p.8 (Statement of Financial Position) and p.10 (Statement of Cash Flows, closing balance)"
+    comparative_30jun23: 46737238
+  total_debt_by_facility:
+    bank_borrowings:
+      facility: "Bank borrowings — secured by floating charge over Group assets (no per-tranche breakdown disclosed in this interim report, unlike FY23 annual Note 27 which itemised CBA/Toyota/ANZ/Westpac/Mercedes-Benz equipment finance facilities separately)"
+      drawn_current: 1580000
+      drawn_non_current: 3490000
+      drawn_total: 5070000
+      comparative_30jun23_total: 5860000
+      interest_rate: "Variable, average 4.41% p.a. at 31 Dec 2023 (30 Jun 2023: 4.40%)"
+      fixed_floating: "Floating"
+      undrawn_headroom: not_disclosed_separately_this_half
+      source: "financial-statements.pdf p.17-18 (Note 9 Financial assets and liabilities)"
+    contingent_consideration_deferred_ma:
+      facility: "Deferred/contingent acquisition consideration (Blue Tongue Energy + Prasinus Energy) — FVTPL, not a drawn debt facility"
+      drawn_current: 549361
+      drawn_non_current: 650000
+      drawn_total: 1199361
+      comparative_30jun23_total: 0
+      source: "financial-statements.pdf p.17 (Note 9) and p.25 (Note 18 Acquisitions — Blue Tongue $350,000 + Prasinus $300,000 deferred consideration, plus $549,361 'transferred in January 2024')"
+    lease_liabilities_total:
+      drawn_current: 10680401
+      drawn_non_current: 15092830
+      drawn_total: 25773231
+      comparative_30jun23_total: 21869653
+      interest_rate: "Interest expense on ROU lease liabilities $665,525 for the half (HY23: $424,949) — Note 11 p.20"
+      source: "financial-statements.pdf p.8 and p.19 (Note 11 Lease liabilities)"
+    guarantee_facility_cba:
+      facility: "Secured guarantee to company's bankers (CBA), supported by floating charge over Group assets — off-balance-sheet contingent liability, not drawn debt"
+      limit: 60000000
+      utilised: 28035110
+      comparative_30jun23_utilised: 30151730
+      undrawn_headroom: 31964890
+      source: "financial-statements.pdf p.24 (Note 17 Contingent assets and liabilities)"
+    surety_bond_facility:
+      facility: "Surety bonds secured by Group assets — off-balance-sheet contingent liability, not drawn debt"
+      limit: 90000000
+      comparative_30jun23_limit: 60000000
+      limit_increased_this_half: true
+      utilised: 39535228
+      comparative_30jun23_utilised: 30924322
+      undrawn_headroom: 50464772
+      source: "financial-statements.pdf p.24 (Note 17)"
+    company_reported_total_debt_per_ir_deck:
+      value: 24700000
+      source: "investor-presentation.pdf p.25 (Corporate Overview, 'Debt A$M $24.7', as at 20 Feb 2024) — not independently reconciled to the statutory bank-borrowings + lease figures above; likely a subset (e.g. bank borrowings 5.07m + a portion of lease liabilities), but exact composition not disclosed"
+    covenants:
+      note: "No capital-management/covenant note (equivalent to FY23 annual Note 41) is included in this interim report — AASB 134 interim reports omit annual-only notes. No disclosed covenant breach."
+      source: "financial-statements.pdf p.11 (Note 2 — statements to be read in conjunction with FY23 annual report)"
+  net_debt:
+    statutory_bank_debt_and_leases_less_cash:
+      value: -19417689
+      note: "Net CASH position (negative = net cash) = bank borrowings 5,070,000 + lease liabilities 25,773,231 - cash 50,260,920"
+      comparative_30jun23: -19007585
+      hoh_change: "Net cash (this basis) improved by ~$410k half-on-half, despite funding a $3.55m dividend payment and $2.4m of acquisitions in cash during the half"
+      source: "derived from financial-statements.pdf p.8 balance sheet lines"
+    statutory_incl_contingent_consideration:
+      value: -18218328
+      note: "As above plus the new $1,199,361 deferred-acquisition-consideration liability"
+      source: "derived"
+    company_reported_net_cash:
+      value: 25600000
+      comparative_30jun23: 22400000
+      source: "investor-presentation.pdf p.15 ('Cash balance of $50.3 million... Net Cash of $25.6 million (excluding right of use asset property lease liabilities of $6.7 million)')"
+      reconciliation_flag: "Same unresolved reconciliation issue flagged in the FY23 extraction persists: the IR deck bridges Net Cash (50.3 - lease liabilities 19.1 - financial liabilities 5.6 = 25.6) using a 'Lease liabilities' figure that EXCLUDES a further $6.7m of 'ROU lease liabilities' shown separately lower in the same slide's Net Tangible Assets bridge. The two lease sub-lines (19.1 + 6.7 = 25.8) approximate but do not exactly tie to the statutory total lease liabilities of $25,773,231 — genuine recurring internal disclosure inconsistency, not an extraction error."
+  gearing_ratio_as_reported:
+    value: not_disclosed_this_half
+    source: null
+    note: "No capital-management note (FY23's equivalent was annual Note 41) appears in this interim report. GenusPlus's own headline leverage metric this half is 'Net Cash of $25.6 million' (investor-presentation.pdf p.15), not a gearing ratio. Re-check at next annual (FY24) reporting date."
+  nta_per_security:
+    dec_2023: 0.41
+    jun_2023: 0.40
+    dec_2022: 0.35
+    source: "financial-statements.pdf p.1 (Appendix 4D cover, 'Net tangible assets per security')"
+  trade_debtors:
+    net_of_ecl: {value: 50813234, source: "financial-statements.pdf p.15 (Note 5, 'Trade receivables')"}
+    comparative_30jun23_net_of_ecl: 54623086
+    allowance_for_ecl: {value: 86419, comparative_30jun23: 130052, source: "financial-statements.pdf p.15 (Note 5)"}
+    total_trade_and_other_receivables: {value: 53340211, comparative_30jun23: 56948784, source: "financial-statements.pdf p.8"}
+    note: "Note 5's 'Trade receivables' line this half is presented NET of ECL (not gross, as FY23's annual Note 16 disclosed both gross and net) — reduced disclosure granularity vs the annual report, consistent with AASB134 interim minimum-disclosure requirements."
+  trade_creditors:
+    total_trade_and_other_payables: {value: 56167149, comparative_30jun23_per_balance_sheet_face: 51043122, comparative_30jun23_per_note9_amortised_cost: 50993122, source: "financial-statements.pdf p.8 (balance sheet) and p.17 (Note 9)"}
+    note: "No further breakdown by GST payable/unpaid wages/sundry accruals this half (that granularity — e.g. FY23 annual Note 25 — is annual-only disclosure, not repeated in the interim report). See balance_sheet_continuity_check_vs_FY23_closing above for the $50,000 comparative discrepancy explanation."
+  inventory:
+    value: 3210570
+    comparative_30jun23: 3796472
+    source: "financial-statements.pdf p.8"
+  contract_assets:
+    value: 44228329
+    comparative_30jun23: 37595573
+    source: "financial-statements.pdf p.8 and p.16 (Note 8)"
+  contract_liabilities:
+    value: 17334467
+    comparative_30jun23: 16876882
+    source: "financial-statements.pdf p.8 and p.21 (Note 13) — short-term advances for construction services"
+  provisions:
+    value: not_disclosed_separately_this_half
+    source: null
+    note: "No provisions note (FY23's annual Note 29, $50,000 balance) is repeated in this interim report. See balance_sheet_continuity_check_vs_FY23_closing above — the $50,000 FY23 provision balance appears to now sit within the 'trade and other payables' balance-sheet line rather than being separately disclosed. Cannot independently confirm whether the $50k balance itself moved during the half."
+  goodwill:
+    value: 22774556
+    comparative_30jun23: 19614788
+    movement: "+$3,159,768 acquired through business combination (Blue Tongue Energy + Prasinus Energy Services)"
+    source: "financial-statements.pdf p.8 and p.21 (Note 12) — 'No adjustments to Goodwill were recognised during the reporting period' (i.e. no impairment)"
+    by_cgu: not_disclosed_this_half
+    note: "CGU-level goodwill breakdown and impairment-testing sensitivities (FY23 annual Note 24 equivalent) not repeated in this interim report — annual-only disclosure."
+  intangibles_total:
+    value: 32592064
+    comparative_30jun23: 31063401
+    source: "financial-statements.pdf p.8 and p.21 (Note 12) — goodwill $22,774,556 + Intellectual Property (net) $4,052,575 + Customer contracts (net) $5,764,933"
+    supplementary_note: "investor-presentation.pdf p.15 states 'Intangible assets predominantly relate to the acquisition of Pole Foundations Australia ($21.6 million)' — a legacy FY22 acquisition, not separately reconciled to the Note 12 CGU/asset-class breakdown in this document."
+  impairment_charges:
+    value: 1528970
+    label: "Impairment loss on step-acquisition of the remaining 50% of Blue Tongue Energy Pty Ltd — NOT a goodwill impairment"
+    source: "financial-statements.pdf p.7 (P&L line 'Loss on revaluation of investment') and p.18 (Note 10 Interests in joint ventures) — carrying value of the JV interest at 31 July 2023 of $2,862,623 was written down to its fair value of $1,333,653 on gaining control, recognising a $1,528,970 impairment loss"
+    goodwill_impairment: {value: 0, source: "financial-statements.pdf p.21 (Note 12): 'No adjustments to Goodwill were recognised during the reporting period.'"}
+    note: "This impairment loss is the largest single component of the period's normalisation adjustments (embedded within the Appendix 4D's combined 'Acquisition costs (incl. Blue Tongue Energy FV adjustment) $1,596,028' pretax normalisation line) — flagged distinctly here since it is a genuine impairment charge, not merely a transaction cost."
+
+cash_flow:
+  net_operating_cash_flow:
+    value: 19484313
+    comparative_hy23: 14389235
+    source: "financial-statements.pdf p.10 (Statement of Cash Flows)"
+  growth_capex: {value: not_split_disclosed, source: null}
+  maintenance_capex: {value: not_split_disclosed, source: null}
+  total_capex_disclosed:
+    cash_ppe_purchases: {value: 3946838, comparative_hy23: 417295, source: "financial-statements.pdf p.10 (Statement of Cash Flows, 'Purchase of property, plant, equipment')"}
+    total_incl_finance_leased_per_directors_report: {value_approx: 8400000, comparative_hy23_approx: 6300000, source: "financial-statements.pdf p.5 (Directors' Report, 'Investments for future performance'): 'invested $8.4 million in capital expenditure during the half-year... Of the capital expenditure $4.4 million (HY23: $4.9 million) was acquired under finance contract agreements'"}
+    note: >
+      No growth/maintenance split disclosed (same as FY23). ADDITIONAL FLAG this half: the Directors' Report
+      states $4.4m of the $8.4m half-year capex was "acquired under finance contract agreements" (i.e.
+      ROU/leased), but Note 11's own right-of-use-asset addition table (p.19-20) shows total ROU additions
+      for the half of $8,619,684 (land & buildings $4,705,308 + plant & equipment $1,148,907 + motor vehicles
+      $2,765,469) — a ~$4.2m internal inconsistency between the narrative Directors' Report figure and the
+      note-level lease-addition disclosure that is not reconciled anywhere in the document.
+  free_cash_flow:
+    value: 15537475
+    methodology: "Net operating cash flow 19,484,313 less cash PP&E purchases 3,946,838 (consistent with FY23 file's methodology — does NOT deduct lease principal repayments of $5,494,245, which would give a lease-inclusive FCF of ~$10.0m)"
+    source: "derived from financial-statements.pdf p.10"
+  acquisition_cash_flows:
+    acquisition_of_subsidiaries_net_of_cash:
+      value: -2419556
+      comparative_hy23: -4132995
+      source: "financial-statements.pdf p.10; detail in Note 18 (p.25) — Blue Tongue Energy $(94,556) + Prasinus Energy $(2,325,000)"
+  financing_cash_flows:
+    proceeds_from_borrowings: {value: 0, comparative_hy23: 0, source: "financial-statements.pdf p.10 — no new borrowings drawn this half"}
+    repayments_of_borrowings: {value: -790000, comparative_hy23: -960000, source: "financial-statements.pdf p.10"}
+    receipts_of_lease_liabilities_instalments: {value: 153506, comparative_hy23: 139978, source: "financial-statements.pdf p.10"}
+    payment_of_lease_liabilities_principal: {value: -5494245, comparative_hy23: -4350222, source: "financial-statements.pdf p.10"}
+    dividends_paid:
+      value: -3554499
+      comparative_hy23: -3181544
+      source: "financial-statements.pdf p.10 — this is the FY23 final dividend (2.0cps, paid 26 Oct 2023); HY23 comparative was the FY22 final dividend (1.8cps, paid 30 Nov 2022). Neither payment relates to the half-year's own earnings — see pnl.dps note."
+    interest_received: {value: 385929, comparative_hy23: 6419, source: "financial-statements.pdf p.10"}
+    finance_costs_paid: {value: -926776, comparative_hy23: -695093, source: "financial-statements.pdf p.10"}
+    equity_issued: {value: 0, comparative_hy23: 923902, source: "financial-statements.pdf p.9 (Statement of Changes in Equity) — HY23 had a non-cash share issue as acquisition consideration, not a cash financing inflow"}
+    net_financing_cash_flow: {value: -10226085, comparative_hy23: -9040462, source: "financial-statements.pdf p.10"}
+  cash_conversion:
+    company_disclosed_pretax_method:
+      value_pct: 125
+      methodology: "Net cash provided by operating activities EXCLUDING tax paid, divided by Normalised EBITDA: (19,484,313 + 7,899,517 tax paid) / 21,867,207 = 125.2%"
+      source: "investor-presentation.pdf p.16: 'Cash Conversion of EBITDA to Cash provided by operating activities of 125%'; footnote clarifies '(excluding tax)' methodology"
+    like_for_like_with_fy23_disclosed_methodology:
+      value_pct: 86.0
+      methodology: "Net operating cash flow (including tax paid) / statutory EBITDA = 19,484,313 / 22,658,180 — using the SAME methodology FY23's investor presentation used (post-tax operating CF ÷ statutory EBITDA = 116% for FY23)"
+      source: "derived, for comparability only"
+    flag: "GenusPlus changed its disclosed 'cash conversion' methodology between FY23 (post-tax operating CF ÷ statutory EBITDA) and HY24 (pre-tax operating CF ÷ NORMALISED EBITDA) without flagging the change — the two headline percentages (116% for FY23, 125% for HY24) are NOT calculated on a consistent basis and should not be compared directly."
+
+half_on_half_derived_comparisons_vs_H2FY23:
+  note: >
+    H2 FY23 (1 Jan - 30 Jun 2023) has no standalone archived structured-financials.yaml of its own; derived
+    here as FY23 full year (archive/GNP/FY23/structured-financials.yaml) minus HY23 (the pcp column embedded
+    in this period's own statutory accounts), per the analysis-framework's HoH requirement. Cross-checked
+    against investor-presentation.pdf's own HoH claims (p.4, p.10) — all tie out, confirming the derivation
+    methodology and the FY23 file's figures are mutually consistent.
+  revenue: {h2fy23_derived: 219669049, hy24: 249956459, change_pct: 13.8, ir_deck_claim_pct: 14}
+  npat_statutory: {h2fy23_derived: 7037794, hy24: 9049466, change_pct: 28.6, ir_deck_claim_pct: 29}
+  ebitda_normalised: {h2fy23_derived: 19593382, hy24: 21867207, change_pct: 11.6, ir_deck_claim_pct: 12}
+  npat_a_approx: {h2fy23_derived_approx: 8200000, hy24: 10200000, change_pct_approx: 24.4, ir_deck_claim_pct: 24}
+
+guidance_and_outlook:
+  fy24_ebitda_growth_guidance:
+    current: "10-15% growth in EBITDA in FY2024"
+    prior: "high single to low double-digit growth in EBITDA (revised/upgraded this half)"
+    source: "investor-presentation.pdf p.5 (Summary of Outlook)"
+  orderbook: {value: 583000000, comparative_fy23: 192000000, source: "investor-presentation.pdf p.4-5"}
+  recurring_revenue_forecast_fy24: {value: 204000000, comparative_fy23_actual: 170000000, source: "investor-presentation.pdf p.4-5"}
+  tendered_pipeline: {value: 2046000000, comparative_fy23: 1863000000, source: "investor-presentation.pdf p.4-5, p.4 Directors' Report"}
+  budget_pricing_and_opportunities_leads: {value_gt: 3000000000, source: "investor-presentation.pdf p.4-5"}
+  material_new_contract_this_half: "HumeLink East 500kV Transmission Project (JV with ACCIONA, Genus 25% share of a $1.4bn project per segment slide) — Transgrid's $3.3bn HumeLink program, NSW; awarded during HY24 (investor-presentation.pdf p.6, p.12, p.20)"
+  east_coast_revenue_pct_of_group: {hy24: 35, fy23: 34, source: "investor-presentation.pdf p.6"}
+
+consensus:
+  source: "FactSet AI-Ready Data MCP connector is listed as available in this session but requires authentication (OAuth via claude.ai connector settings) that has not been completed — confirmed unavailable again this session (same as the FY23 extraction). Per project guardrails, no consensus figure has been inferred from web search or broker notes as a substitute."
+  as_at_date: not_available
+  revenue: {value: not_available}
+  ebitda: {value: not_available}
+  npat: {value: not_available}
+  eps: {value: not_available}
+  dps: {value: not_available}
+
+extraction_flags:
+  - "FactSet MCP not accessible this session (authentication required, not completed) — all consensus fields recorded as not_available rather than sourced from web search or broker notes, per project guardrails."
+  - "config/companies.yaml write BLOCKED this session (permission not granted) when attempting to update the GNP entry's segments field from [] to [\"Infrastructure\", \"Communications\", \"Industrial Services\"] and add a confirming note. This has now been flagged across TWO extraction sessions (FY23 and FY24H1) without the underlying config being updated — segments ARE confirmed stable and unchanged (financial-statements.pdf p.12, Note 4: 'no changes from the previous reporting period ended 30 June 2023 in the measurement methods used to determine operating segments'). Recommend a session with write permission to config/companies.yaml apply this pending edit."
+  - "GenusPlus's P&L remains presented 'by nature' with no cost-of-sales/gross-profit subtotal — gross_margin_pct genuinely not disclosed, consistent with FY23."
+  - "Recurring quality-of-earnings issue (also flagged in FY23): GenusPlus discloses at least FOUR different 'normalised/adjusted' NPAT figures this half across its own documents (statutory $9.05m; Appendix 4D 'Normalised Profit' $9.57m; IR-deck 'NPAT-A' $10.2m; IR-deck 'Normalised NPAT-A' $10.7m), plus two non-interchangeable 'EBIT' concepts ($15.08m statutory Operating profit vs ~$13.5m IR-deck EBIT, differing by the $1.53m Blue Tongue JV impairment). See pnl.npat_underlying and pnl.ebit_alt_per_investor_presentation for full detail."
+  - "Cash-conversion methodology changed between FY23 (post-tax operating CF ÷ statutory EBITDA = 116%) and HY24 (pre-tax operating CF ÷ normalised EBITDA = 125%) without being flagged by the company — the two headline percentages are not directly comparable. See cash_flow.cash_conversion."
+  - "Internal $4.2m inconsistency between the Directors' Report's stated '$4.4m of capex acquired under finance contract agreements' and Note 11's own right-of-use asset addition table ($8.6m total ROU additions for the half) — not reconciled anywhere in the document. See cash_flow.total_capex_disclosed.note."
+  - "No growth vs maintenance capex split disclosed (same gap as FY23)."
+  - "Reduced disclosure granularity vs the FY23 annual report, as expected for an AASB134 interim report: no capital-management/gearing-ratio note (FY23 annual Note 41 equivalent), no CGU-level goodwill breakdown (FY23 annual Note 24 equivalent), no per-facility bank debt itemisation (FY23 annual Note 27 equivalent — this half only discloses aggregate bank borrowings, not the CBA/Toyota/ANZ/Westpac/Mercedes-Benz equipment finance breakdown), no separate provisions note (FY23 annual Note 29 equivalent), and trade receivables shown net-of-ECL only (not gross+net as FY23 annual Note 16 showed). None of these are extraction failures — they reflect AASB134's reduced interim disclosure requirements — but they mean several FY23 data points (e.g. per-facility debt maturity/margin, CGU goodwill allocation) cannot be refreshed this half and analysts should refer back to the FY23 file (and forward to the FY24 annual report) for that detail."
+  - "The IR deck's 'Net Cash' bridge (investor-presentation.pdf p.15) continues the SAME unresolved lease-liability reconciliation issue flagged in the FY23 extraction — two separate lease-liability sub-lines shown in the presentation ($19.1m 'Lease liabilities' + $6.7m 'ROU lease liabilities') do not exactly tie to the statutory total lease liabilities of $25,773,231. Recorded as-is per document; a genuine recurring internal disclosure inconsistency rather than an extraction error."
+  - "Investor-presentation.pdf's 'company_reported_total_debt' of $24.7m (p.25, as at 20 Feb 2024, i.e. a later date than the 31 Dec 2023 balance-sheet date) is not independently reconciled to the statutory bank-borrowings + lease-liability figures — recorded as-is with the caveat that it may reflect a subsequent-events date and/or a different debt definition."
+  - "Investor-presentation.pdf segment revenue figures (Infrastructure ~$162m, Industrial Services ~$58m, Communications ~$34m) are GROSS of inter-segment revenue, whereas the statutory Note 4 external-revenue figures used as primary in this file ($158.8m / $57.5m / $33.7m) are net of inter-segment and reconcile exactly to total Group revenue — same non-comparable-basis pattern flagged in FY23."
+  - "No results-announcement.pdf or transcript.pdf located for FY24H1 (already flagged by document-fetcher in metadata.yaml) — commentary/tone extraction for this period relies on the Directors' Report (within financial-statements.pdf) and investor-presentation.pdf only."
+  - "Balance-sheet continuity vs FY23's closing (30 June 2023) position is CONFIRMED clean across every major line item checked (cash, receivables, contract assets/liabilities, inventory, goodwill, intangibles, bank debt, lease liabilities, total equity, and the company's own non-IFRS net-cash metric) — see balance_sheet_continuity_check_vs_FY23_closing above for full detail, including one apparent-but-resolved $50,000 payables/provisions presentation nuance."
