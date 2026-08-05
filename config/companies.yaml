@@ -112,7 +112,7 @@ entities:
     fiscal_year_end: "30 June"
     reporting_cadence: half_yearly
     currency: AUD
-    segments: []
+    segments: ["Infrastructure", "Services", "Energy & Engineering"]
     notes: "MGC Group (rail) and CommTel (comms) acquisitions are diversifying revenue beyond core power infrastructure — watch for a new/expanded segment breakdown reflecting this. TasNetworks NWTD head contract (up to $950m over 5 years) is the single largest disclosed contract. Fiscal year end CONFIRMED as 30 June directly from lodged Appendix 4D/4E cover pages and Directors' Declarations across FY23, FY24H1, FY24, FY25H1, FY25, and FY26H1 (backfilled 5 Aug 2026) — half reported in Aug/Sep (year to 30 Jun) is the annual/FY period, half reported in Feb (year to 31 Dec) is H1."
 
   - ticker: LYL
