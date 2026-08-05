@@ -26,10 +26,13 @@ segment_structure_check: >
   63,736,316-48,122,302 = 15,614,014) consistent with continued Pole Inspection & Nailing allocation to
   Services. IR deck (p.5) still tags segments "(Formerly Industrial Services)" / "(Formerly Communications)",
   consistent with FY25's own IR deck — not a new relabel event.
-  companies.yaml's segments field remains [] (confirmed still blocked for editing this session, per instruction
-  — not retried). Pending update (outstanding across SIX consecutive sessions: FY23, FY24H1, FY24, FY25H1,
-  FY25, FY26H1): segments: ["Infrastructure", "Services", "Energy & Engineering"]. fiscal_year_end is
-  ALREADY correctly recorded as "30 June" in companies.yaml — no change needed there.
+  CORRECTION on verification (5 Aug 2026 review): the claim carried forward in this section since FY23 that
+  companies.yaml's segments field "remains []" / "confirmed still blocked for editing" is STALE. Checked
+  config/companies.yaml directly this session — the GNP entry's segments field is ALREADY populated exactly
+  as this file has been recommending: segments: ["Infrastructure", "Services", "Energy & Engineering"]. No
+  further edit to companies.yaml is needed or was made. fiscal_year_end is also already correctly recorded
+  as "30 June". The prior extraction_flags entries describing this as outstanding across six sessions were
+  therefore incorrect for at least this session and should not be repeated in future periods' files.
 
 balance_sheet_continuity_check_vs_FY25_closing:
   result: >
@@ -328,6 +331,19 @@ balance_sheet:
       drawn_total: 9261572
       comparative_30jun25_total: 10067000
       source: "financial-statements.pdf p.9 (SOFP) and p.19-20 (Note 11 Financial assets and liabilities)"
+      new_flag_face_vs_note_discrepancy: >
+        NEW, previously unflagged internal inconsistency found on verification (5 Aug 2026): the SOFP face
+        (p.9) shows current "Financial liabilities" of $2,106,572 at 31 Dec 2025, but Note 11's own
+        categorisation table (p.19, "Bank borrowings", amortised cost) shows $2,279,234 for the identical
+        date — a $172,662 gap. Non-current ties exactly between face and note ($7,155,000 both). The 30 June
+        2025 comparative also ties exactly between face and Note 11 ($2,859,234 both) — so this is specific
+        to the 31 Dec 2025 CURRENT figure only. Verified which is load-bearing: summing all current
+        liabilities on the SOFP face ($148,328,746 + 130,751,315 + 2,106,572 + 19,836,004 + 27,681,468 +
+        4,981,677) ties EXACTLY to disclosed Total current liabilities ($333,685,782); using Note 11's
+        $2,279,234 instead would be $172,662 over. So the SOFP face ($2,106,572, as used above) is the
+        correct load-bearing figure, and Note 11 itself carries the discrepancy — the same pattern already
+        identified for Contract liabilities (see balance_sheet_continuity_check_vs_FY25_closing). Not
+        explained by any disclosed adjustment; flagged for the balance-sheet-cashflow-analyst.
     new_syndicated_facility:
       facility: "NEW: $429m revolving syndicated facility agreement, executed during the half"
       drawn_amount: not_disclosed
@@ -344,6 +360,19 @@ balance_sheet:
       comparative_30jun25_total: 11315981
       movement: "Earn-out payments (cash) $(4,582,009) during the half; reclassified provision $(44,917); no new additions through business combinations"
       source: "financial-statements.pdf p.9 and p.24 (Note 15 Provisions)"
+      new_flag_current_noncurrent_split_disagrees_with_note11: >
+        NEW, previously unflagged internal inconsistency found on verification (5 Aug 2026): Note 11's
+        categorisation table (p.19) splits the SAME contingent-consideration FVTPL balance as current
+        $2,539,055 / non-current $4,150,000 (total $6,689,055) — but Note 15/SOFP splits it as current
+        $4,981,677 / non-current $1,707,378 (also totalling $6,689,055). The TOTAL ties exactly between the
+        two notes; only the current/non-current allocation disagrees. The identical pattern recurs in the 30
+        June 2025 comparative: Note 11 (p.20) shows current $7,121,064 / non-current $4,150,000 (total
+        $11,271,064), while Note 15/SOFP shows the entire $11,271,064 as current (with the separate $44,917
+        "Other provisions" balance — not a contingent-consideration item — as the only non-current amount).
+        Does not affect the P&L, the total provisions/contingent-consideration balance, or overall total
+        liabilities (Note 11 is a measurement-category disclosure, not the primary SOFP presentation) — but
+        is a genuine disclosure-quality issue similar in kind to the Contract liabilities and bank-borrowings
+        face-vs-note gaps flagged elsewhere in this file. Flagged for the balance-sheet-cashflow-analyst.
     guarantee_facility_cba:
       facility: "Secured guarantee to company's bankers (CBA), supported by floating charge over Group assets"
       limit: 65000000
@@ -375,11 +404,32 @@ balance_sheet:
     covenants:
       note: "No capital-management/covenant note (FY24/FY25 annual Note 40 equivalent) is included in this interim report — AASB 134 reduced-disclosure pattern, consistent with every prior GNP H1. No disclosed covenant breach."
       source: "financial-statements.pdf p.12 (Note 2 — statements to be read in conjunction with FY25 annual report)"
+    company_reported_total_debt_per_ir_deck:
+      value: 51100000
+      comparative_value: 47500000
+      label: "'Debt (excluding ROU Property Leases liabilities)' — as at 20 February 2026 (release/results-presentation date, a later date than the 31 Dec 2025 balance-sheet date, consistent with FY25's own file's convention of using a post-balance-date snapshot); comparative as at 22 August 2025 (a restated snapshot of the same FY25 figure originally dated 27 Aug 2025 in FY25's own file)"
+      source: "investor-presentation.pdf p.18 (Corporate Overview / Share Price History table): '22 Aug 25: ($47.5)' / '20 Feb 26: ($51.1)'"
+      note: >
+        ADDED on verification (5 Aug 2026 review) — this IR-deck metric (present in FY25's own file as
+        company_reported_total_debt_per_ir_deck) had not been captured in the original FY26H1 extraction.
+        Directionally consistent with the rest of this file: debt (ex ROU property leases) increased from
+        $47.5m to $51.1m even as net cash also increased, consistent with the new lease/finance-contract
+        capex funding and the growth in total lease liabilities noted elsewhere in this file.
   net_debt:
     statutory_bank_debt_and_leases_less_cash:
       value: -110933253
       note: "Net CASH position (negative = net cash) = bank borrowings 9,261,572 + total lease liabilities 57,855,230 - cash 178,050,055 (excludes the $22.5m restricted term deposit, which is not cash-equivalent)"
-      comparative_30jun25: -103507845
+      comparative_30jun25: -109036835
+      comparative_30jun25_correction_flag: >
+        CORRECTED during verification (5 Aug 2026 review): the prior extraction recorded this comparative as
+        -103,507,845, which does not tie to any combination of this half's own disclosed 30 Jun 2025 figures.
+        Recomputed on the identical methodology: bank borrowings 10,067,000 (2,859,234 current + 7,207,766
+        non-current, p.9) + total lease liabilities 41,672,282 (15,132,429 + 26,539,853, p.9/Note 12) - cash
+        160,776,117 (94,273,008 + 66,503,109, p.9) = -109,036,835. This also reconciles closely (to $1,208,
+        the already-flagged immaterial lease-liability rounding) with FY25's own reported closing statutory
+        net cash of -109,081,085 (archive/GNP/FY25/structured-financials.yaml). The previous -103,507,845
+        figure appears to have been a transcription/arithmetic error in the prior extraction, not a source-
+        document discrepancy — corrected here rather than carried forward silently.
       source: "derived from financial-statements.pdf p.9 balance sheet lines"
     company_reported_net_cash:
       value: 127000000
@@ -535,6 +585,22 @@ guidance_and_outlook:
     orderbook: {fy24: 519000000, fy25: 1985000000, fy26f: 2434000000, h1fy26: 2409000000}
     tender_pipeline: {fy24: 2003000000, fy25: 2409000000, fy26f: 2582000000, h1fy26: not_separately_labelled}
     source: "investor-presentation.pdf p.6 and p.7 (chart data labels) — note FY25's own orderbook/pipeline figures shown here ($1,985m / $2,409m) are materially HIGHER than the $519m / $2,003m 'FY2025' figures shown in archive/GNP/FY25/structured-financials.yaml's own orderbook chart extraction; this HY26H1 chart appears to have relabelled or restated the FY25 column vs how FY25's own deck presented it — flagged as a chart-labelling inconsistency across periods rather than resolved (the FY25 file's own orderbook figure of $519m for FY24 does match this chart's FY24 column of $519m, so the FY24 data point is stable; it is specifically the FY25 column that has shifted materially between the two decks)."
+    h1fy26_column_confidence_flag: >
+      DOWNGRADED confidence on verification (5 Aug 2026 review): p.6's chart legend has FOUR series (FY2024,
+      FY2025, FY2026F, H1 FY2026), but only NINE numeric data labels are present in the extractable text
+      layer — exactly enough for the FY2024/FY2025/FY2026F series (3 metrics x 3 series), with no distinct
+      H1 FY2026 labels extracting as text at all. The recurring_works_pa.h1fy26 value of 375 recorded above
+      does not appear anywhere in p.6's own extracted text; it matches p.7's SEPARATE "Revenue from Recurring
+      works" chart, where 375 is explicitly labelled "FY26F" (a full-year forecast), not an H1 actual — and
+      independently, 311 (FY25 actual) x 1.20 (the file's own recurring_revenue_forecast_fy26_growth_pct of
+      circa 20%) ≈ 373-375, consistent with 375 being a FY26 full-year forecast rather than an H1 figure.
+      The orderbook.h1fy26 value of 2409 is more plausible (it is directionally consistent with the "$2.4
+      billion, up 23% from June 2025" headline elsewhere in this file and in results-announcement.pdf), but
+      it is numerically IDENTICAL to this same chart's own FY2025 tender_pipeline value (2409) — this may be
+      a genuine coincidence in the underlying data, or may indicate the same cross-series misattribution risk
+      as the recurring-works figure. Neither h1fy26 sub-value should be treated as a confirmed chart
+      extraction; the FY24/FY25/FY26F values above (which reconcile cleanly across all three metrics) are
+      unaffected and remain reliable.
   east_coast_west_coast_growth_flag:
     west_coast_revenue_growth_yoy_pct: 65
     east_coast_revenue_growth_yoy_pct: 22
@@ -566,7 +632,7 @@ guidance_and_outlook:
       disclosure-completeness gap for the disclosure-tone-analyst to monitor at FY26 annual reporting.
 
 consensus:
-  source: "FactSet AI-Ready Data MCP connector confirmed UNAVAILABLE this session per explicit instruction (not retried) — unavailable for a SIXTH consecutive GNP extraction (FY23, FY24H1, FY24, FY25H1, FY25, FY26H1). Per project guardrails, no consensus figure has been inferred from web search or broker notes as a substitute."
+  source: "FactSet AI-Ready Data MCP connector actively re-attempted this session (5 Aug 2026 verification pass): calling the connector's authenticate tool returns 'Ask the user to run /mcp and select \"claude.ai FactSet AI-Ready Data\" to authenticate' — i.e. the connector requires an interactive OAuth step only the user can complete, and remains unavailable without that action. Unavailable for a SIXTH consecutive GNP extraction (FY23, FY24H1, FY24, FY25H1, FY25, FY26H1). Per project guardrails, no consensus figure has been inferred from web search or broker notes as a substitute."
   as_at_date: not_available
   revenue: {value: not_available}
   ebitda: {value: not_available}
@@ -576,7 +642,7 @@ consensus:
 
 extraction_flags:
   - "FactSet MCP unavailable this session per explicit instruction — not retried. All consensus fields recorded as not_available, per project guardrails."
-  - "config/companies.yaml is permission-blocked for editing this session per explicit instruction — not retried. Pending update (outstanding across SIX consecutive sessions: FY23, FY24H1, FY24, FY25H1, FY25, FY26H1): segments: [\"Infrastructure\", \"Services\", \"Energy & Engineering\"] — CONFIRMED STABLE this half (no third segment change; still matches FY25 annual's structure exactly, see segment_structure_check). fiscal_year_end is ALREADY correctly recorded as \"30 June\" — no change needed there, this was a false alarm in the task brief."
+  - "CORRECTED on verification (5 Aug 2026 review): config/companies.yaml's GNP entry ALREADY has segments: [\"Infrastructure\", \"Services\", \"Energy & Engineering\"] populated (confirmed by direct read this session) — the prior claim in this file (and repeated across FY23/FY24H1/FY24/FY25H1/FY25) that this field was blocked/empty and pending update was stale and has been corrected in segment_structure_check above. Segment structure itself is CONFIRMED STABLE this half (no third segment change; still matches FY25 annual's structure exactly). fiscal_year_end is correctly recorded as \"30 June\"."
   - "MATERIAL, UNEXPLAINED: 30 June 2025 comparative inventory shown in this half's own balance sheet ($3,292,292) differs from FY25's own reported closing inventory (archive/GNP/FY25/structured-financials.yaml: $5,712,374) by $2,420,082 (42.4%), with no corresponding item in Note 21's PPA-finalisation summary-of-changes table. Genuinely unresolved from the text available — flagged for the balance-sheet-cashflow-analyst to probe at FY26 annual. See balance_sheet_continuity_check_vs_FY25_closing."
   - "MATERIAL, INTERNAL DOCUMENT INCONSISTENCY: this half's own Statement of Financial Position (p.9) and Note 14 (p.23) disagree on the 30 June 2025 comparative Contract liabilities balance by $3,985,719 ($103,061,535 face vs $99,075,816 note) — the SOFP face figure is the one that ties to the disclosed Total current liabilities and therefore appears to be the 'true' balance, meaning Note 14 (which matches FY25's own originally reported figure) itself contains a stale or erroneous comparative. A genuine disclosure-quality issue in the audited-equivalent (reviewed) interim report, not mere rounding. See balance_sheet_continuity_check_vs_FY25_closing."
   - "EXPLAINED restatement: FY25's closing goodwill/intangibles were retrospectively increased by $6,132,089/$6,132,086 respectively (from $57,782,819/$71,981,712 to $63,914,908/$78,113,798) due to Note 21's finalisation of provisional purchase price accounting for the Commtel, Partum, GTS and Arbor West acquisitions during this half — explicitly disclosed as having 'no impact on the profit or loss for the year ended 30 June 2025 or half-year ended 31 December 2025.' Smaller explained items: cash -$43,042 and current provisions -$31,776, both tying exactly to Note 21's own summary-of-changes table."
@@ -598,3 +664,12 @@ extraction_flags:
   - "Minor (~$0.2m) discrepancy between this file's derived statutory EBITDA for the HY25 comparator ($26,308,587, matching archive/GNP/FY25H1/structured-financials.yaml exactly) and results-announcement.pdf's own summary table figure of $26.1m for the same period/measure — likely a rounding/definitional artefact in the release's own comparative table rather than a substantive issue; both documents carry explicit rounding caveats."
   - "Balance-sheet continuity vs FY25's closing (30 June 2025) position is MOSTLY clean, with several items EXPLAINED by Note 21's retrospective PPA finalisation (goodwill, cash, provisions) but two genuine discontinuities requiring follow-up (inventory, unexplained; contract liabilities, an internal face-vs-note inconsistency) — see balance_sheet_continuity_check_vs_FY25_closing for full detail, per instruction to flag rather than silently accept."
   - "No transcript.pdf located for FY26H1 (already flagged by document-fetcher in metadata.yaml) — results-announcement.pdf IS available and genuinely distinct from financial-statements.pdf this period (confirmed by content, not just filename), providing an additional MD-commentary source not available in several prior periods (FY25H1, FY25 both lacked a results-announcement.pdf)."
+  - "VERIFICATION PASS (5 Aug 2026) — CORRECTED arithmetic error: balance_sheet.net_debt.statutory_bank_debt_and_leases_less_cash.comparative_30jun25 was recorded as -103,507,845, which does not reconcile under any combination of this half's own disclosed 30 June 2025 figures. Recomputed using the identical methodology as this half's own 'value' field (bank borrowings + total leases - cash, all per p.9/Note 12): correct figure is -109,036,835, which also ties closely (to $1,208, the already-flagged immaterial lease rounding) to FY25's own reported closing statutory net cash of -109,081,085. Corrected in place; likely a transcription/arithmetic error in the prior extraction rather than a source-document issue."
+  - "VERIFICATION PASS (5 Aug 2026) — NEW, previously unflagged internal document inconsistency: the SOFP face (p.9) shows current 'Financial liabilities' (bank borrowings) of $2,106,572 at 31 Dec 2025, but Note 11's own categorisation table (p.19) shows $2,279,234 for the identical balance/date — a $172,662 gap (non-current and the 30 Jun 25 comparative both tie exactly between face and note, so this is specific to the 31 Dec 25 current figure). Confirmed the SOFP face is load-bearing (it, not Note 11's figure, reconciles exactly to disclosed Total current liabilities) — the same pattern as the already-flagged Contract liabilities face-vs-note gap. See balance_sheet.total_debt_by_facility.bank_borrowings_financial_liabilities.new_flag_face_vs_note_discrepancy."
+  - "VERIFICATION PASS (5 Aug 2026) — NEW, previously unflagged internal document inconsistency: Note 11 (p.19-20) and Note 15/the SOFP disagree on the current/non-current split of the provision-for-earn-out (contingent consideration, FVTPL) balance, in BOTH the 31 Dec 2025 figures and the 30 June 2025 comparative — though the TOTAL ties exactly in both periods ($6,689,055 and $11,271,064/$11,315,981 respectively). Does not affect the P&L or overall balance sheet totals; a note-level presentational inconsistency only. See balance_sheet.total_debt_by_facility.contingent_consideration_provision_for_earn_out.new_flag_current_noncurrent_split_disagrees_with_note11."
+  - "VERIFICATION PASS (5 Aug 2026) — STALE CLAIM CORRECTED: config/companies.yaml's GNP entry already has segments: [\"Infrastructure\", \"Services\", \"Energy & Engineering\"] populated (confirmed by direct read); the recurring claim across six prior extractions (FY23 through FY26H1) that this field was blocked/empty and pending update was incorrect for this session and should not be assumed true in future sessions without re-checking. See segment_structure_check for the corrected note."
+  - "VERIFICATION PASS (5 Aug 2026) — ADDED omitted figure: investor-presentation.pdf p.18's 'Debt (excluding ROU Property Leases liabilities)' metric ($51.1m at 20 Feb 2026, $47.5m at 22 Aug 2025) — present in FY25's own file under the same field name but not captured in the original FY26H1 extraction. Added to balance_sheet.total_debt_by_facility.company_reported_total_debt_per_ir_deck."
+  - "VERIFICATION PASS (5 Aug 2026) — DOWNGRADED confidence: the guidance_and_outlook.orderbook_pipeline_chart_detail 'h1fy26' sub-values (375 for recurring works, 2409 for orderbook) do not appear reliably extractable from investor-presentation.pdf p.6's own text layer (which yields exactly 9 numeric labels — enough only for the FY2024/FY2025/FY2026F series, not a distinct 4th H1 FY2026 series). The recurring-works '375' figure in particular appears to actually be p.7's separately-labelled 'FY26F' (full-year forecast) data point for a different chart, not an H1 actual. FY24/FY25/FY26F values in the same section remain reliable and are unaffected. See the h1fy26_column_confidence_flag added to that section."
+  - "FactSet MCP connector actively re-attempted this session (not merely assumed unavailable) — calling its authenticate tool confirms it requires an interactive /mcp step only the user can complete; genuinely unavailable without that action, consistent with (not merely repeating) all five prior sessions' findings."
+  - "DISCLOSURE-TONE-ANALYST FINDING (5 Aug 2026) — Note 7 (Joint arrangements) disclosure REGRESSION vs FY25H1: FY25H1's Note 7 gave full summarised financial information (current/non-current assets and liabilities, equity, revenue, D&A, interest expense, tax expense, 100%/Group-share profit) for both the Acciona Genus (HumeLink East) and Samsung Genus (Melbourne REH) arrangements. FY26H1's Note 7 drops all of this and now gives only name/activity/incorporation/ownership% plus a one-line dividend note — no financial detail at all. Not an interim-vs-annual artefact (both are AASB134 interims). Distinct from the already-flagged new_jv_disclosure_flag (the Western Renewables Link JV missing from Note 7 entirely) — this is a reduction in the depth of disclosure for the two JVs that ARE listed. Flag for FY26 annual: check whether fuller JV disclosure returns, or whether this is a lasting reduction."
+  - "DISCLOSURE-TONE-ANALYST FINDING (5 Aug 2026) — Related-party universe (Note 19 vs FY25H1's Note 16) has broadened and shifted composition, total spend roughly flat (~$3.43m HY25 -> ~$3.66m HY26): Partum Engineering and Maali Group (Associate) dropped out (Partum now wholly-owned/consolidated). FIVE counterparty names appear for the first time in this archive — AusCranes WA, Auscivil WA, 'The Muchea Property' (DW Riches/MS Riches Pty Ltd t/a), Riches Estates Pty Ltd, and Scott Mundi Pty Ltd atf SM Unit Trust — all reading as entities connected to Managing Director/Founder David Riches and family. Wanneroo Crane Hire spend jumped 657% ($177,709 -> $1,345,078); notably its FY26H1 comparator column shows $177,709 of spend already existed in HY25, meaning this counterparty was NOT disclosed as a related party in FY25H1's own report — either a new related-party classification event or a prior-period disclosure gap, not resolved from the text available. All transactions labelled 'at arms' length' with no special terms per standard boilerplate — not a governance red flag on its face, but a genuinely wider founder/family-connected-supplier footprint than any prior period. Flag for FY26 annual: track for concentration/pricing scrutiny."

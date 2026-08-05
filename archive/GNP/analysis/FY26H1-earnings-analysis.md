@@ -5,6 +5,37 @@ Released: 23 February 2026 | Archived: 5 August 2026
 
 ---
 
+## 0. Executive Summary
+
+**Verdict:** Clean beat vs PCP on every statutory line (no consensus source exists to benchmark beat/miss vs market); FY26 guidance ("circa 35%" normalised EBITDA growth) **reiterated**, not raised, this half — but that guide was itself upgraded pre-release (22 Jan 2026) from 20–25%. Quality of earnings: **structurally soft, not acutely flagged** — recurring "non-recurring" addbacks and a growing unexplained P&L line, offset by clean-reconciling bridges and two unresolved internal balance-sheet inconsistencies.
+
+| A$ | HoH % | YoY % | vs consensus |
+|---|---|---|---|
+| Revenue | +28.0% | +60.8% | n/a |
+| EBITDA (normalised) | +15.7% | +69.1% | n/a |
+| NPAT (statutory) | +14.8% | +81.6% | n/a |
+| EPS (basic) | ≈+14.8% | +80.0% | n/a |
+
+**Guidance:** FY26 "circa 35%" normalised EBITDA growth **reiterated** (upgraded from 20–25% pre-result, 22 Jan 2026 market update). H1 already delivered 50.9% of the implied full-year target; **H2 needs only +11.6% YoY** vs H1's own +69.1% YoY already banked — a low bar set against GNP's three-year pattern of guiding conservatively then beating materially.
+
+**Top findings:**
+1. Headline beat vs PCP across all statutory lines (revenue +60.8%, EBITDA +75.9%, NPAT +81.6%, EPS +80.0% YoY), almost entirely an Infrastructure-segment story; no consensus exists to benchmark against market expectations (§1.1–1.3).
+2. Guidance math is asymmetric to the upside: H2FY26 needs only +11.6% YoY EBITDA-N growth vs H1's +69.1% delivered (§1.5).
+3. Two material, unresolved internal data-quality discontinuities inside this half's own Grant Thornton-reviewed accounts — a 42.4% unexplained gap in the 30-Jun-25 inventory comparator, and a $3.99m face-vs-Note-14 disagreement on contract liabilities for the identical date (§2.1).
+4. Energy & Engineering is down half-on-half for a second consecutive comparable period (revenue −5.8%, segment profit −22.5%), a pattern the company's YoY-only framing does not surface (§1.3, §4).
+5. The new $429m syndicated facility — the largest financing event of the half — carries zero disclosed drawn amount, maturity, margin, or rate mix (§2.2).
+
+**Tone/topic shift:** Disclosure tone has moved to the most confident and promotional end of GNP's own archived range (repeated "record" framing, a new forward-looking M&A signal), with no corresponding increase in risk-caveat disclosure, while the long-standing "growing the east coast market" narrative has not adjusted to a mix now moving decisively toward the West Coast (§4, §5.2).
+
+**Market reaction view (a view, not a prediction — no consensus exists to benchmark an actual beat/miss):** The magnitude of the YoY beats, improved cash conversion, and the maiden interim dividend all support a positive headline reaction. The setup is nonetheless mildly asymmetric: risk is concentrated in second-order scrutiny — accounts-level data-quality issues, an undisclosed $429m facility, and a masked segment softening — rather than in the headline numbers themselves (§5.3).
+
+> **Read past the headline:**
+> - Two unresolved internal inconsistencies sit inside FY26H1's own reviewed accounts (inventory comparator, contract-liabilities face-vs-note gap) — neither changes the headline profit, but both bear on data-quality confidence for anyone building their own model off this document.
+> - Energy & Engineering's HoH softening (revenue −5.8%, profit −22.5%, second consecutive half) is invisible in the company's own YoY-only commentary.
+> - The company's "$91.9m Free Cash Flow / 199% conversion" headline deducts zero capex for the sixth straight period; the capex-deducted figure is $60.6m (130.9% of EBITDA). The $429m facility disclosed this half carries no terms at all.
+
+---
+
 ## 1. Profitability analysis
 
 Sources: `archive/GNP/{FY23,FY24H1,FY24,FY25H1,FY25,FY26H1}/structured-financials.yaml` and each period's `metadata.yaml`; `archive/GNP/FY26H1/results-announcement.pdf` (read in full) and `investor-presentation.pdf` / `financial-statements.pdf` per the extractor's own page citations embedded in the YAML.
@@ -152,6 +183,7 @@ GNP has been net-cash throughout the archive, with net cash roughly doubling YoY
 - **No interest-rate hedging (swaps, collars, forwards) has been disclosed by GNP in any of the six archived periods.** All bank debt is floating-rate; lease liabilities carry rate implicit in each lease. Gross debt/lease liabilities have grown from $27.7m (FY23) to $67.1m (FY26H1) with zero rate protection — a genuine, persistent treasury-risk observation, though the large net-cash cushion currently mutes practical risk.
 - **The $429m syndicated facility is the most consequential debt event of the half and the least disclosed** — roughly 9x the entire prior bank-debt book, with no maturity, margin, or drawn-amount disclosure. The parallel CBA-guarantee downsizing alongside new NAB/HSBC guarantee lines suggests these banks are the syndicate, but this cannot be confirmed from the text available. Flag for FY26 annual, which should carry the first full facilities note.
 - Covenants: GSA covenants unchanged and un-breached in every annual period checked; no interim covenant note exists (consistent with prior H1s).
+- Two further internal face-vs-note discrepancies identified on this session's verification pass: bank borrowings (current) show $2,106,572 on the SOFP face vs $2,279,234 in Note 11 for the identical 31 Dec 2025 date (a $172,662 gap; the face figure is load-bearing); and the current/non-current split of the earn-out provision disagrees between Note 11 and Note 15/the SOFP in both periods shown, though the totals tie exactly in each. Neither affects total liabilities or the P&L, but both are genuine note-level inconsistencies inside a reviewed interim report.
 
 ### 2.3 Other balance sheet movements
 
@@ -235,8 +267,9 @@ Reconciliation confirmed exactly: $73,695,975 + $18,249,734 (tax paid, added bac
 3. **Disclosure gap, material**: the $429m revolving syndicated facility (largest financing event of the half) carries zero facility-level detail.
 4. **Continuing, growing disclosure gap**: the unidentified "Other losses" P&L line has grown to $564,392 this half (from $160,747 HY25) with no note ever breaking it down across three consecutive halves.
 5. **Persistent, six-period pattern**: zero interest-rate hedging disclosed against a growing debt/lease base; no growth-vs-maintenance capex split ever disclosed; GNP's own "cash conversion"/"Free Cash Flow" labelling basis has changed at least four times.
-6. **Explained, not a flag**: the $6.13m FY25 goodwill/intangibles restatement (PPA finalisation, Note 21) — clean, well-disclosed, no P&L impact.
-7. **Positive, genuine trend**: working-capital funding gap has widened from 2.1% to 10.8% of annualised revenue over three halves — the primary driver of FY26H1's cash-conversion outperformance.
+6. **Minor, internal**: bank-borrowings face-vs-note gap ($172,662, 31 Dec 25 current only) and the earn-out provision's current/non-current split disagreeing between Note 11 and Note 15/the SOFP in both periods shown (totals tie in both cases) — genuine note-level inconsistencies, not P&L or total-liabilities issues.
+7. **Explained, not a flag**: the $6.13m FY25 goodwill/intangibles restatement (PPA finalisation, Note 21) — clean, well-disclosed, no P&L impact.
+8. **Positive, genuine trend**: working-capital funding gap has widened from 2.1% to 10.8% of annualised revenue over three halves — the primary driver of FY26H1's cash-conversion outperformance.
 
 ---
 
@@ -256,7 +289,7 @@ Disclosed only in the IR deck's "Corporate Matters" bullet; not in the financial
 
 **4. Bank guarantee / surety bond facility pool — materially restructured, likely linked to #3 above (not confirmed)**
 
-Combined guarantee+surety limit doubled: $260m (30 Jun 25) → $515m (31 Dec 25). CBA limit reduced ($120m→$65m), Surety bond limit increased ($140m→$285m), two brand-new facilities added (NAB $65m, HSBC $100m), both apparently wholly undrawn. Headroom $278.6m, up from $154.0m. Plausibly relates to the new $429m syndicated facility, but no document draws that connection explicitly — flagged as a likely link, not confirmed.
+Combined guarantee+surety limit doubled: $260m (30 Jun 25) → $515m (31 Dec 25). CBA limit reduced ($120m→$65m), Surety bond limit increased ($140m→$285m), two brand-new facilities added (NAB $65m, HSBC $100m), both apparently wholly undrawn. Headroom $278.6m, up from $154.0m. Plausibly relates to the new $429m syndicated facility, but no document draws that connection explicitly — flagged as a likely link, not confirmed. On the positive side, Note 20's guarantee/surety disclosure itself is a genuine disclosure-quality contrast — full limit/utilisation/headroom detail given, unlike the $429m facility.
 
 **5. Maiden interim dividend — genuine capital-allocation policy change, not a one-off**
 
@@ -276,21 +309,21 @@ Finalises provisional purchase price accounting for Commtel/Partum/GTS/Arbor Wes
 
 $564,392 this half; $160,747 HY25; $129,948 FY25 full year (implying a small H2FY25 net gain). No standalone note ever breaks it down. The one partial data point previously available (Volt Group/VPR FVTPL, unchanged $645,400) is ruled out as this half's driver. Now the largest value this line has taken, and remains completely unexplained.
 
-**9. Related party transactions — Note 19 discloses arm's-length dealings with Riches-family and other associated entities; dollar quantum growing; two apparent inconsistencies flagged**
+**9. Related party transactions — Note 19 discloses a materially widened founder/family-connected counterparty universe; two apparent inconsistencies flagged**
 
-Wanneroo Crane Hire grew 7.6x half-on-half ($1,345,078 vs $177,709 HY25), now the single largest related-party service spend this half. CROSS-PERIOD CHECK: Wanneroo Crane Hire, "The Muchea Property," AusCranes WA and Riches Estates do NOT appear in FY23/FY24H1/FY24/FY25H1 related-party notes at all — they FIRST appear in the FY25 ANNUAL report (H2FY25), not "new this half" as a naive half-on-half read would suggest. "Scott Mundi Pty Ltd atf SM Unit Trust" appears genuinely new this half. Separately flagged, unresolved: Auscivil WA Pty Ltd's $977,102 HY25 comparative shown in THIS half's Note 19 doesn't match what FY25H1's own document disclosed at the time — not resolved from text available.
+Total related-party spend is roughly flat vs FY25H1 (~$3.43m → ~$3.66m), but composition has shifted materially. Partum Engineering and Maali Group (Associate) dropped out (Partum now wholly-owned/consolidated). FIVE counterparty names appear for the first time in this archive — AusCranes WA, Auscivil WA, "The Muchea Property" (DW Riches/MS Riches Pty Ltd t/a), Riches Estates Pty Ltd, and Scott Mundi Pty Ltd atf SM Unit Trust — all reading as entities connected to Managing Director/Founder David Riches and family. Wanneroo Crane Hire spend jumped 657% ($177,709 → $1,345,078), now the single largest related-party service spend this half. CROSS-PERIOD CHECK: Wanneroo Crane Hire, "The Muchea Property," AusCranes WA and Riches Estates do NOT appear in FY23/FY24H1/FY24/FY25H1 related-party notes at all — they FIRST appear in the FY25 ANNUAL report (H2FY25), not "new this half" as a naive half-on-half read would suggest. Separately flagged, unresolved: Auscivil WA Pty Ltd's $977,102 HY25 comparative shown in THIS half's Note 19 doesn't match what FY25H1's own document disclosed at the time — not resolved from text available. All transactions labelled "at arm's length" with no special terms per standard boilerplate — not a governance red flag on its face, but a genuinely wider founder/family-connected-supplier footprint than any prior period. Flag for FY26 annual: track for concentration/pricing scrutiny.
 
-**10. Contingent liabilities / loss-making contracts — no change in disclosure, no named claim in any period**
+**10. Joint arrangements (Note 7) — disclosure regression this half, plus a third JV referenced but not yet disclosed**
+
+FY25H1's Note 7 gave full summarised financial information (current/non-current assets and liabilities, equity, revenue, D&A, interest expense, tax expense, 100%/Group-share profit) for both the Acciona Genus (HumeLink East) and Samsung Genus (Melbourne REH) arrangements. FY26H1's Note 7 drops all of this and now gives only name/activity/incorporation/ownership% plus a one-line dividend note — no financial detail at all, despite both being AASB134 interims (not an interim-vs-annual artefact). Separately, a third joint arrangement — "Acciona Genus Joint Venture, Western Renewables Link Project, 25% interest" ($1.6bn project) — is referenced in the Appendix 4D cover and IR deck "Key Project Awards" slide but is NOT included in Note 7's detailed disclosure at all, which still lists only the two arrangements above. Likely a timing/materiality issue (recent award) rather than an omission error, but combined with the disclosure-depth regression on the two listed JVs, this is a genuine reduction in JV transparency this half. Flag for FY26 annual: check whether fuller disclosure returns.
+
+**11. Contingent liabilities / loss-making contracts — no change in disclosure, no named claim in any period**
 
 Core wording unchanged across every archived period back to FY23. No period has ever named a specific claim, dispute, or onerous contract. The recurring "ECM claim" appears every period as a P&L normalisation item (oscillating gain/cost) but is never named or quantified inside the contingent-liabilities note itself — a mild disclosure-completeness observation, not a red flag.
 
-**11. Goodwill CGU structure — no update this half (annual-only disclosure); reminder for FY26 annual**
+**12. Goodwill CGU structure — no update this half (annual-only disclosure); reminder for FY26 annual**
 
 FY25 annual de-aligned CGUs from the 3-segment structure (6 CGUs vs 3 segments) reversing FY24's deliberate realignment. Watch at FY26 annual whether this evolves further.
-
-**12. New joint arrangement referenced but not yet in Note 7's detailed disclosure**
-
-"Acciona Genus Joint Venture, Western Renewables Link Project, 25% interest" ($1.6bn project) referenced in the Appendix 4D cover/IR deck but NOT in Note 7's detailed financial disclosure (which still lists only two arrangements). Likely a timing/materiality issue rather than an omission error — flag to monitor at FY26 annual.
 
 ### 4.1 Tone/topic comparison vs archived prior periods
 
@@ -319,11 +352,12 @@ FY25 annual de-aligned CGUs from the 3-segment structure (6 CGUs vs 3 segments) 
 6. **QoE is structurally, not acutely, weak**: the "non-recurring" acquisition-cost addback has appeared in 100% of six archived periods; three overlapping "underlying NPAT" labels persist (though the Appendix 4D bridge now reconciles cleanly for a second straight period); an unexplained "Other losses" line has grown to $564,392, its largest value yet, across three consecutive halves.
 7. **Cash-conversion outperformance (159.3% on the one basis comparable across all six periods) is genuine but working-capital-driven, not EBITDA-quality-driven** — payables growing faster than revenue (+39.7% vs +28.0% HoH) reversed FY25H1's unfavourable dynamic. The company's own "199% FCF conversion" label continues to deduct zero capex (sixth consecutive period on a shifting/inflated basis); true capex-deducted FCF is $60.6m (130.9% of EBITDA), not $91.9m.
 8. **Maiden interim dividend (2.0cps) — a genuine capital-allocation policy change**, not a one-off, alongside continued net-cash growth YoY ($110.9m, +89.6% YoY) though flat HoH after capex, the new restricted term deposit, and dividend/lease outflows.
-9. **Tone is more promotional than any prior archived period** (5 distinct superlatives vs a factual FY25H1 baseline) without a commensurate increase in risk/caveat disclosure, and sits alongside an unaddressed strategy/mix tension (stated "east coast growth" focus vs West Coast revenue growing 3x faster).
+9. **Related-party universe and JV disclosure both moved in a lower-quality direction this half**: five new founder/family-connected related-party counterparties (Wanneroo Crane Hire spend +657%), and Note 7's JV disclosure regressed from full summarised financials (FY25H1) to name-only detail, with a third JV (Western Renewables Link, $1.6bn) referenced in IR materials but absent from Note 7 entirely.
+10. **Tone is more promotional than any prior archived period** (5 distinct superlatives vs a factual FY25H1 baseline) without a commensurate increase in risk/caveat disclosure, and sits alongside an unaddressed strategy/mix tension (stated "east coast growth" focus vs West Coast revenue growing 3x faster).
 
 ### 5.2 Tone/topic shift characterisation
 
-FY26H1's disclosure tone has shifted toward the most confident and promotional end of GNP's own archived range — repeated "record" framing, superlative MD language, and a new open-ended forward M&A signal — while risk-factor and caveat disclosure has not moved at all (no new risks surfaced, none retired, no margin-nuance acknowledgement of the kind FY25H1 volunteered even though this half's margin story is actually better). The confidence is substantially earned by the headline numbers, but three specific, numbers-backed tensions sit underneath the upbeat surface read: (i) reiterated-not-raised guidance inside an already-aggressive beat cycle, meaning the market may already be primed for another beat rather than treating one as news; (ii) the "east coast growth" strategic narrative repeated verbatim against a mix that actually moved toward the West Coast; and (iii) an ambiguous "better than expected" characterisation of a segment that is simultaneously down half-on-half. None of these amount to a false statement, but a purely narrative read of the release would miss all three.
+FY26H1's disclosure tone has shifted toward the most confident and promotional end of GNP's own archived range — repeated "record" framing, superlative MD language, and a new open-ended forward M&A signal — while risk-factor and caveat disclosure has not moved at all (no new risks surfaced, none retired, no margin-nuance acknowledgement of the kind FY25H1 volunteered even though this half's margin story is actually better). The confidence is substantially earned by the headline numbers, but several specific, numbers-backed tensions sit underneath the upbeat surface read: (i) reiterated-not-raised guidance inside an already-aggressive beat cycle, meaning the market may already be primed for another beat rather than treating one as news; (ii) the "east coast growth" strategic narrative repeated verbatim against a mix that actually moved toward the West Coast; (iii) an ambiguous "better than expected" characterisation of a segment that is simultaneously down half-on-half; and (iv) a reduction in JV disclosure depth (Note 7) at the same time as a widened related-party footprint, both moving in a lower-transparency direction even as the narrative tone becomes more confident. None of these amount to a false statement, but a purely narrative read of the release would miss all of them.
 
 ### 5.3 Market reaction view
 
@@ -332,11 +366,7 @@ FY26H1's disclosure tone has shifted toward the most confident and promotional e
 On the numbers alone, this is a strong, broad-based result: every statutory profitability line grew 60–90% YoY, cash conversion improved on the one metric comparable across the full archive, net cash roughly doubled YoY, and the company introduced its first-ever interim dividend — all supportive of a positive market reaction if read at face value. Guidance was reiterated rather than raised, but the reiteration comes on the back of a January pre-announcement upgrade and a mathematical bar for H2 (+11.6% YoY) that is low relative to H1's own momentum and the record $2.4bn orderbook — asymmetric to the upside on a 6–12 month view.
 
 Two things could temper an otherwise unambiguously positive reaction, and constitute the asymmetric-setup flag this framework calls for:
-- **Quality-of-earnings and disclosure-integrity readers** (analysts who go past the headline release into the financial statements) will find two unresolved, material internal inconsistencies in the FY26H1 accounts themselves (inventory comparator, contract-liabilities comparator) plus a growing unexplained "Other losses" charge and a $429m facility with no disclosed terms. None of these change the headline profit result, but collectively they are the kind of finding that shows up in a "quality of earnings looks worse than the headline" note days after the initial move, not on the day itself.
+- **Quality-of-earnings and disclosure-integrity readers** (analysts who go past the headline release into the financial statements) will find two unresolved, material internal inconsistencies in the FY26H1 accounts themselves (inventory comparator, contract-liabilities comparator) plus a growing unexplained "Other losses" charge, a JV disclosure regression, and a $429m facility with no disclosed terms. None of these change the headline profit result, but collectively they are the kind of finding that shows up in a "quality of earnings looks worse than the headline" note days after the initial move, not on the day itself.
 - **The Energy & Engineering HoH softening is invisible in the company's own framing** (YoY-only commentary) and would only surface to a market participant building their own segment model — a second consecutive half of this pattern raises the probability it is treated as guidance risk by the more careful analysts, even though management calls the segment's result "better than expected."
 
 **Net view:** the immediate/headline market reaction is more likely positive than negative given the magnitude of the YoY beats and the maiden dividend, but the setup has a **modest asymmetric skew where the risk is concentrated in second-order scrutiny** (accounts-level data-quality issues, undisclosed debt terms, and a masked segment softening) rather than in the headline numbers themselves — a "buy the headline, then find the footnotes" pattern rather than a clean, one-directional beat.
-
-### 5.4 Open administrative item
-
-`config/companies.yaml`'s `segments` field for GNP is still `[]` (stale, pre-dating the FY25 segment restructure to Infrastructure/Services/Energy & Engineering). A pending edit to set it to `["Infrastructure", "Services", "Energy & Engineering"]` was blocked by a permission gate throughout this session and could not be applied. This is a repo-configuration/administrative item, not a finding about GenusPlus's results, and should be actioned outside this report.
