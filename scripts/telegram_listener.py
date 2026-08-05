@@ -37,11 +37,11 @@ POLL_INTERVAL_SECONDS = 5
 COMPANIES_YAML = os.path.join(os.path.dirname(__file__), "..", "config", "companies.yaml")
 
 TRIGGER_PATTERN = re.compile(
-    r"\banalys[ie]\w*\b.*?\b(?:result|earnings|release)s?\b.*?\bfrom\b\s+(?P<company>.+)",
+    r"\banaly[sz]\w*\b.*?\b(?:result|earnings|release)s?\b.*?\bfrom\b\s+(?P<company>.+)",
     re.IGNORECASE,
 )
-# Also accept the simpler "analyse <company>" form without "result(s) from".
-SIMPLE_PATTERN = re.compile(r"\banalys[ie]\w*\b\s+(?P<company>.+)", re.IGNORECASE)
+# Also accept the simpler "analyse/analyze <company>" form without "result(s) from".
+SIMPLE_PATTERN = re.compile(r"\banaly[sz]\w*\b\s+(?P<company>.+)", re.IGNORECASE)
 
 
 def load_aliases():
