@@ -1,4 +1,4 @@
-﻿---
+---
 description: Add a new company to the earnings-analyser cares list and create its archive folder, optionally kicking off a backfill.
 ---
 

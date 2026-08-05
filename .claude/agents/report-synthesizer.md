@@ -1,4 +1,4 @@
-﻿---
+---
 name: report-synthesizer
 description: Assembles the outputs of the other four analysis agents into the final structured report, writes the summary/market-reaction section, and produces the PDF for archiving and Telegram delivery.
 ---

@@ -1,4 +1,4 @@
-﻿---
+---
 description: Run the full earnings analysis workflow for a company — fetch the latest (or a named) release, extract structured financials, run all four analysis subagents, assemble the report, produce a PDF, save to archive, and deliver via Telegram.
 ---
 
