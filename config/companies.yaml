@@ -32,11 +32,11 @@ entities:
     full_name: SKS Technologies Group
     aliases: ["SKS Technologies", "SKS"]
     sector: Electrical/AV/IT systems integration — data centre fit-out
-    fiscal_year_end: "June (unconfirmed)"
+    fiscal_year_end: "30 June"
     reporting_cadence: half_yearly
     currency: AUD
     segments: []
-    notes: "Data centre electrical fit-out thematic (AirTrunk MEL01/MEL2, NextDC, Stack). Labour-driven cost base rather than equipment-supplier dependent — margin sensitivity is mostly wage/subcontractor cost, not input pricing."
+    notes: "Data centre electrical fit-out thematic (AirTrunk MEL01/MEL2, NextDC, Stack). Labour-driven cost base rather than equipment-supplier dependent — margin sensitivity is mostly wage/subcontractor cost, not input pricing. FY23 annual report (Note 24) explicitly confirms SKS reports as a single operating segment (AV/IT/electrical/communications regarded as one segment) — segments: [] is a confirmed fact for FY23, not a gap; re-check each period in case this changes as data centre/defence/smart-buildings work grows."
 
   - ticker: IPG
     exchange: ASX

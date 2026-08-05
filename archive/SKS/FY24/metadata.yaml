@@ -1,0 +1,19 @@
+ticker: SKS
+period: FY24
+period_type: annual
+period_end_date: "2024-06-30"
+fiscal_year_end: "30 June"
+currency: AUD
+release_datetime: "2024-08-20T00:00:00+10:00"
+source_urls:
+  results_announcement: "https://hotcopper.com.au/data/announcements/ASX/3A648148_SKS.pdf"
+  appendix_4e: "https://hotcopper.com.au/data/announcements/ASX/3A648146_SKS.pdf"
+  financial_statements: "https://hotcopper.com.au/data/announcements/ASX/3A648147_SKS.pdf"
+  investor_presentation: "https://hotcopper.com.au/data/announcements/ASX/3A648151_SKS.pdf"
+  transcript: null
+downloaded_at: "2026-08-04T00:00:00+10:00"
+extraction_flags:
+  - "transcript.pdf not located for FY24 (no evidence a recorded/transcribed earnings call was publicly lodged; SKS held a results webinar rather than a formal call for at least some periods)."
+  - "structured-financials.yaml extraction (this run): gross profit/margin not disclosed (nature-of-expense P&L format, unchanged from FY23); no maintenance-vs-growth capex split disclosed; no formal gearing ratio disclosed; no underlying/normalised NPAT (statutory-only reporter, unchanged). See structured-financials.yaml extraction_flags for full detail, including: a new voluntary (non-statutory) data-centre-vs-traditional revenue split disclosed in investor-presentation.pdf ($31M/$105M) that is NOT a formal AASB 8 segment (Note 22 confirms single segment, unchanged) — companies.yaml segments: [] left unchanged pending confirmation this becomes formal segment reporting; a material bank-facility sub-limit restructure in 2H24 (overdraft cut $5m->$2.5m, guarantee raised $5m->$10m, total up $12m->$14.5m); a one-off ~$1.12M prior-period tax adjustment inflating the FY24 tax benefit (QoE-relevant, flagged for profitability-earnings-analyst); two distinct dividends in play (FY23-related $0.20c paid in FY24, vs FY24-related $1.00c declared as a FY24 subsequent event) that should not be conflated; and an apparent typo in investor-presentation.pdf's historical P&L appendix (FY23 finance charges shown as $722.1k vs the audited $772,130 figure used throughout)."
+  - "Continuity checks against FY23 and FY24H1 structured-financials.yaml were performed and passed (cash, borrowings, provisions, goodwill, dividend subsequent-event flow-through) or showed explained/genuine improvement (net debt incl. leases, total facility headroom) — no unexplained discontinuities found. Full detail in structured-financials.yaml."
+notes: "Full package located via HotCopper's ASX-announcement PDF mirror (hotcopper.com.au/data/announcements/ASX/<id>_SKS.pdf), which serves the original ASX-lodged PDFs directly (verified against document content, not just filename). financial_statements.pdf is the audited 'Financial Report for year ended 30 June 2024' and is identical in kind to the version also linked from SKS's own investor page (storyblok CDN, sks_sks_annual_report_to_shareholders_2024.pdf) — the HotCopper copy was used as the archived copy since it was already verified. Confirms fiscal_year_end = 30 June and currency = AUD."

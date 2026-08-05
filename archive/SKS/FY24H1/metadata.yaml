@@ -1,0 +1,22 @@
+ticker: SKS
+period: FY24H1
+period_type: half_year
+period_end_date: "2023-12-31"
+fiscal_year_end: "30 June"
+currency: AUD
+release_datetime: "2024-02-28T00:00:00+11:00"
+source_urls:
+  results_announcement: "https://announcements.asx.com.au/asxpdf/20240228/pdf/060x7wxp6pchch.pdf"
+  appendix_4d: null
+  financial_statements: null
+  investor_presentation: null
+  transcript: null
+downloaded_at: "2026-08-04T00:00:00+10:00"
+extraction_flags:
+  - "appendix-4d.pdf / financial-statements.pdf not located: an initial candidate document found via web search under a similar query (hosted on content-assets.computershare.com) was verified by opening it and found to be Computershare Limited's OWN half-year report (an unrelated ASX:CPU document that happened to match generic search terms 'half year report 31 December 2023'), not SKS's. It was discarded rather than archived to avoid a misattributed document. The genuine SKS Appendix 4D + interim financial report for this half could not be independently confirmed via ASX/marketindex/hotcopper in this fetch — do not assume it doesn't exist, just that it wasn't located this run."
+  - "investor-presentation.pdf not located separately for FY24H1 — it's possible the results-announcement.pdf IS the only release-day document (some smaller caps combine commentary into one release), but this could not be confirmed."
+  - "transcript.pdf not located for FY24H1."
+  - "[financial-data-extractor, 2026-08-05] Corrected an error in this file's own 'notes' field (see below): the original note said EPS grew '1.64c (1H23) to 3.28c (1H24)'. Those two figures are actually Net Tangible Assets per share (results-announcement.pdf p.2), not EPS — the document's own EPS chart (p.2) shows EPS of 0.37c (1H23) growing to 1.66c (1H24). structured-financials.yaml has been extracted using the correct EPS figures; the notes field below has been corrected accordingly."
+  - "[financial-data-extractor, 2026-08-05] Because only the 4-page results-announcement.pdf was available (no interim financial statements/appendix-4D), most balance-sheet detail (debtors/creditors/inventory/contract assets/provisions/goodwill/intangibles) and cash-flow detail (capex split, free cash flow, acquisition/financing cash flow lines) could not be extracted and are recorded not_available in structured-financials.yaml. Recommend a follow-up document-fetcher pass for the genuine SKS 31 Dec 2023 Appendix 4D / interim financial report."
+  - "[financial-data-extractor, 2026-08-05] Continuity check against archive/SKS/FY23/structured-financials.yaml: cash reconciles cleanly (FY23 close $8,584 vs 1H24 opening '$0.01 million' stated in this release — PASS). CBA overdraft moved from $1,761,250 drawn (FY23 close) to $0 drawn (1H24 close), alongside a facility expansion from $8M to $12M total — this is a genuine, explicitly-disclosed deleveraging/facility-expansion event, not an extraction error, but is flagged per project convention as a material discontinuity in the debt profile. Net debt could not be recomputed on a like-for-like basis with the FY23 'net_debt_including_leases' figure because lease liabilities are not disclosed in this release."
+notes: "results-announcement.pdf ('SKS Technologies' Growth Strategy Produces Results') is the ASX-lodged market release for the half year ended 31 December 2023, confirming EPS growth from 0.37c (1H23) to 1.66c (1H24) (corrected — see extraction_flags; the 1.64c/3.28c figures in the source document are Net Tangible Assets per share, not EPS) and a $4M increase in CBA facilities (to $12M total, comprising an unchanged $5M overdraft, bank guarantee raised $3M->$5M, and a new $2M equipment leasing facility). Fiscal half confirmed as Jul–Dec (H1) from the document's own stated period, consistent with the 30 June fiscal year end confirmed from FY23/FY24/FY25 annual reports."

@@ -1,0 +1,228 @@
+ticker: SKS
+period: FY24H1
+period_type: half_year
+period_end_date: "2023-12-31"
+currency: AUD
+source_documents:
+  - results-announcement.pdf   # "SKS Technologies' Growth Strategy Produces Results", ASX release 28 Feb 2024 — only source document located for this period; no appendix-4D, interim financial statements, investor presentation, or transcript found (see metadata.yaml extraction_flags). This is a 4-page press release, NOT a full set of interim financial statements — most balance-sheet and cash-flow line items below are recorded not_available for that reason, not because extraction failed.
+
+pnl:
+  revenue_total:
+    value: 53690000
+    source: "results-announcement.pdf p.1 (highlights box '$53.69M Total revenue up 20.1% on PCP'; body text 'revenue rose by 20.1% to $53.69 million compared with the $44.43 million achieved in the previous corresponding period')"
+    comparatives_disclosed_in_document:
+      "1H23": 44430000
+      "1H22": 29990000
+      "1H21": 14600000
+      "1H20": 15060000
+    note: "Figures as disclosed to 2dp $M precision in the release; no cents-level precision available from this source."
+  revenue_by_segment:
+    single_reportable_segment:
+      value: 53690000
+      source: "results-announcement.pdf — no divisional/segment revenue split disclosed; consistent with FY23 Note 24 single-segment reporting"
+    note: "No dollar revenue-by-segment breakdown disclosed. The release does disclose a 'work on hand' composition by sector (traditional / defence / smart building networks / data centres) at Aug-2022, Aug-2023 and Feb-2024 (p.3) — this is a PIPELINE/backlog mix, not a revenue segment split, and must not be conflated with one. companies.yaml segments: [] remains correct and unchanged for this period."
+  gross_profit:
+    value: not_available
+    source: null
+    note: "Press release does not present a cost-of-sales/gross-profit line. Consistent with FY23 (nature-of-expense P&L format) — no full interim P&L was located for this half to check whether the format changed."
+  gross_margin_pct:
+    value: not_available
+    source: null
+  ebitda:
+    value: 2990000
+    source: "results-announcement.pdf p.1 (highlights box '$2.99M EBITDA up 95.0% on pcp'; body text 'first half EBITDA rose by 95.0% to $2.99 million from $1.54 million in 1H23')"
+    comparatives_disclosed_in_document:
+      "1H23": 1540000
+      "1H22": 1520000
+      "1H21": 1060000
+      "1H20": -510000
+  ebitda_margin_pct:
+    value: 5.57
+    source: "derived: EBITDA $2,990,000 / revenue $53,690,000 (results-announcement.pdf p.1)"
+    comparative_1h23_derived: 3.47
+  ebit:
+    value: not_available
+    source: null
+    note: "D&A not disclosed in this release, so EBIT cannot be derived from EBITDA. EBITDA less PBT implies a combined D&A + net interest of ~$1.17M (2,990,000 - 1,820,000) but this cannot be split into EBIT/interest without further disclosure — not presented as EBIT to avoid a false-precision estimate."
+  net_interest_expense:
+    value: not_available
+    source: null
+    note: "Not disclosed in this press release. Company states no overdraft drawn at period end (p.2), consistent with a low or nil interest charge, but no figure is quoted."
+  pbt:
+    value: 1820000
+    label: "'Before-tax profit' / NPBT as reported"
+    source: "results-announcement.pdf p.1 (body text: 'Before-tax profit was $1.82 million, up 4.5 times from the $0.41 million achieved in the previous corresponding period, which also equalled after-tax profit')"
+    comparatives_disclosed_in_document:
+      "1H23": 410000
+      "1H22": 930000
+      "1H21": 660000
+      "1H20": -1060000
+  tax:
+    value: 0
+    label: "income tax expense (implied nil)"
+    source: "results-announcement.pdf p.1 — explicitly stated that 1H24 before-tax profit ($1.82M) 'also equalled after-tax profit', i.e. no tax expense/benefit for the half. No separate tax note or figure quoted (press release only)."
+  npat_statutory:
+    value: 1820000
+    source: "results-announcement.pdf p.1 (highlights box '$1.82M NPAT up 4.5x on pcp'; body text 'a 4.5 times increase in after-tax profit to $1.82 million')"
+  npat_underlying:
+    value: not_available
+    source: null
+    reconciling_items: []
+    note: "No underlying/normalised NPAT distinct from statutory NPAT disclosed for 1H24 — consistent with FY23 (statutory-only reporter)."
+  eps:
+    value: 1.66
+    unit: "cents, basic (not explicitly stated as diluted in this release)"
+    source: "results-announcement.pdf p.2 (EPS chart and text: 'earnings per share rose to 1.66 cents, representing an increase of 4.5 times the 1H23 result')"
+    comparatives_disclosed_in_document:
+      "1H23": 0.37
+      "1H22": 1.25
+      "1H21": 0.66
+      "1H20": -1.59
+    note: "IMPORTANT — metadata.yaml's 'notes' field for this period states 'confirming EPS growth from 1.64c (1H23) to 3.28c (1H24)'. This is INCORRECT / conflates two different metrics: 1.64c -> 3.28c is Net Tangible Assets per share (p.2: 'Net tangible assets per share doubled from 1.64 cents since 31 December 2022 to 3.28 cents as at 31 December 2023'), not EPS. The actual EPS figures per the document's own EPS chart are 0.37c (1H23) to 1.66c (1H24). Flagged in extraction_flags for metadata.yaml correction; EPS recorded here is taken from the correct chart/text."
+  dps:
+    value: not_available
+    source: null
+    note: "No dividend (declared or paid) mentioned anywhere in this release for 1H24. FY23 annual report recorded a $0.002/share unfranked dividend declared 30 Aug 2023 (post FY23 balance date) — this release does not confirm whether that was paid during 1H24, nor whether a separate FY24 interim dividend was declared. Flagged as unconfirmed rather than assumed nil."
+
+balance_sheet:
+  cash:
+    value: 900000
+    precision: "disclosed only to 2dp $M ('$0.90 million')"
+    source: "results-announcement.pdf p.2 ('Cash in hand was $0.90 million as at 31 December 2023, up from $0.01 million as at the beginning of the half')"
+    continuity_check_vs_fy23: "PASS — opening-of-half cash of '$0.01 million' stated here reconciles to FY23 closing cash of $8,584 (financial-statements.pdf p.34/Note 9, prior structured-financials.yaml), which rounds to $0.01M. No discontinuity."
+  total_debt_by_facility:
+    cba_overdraft_facility:
+      drawn: 0
+      limit: 5000000
+      undrawn: 5000000
+      maturity_date: not_disclosed
+      interest_rate: not_disclosed
+      fixed_or_floating: "floating (per FY23 disclosure; not restated in this release)"
+      source: "results-announcement.pdf p.2 ('no outstanding amount on its overdraft as at the end of the half year'); limit inferred unchanged at $5M — see facility note below"
+    cba_bank_guarantee_facility:
+      limit: 5000000
+      drawn: not_disclosed
+      undrawn: not_disclosed
+      source: "results-announcement.pdf p.2 ('a $2 million increase in the existing bank guarantee facility to $5 million')"
+    cba_equipment_leasing_facility:
+      facility_type: "new facility, established during 1H24"
+      limit: 2000000
+      drawn: not_disclosed
+      source: "results-announcement.pdf p.2 ('The increase consisted of a $2 million equipment leasing facility and a $2 million increase in the existing bank guarantee facility to $5 million')"
+    total_cba_facility_limit:
+      value: 12000000
+      source: "results-announcement.pdf p.2 ('the company secured an additional $4 million in total facilities under the existing Commonwealth Bank agreement, bringing the CBA financing facilities to a total of $12 million')"
+    continuity_check_vs_fy23: "PASS (explained change, not a discontinuity). FY23 closing total facility was $8M ($5M overdraft + $3M bank guarantee, drawn $1,761,250 + $2,165,632 = $3,926,882). 1H24: overdraft fully repaid to $0 drawn; bank guarantee limit raised $3M->$5M; new $2M equipment leasing facility added. Total limit $8M -> $12M, exactly the stated '+$4 million'. This is a genuine deleveraging/facility-expansion event explicitly disclosed by the company, not an extraction error."
+    note: "Overdraft limit of $5M is inferred (not explicitly restated in this release) from total facility arithmetic: $12M total - $5M bank guarantee - $2M equipment lease = $5M, unchanged from FY23. Not treated as company-confirmed to the same standard as the other two figures — flagged."
+  net_debt:
+    value: not_available
+    partial_basis: "Borrowings-only view: overdraft drawn $0 less cash $900,000 = net cash position of -$900,000 (i.e. net cash, not net debt). Lease liabilities (a material component of FY23 net debt, $5.6M at 30 June 2023) are NOT disclosed in this release, so a like-for-like net debt figure (as computed in the FY23 file, 'net_debt_including_leases') cannot be derived this half."
+    source: null
+    note: "FY23 net_debt_including_leases was $7,374,478. Cannot confirm continuity/trend on that basis this half — flagged rather than guessed. Full interim financial statements (not located) would be required."
+  gearing_ratio_as_reported:
+    value: not_available
+    source: null
+  trade_debtors:
+    value: not_available
+    source: null
+    note: "Not disclosed — press release contains no balance sheet or notes."
+  trade_creditors:
+    value: not_available
+    source: null
+  inventory:
+    value: not_available
+    source: null
+  contract_assets:
+    value: not_available
+    source: null
+  contract_liabilities:
+    value: not_available
+    source: null
+  provisions:
+    value: not_available
+    source: null
+  goodwill:
+    value: not_available
+    source: null
+    note: "FY23 goodwill was $1,867,660 (single CGU, unchanged since FY22) — no acquisition disclosed in this release that would change this, but not independently confirmed for 31 Dec 2023."
+  intangibles_total:
+    value: not_available
+    source: null
+  impairment_charges:
+    value: not_disclosed
+    source: null
+    note: "No impairment mentioned; absence of mention is weak evidence of nil, not a confirmed nil (no notes/financial statements available to check)."
+  working_capital:
+    value: 1650000
+    source: "results-announcement.pdf p.2 ('working capital of $1.65 million, up by a multiple of almost 16 times on the $0.10 million at the beginning of the half')"
+    note: "Non-schema metric as disclosed by the company; basis (current assets less current liabilities, presumably) not defined in the release. Opening-of-half figure of ~$0.10M is a company-disclosed summary number, not independently reconciled against FY23 balance sheet components in this extraction (would require the FY23 current asset/liability note detail vs this release's rounded figure)."
+  net_tangible_assets_per_share:
+    value: 3.28
+    unit: "cents"
+    source: "results-announcement.pdf p.2 ('Net tangible assets per share doubled from 1.64 cents since 31 December 2022 to 3.28 cents as at 31 December 2023')"
+    note: "Comparative is 31 Dec 2022 (1H23), not 30 June 2023 (FY23) — a different comparator base than the rest of this file's continuity checks. Not a schema field but retained as company-disclosed and relevant to the EPS mislabelling issue noted above."
+
+cash_flow:
+  net_operating_cashflow:
+    value: 3800000
+    source: "results-announcement.pdf p.1 (highlights box 'Cash flows from ops up almost 15x on pcp'); p.2 ('Cash flows from operations increased to $3.80 million, representing a multiple of almost 15 times over the previous corresponding period')"
+    comparatives_disclosed_in_document:
+      "1H23": 260000
+      "1H22": 550000
+      "1H21": 1730000
+      "1H20": -200000
+  capex:
+    growth_capex:
+      value: not_available
+      source: null
+    maintenance_capex:
+      value: not_available
+      source: null
+    note: "No capex figure at all is disclosed in this release (no cash flow statement included). Page 3 mentions 'approximately $3 million was invested in new teams' during the growth build-out period, but this is described as team/people investment (opex-like), not capitalised capex, and is not confidently attributable to 1H24 alone (context suggests it spans the multi-year expansion). Not recorded as capex."
+  free_cash_flow:
+    value: not_available
+    source: null
+    note: "Cannot derive without a capex figure."
+  net_increase_in_cash:
+    value: 890000
+    source: "results-announcement.pdf p.2 ('Net cash flows grew by over five times, increasing to $0.89 million from $0.17 million in 1H23')"
+    note: "Non-schema metric (all-activities net cash movement) as disclosed. Cross-check: opening cash $0.01M + net increase $0.89M = $0.90M closing cash — ties out exactly to the cash balance reported above."
+  acquisition_cashflows:
+    value: not_disclosed
+    source: null
+    note: "No acquisition mentioned in this release; absence of mention is weak evidence of nil, not confirmed."
+  financing_cashflows:
+    value: not_available
+    source: null
+    note: "No financing cash flow detail (debt drawn/repaid, equity issued, dividends paid) disclosed in this press release. The overdraft repayment to nil (see balance_sheet.total_debt_by_facility) implies a net repayment of borrowings occurred during the half of the order of $1.76M (FY23 closing balance), but this is an inference from balance-sheet movement, not a disclosed cash flow statement line — not recorded as a confirmed financing cash flow figure."
+
+consensus:
+  source: "FactSet MCP — not queried"
+  as_at_date: not_available
+  revenue:
+    value: not_available
+  ebitda:
+    value: not_available
+  npat:
+    value: not_available
+  eps:
+    value: not_available
+  note: >
+    Per task instructions, the FactSet AI-Ready Data MCP connector requires an interactive
+    OAuth authentication flow; this was not completed in the FY23 extraction run and was not
+    re-attempted mid-extraction here either. Consensus is recorded as not_available rather
+    than inferred from web search or a single broker note, consistent with project guardrails.
+
+extraction_flags:
+  - "Only source document for this period is a 4-page ASX press release (results-announcement.pdf), not full interim financial statements — no appendix-4D, financial-statements.pdf, investor-presentation.pdf, or transcript.pdf located (per metadata.yaml). As a direct consequence, most balance-sheet detail (trade debtors/creditors, inventory, contract assets/liabilities, provisions, goodwill/intangibles carrying value, impairment) and cash-flow detail (capex split, free cash flow, acquisition and financing cash flow lines) are recorded not_available in structured-financials.yaml — this is a document-availability gap, not a parsing failure. Recommend a follow-up document-fetcher pass specifically for the SKS 31 Dec 2023 Appendix 4D / interim financial report before relying on this period for balance-sheet or cash-flow analysis."
+  - "metadata.yaml's 'notes' field contains a factual error carried over from the original archiving run: it states EPS grew '1.64c (1H23) to 3.28c (1H24)'. Those figures are actually Net Tangible Assets per share (p.2 of the release), not EPS. The document's own EPS chart (p.2) shows EPS of 0.37c (1H23) growing to 1.66c (1H24) — this is what has been recorded in this structured-financials.yaml. Recommend correcting metadata.yaml's notes field to avoid this error propagating into the analysis stage."
+  - "No divisional/segment revenue split disclosed in dollar terms — consistent with FY23 single-segment reporting. The release does disclose a 'work on hand' (backlog) composition by sector (traditional/defence/smart building networks/data centres) at three points in time (Aug-2022, Aug-2023, Feb-2024) — this is pipeline mix, not a revenue segment breakdown, and has been kept separate in this file to avoid conflation. companies.yaml segments: [] remains correct for SKS at this period; no update made."
+  - "No gross profit / cost-of-sales line disclosed (consistent with FY23 nature-of-expense presentation, though full interim accounts were not available to confirm the format continued unchanged)."
+  - "No EBIT or net interest expense disclosed separately — EBITDA less PBT implies a combined D&A + net interest of ~$1.17M for the half but this has not been presented as an EBIT figure to avoid false precision."
+  - "Tax: company states 1H24 before-tax profit ($1.82M) 'also equalled after-tax profit', i.e. nil net tax impact for the half — recorded as tax = 0 (income tax expense), sourced to that explicit statement rather than a tax note (none available)."
+  - "DPS not confirmed for 1H24 — no dividend (declared or paid) is mentioned anywhere in this release. Whether the $0.002/share dividend declared 30 Aug 2023 (per FY23 file, a post-FY23-balance-date event) was actually paid during 1H24, or whether a separate FY24 interim dividend was declared, is unconfirmed from this source."
+  - "CONTINUITY CHECK vs FY23 (financial-statements.pdf, prior structured-financials.yaml) — CASH: PASS. FY23 closing cash $8,584 reconciles to this release's stated 1H24 opening cash of '$0.01 million' (rounds correctly)."
+  - "CONTINUITY CHECK vs FY23 — DEBT: explained change, not a discontinuity. FY23 closing CBA overdraft drawn was $1,761,250 (of a $5M limit); this release states the overdraft was fully repaid to $0 drawn by 31 Dec 2023, and total CBA facilities were simultaneously expanded from $8M to $12M (new $2M equipment leasing facility + bank guarantee limit raised $3M -> $5M). This is a genuine, company-disclosed deleveraging/facility-expansion event, not an extraction error — flagging per project convention since it's a material discontinuity in the debt profile, even though it's explained."
+  - "net_debt could not be derived on a like-for-like basis with the FY23 'net_debt_including_leases' figure ($7,374,478) because lease liabilities are not disclosed in this press-release-only source. Recorded as not_available rather than presenting a partial (borrowings-only) figure as if it were comparable to the FY23 metric."
+  - "FY24 full-year revenue guidance disclosed by the Board: 'a more realistic revenue target for FY24 is in the vicinity of $120 million plus' (results-announcement.pdf p.3) — not an actual result, but material context for guidance-vs-consensus analysis in a later stage."
+  - "Consensus not queried — FactSet MCP requires OAuth authentication not completed this session (per task instructions, not re-attempted mid-extraction); same as FY23 treatment."

@@ -1,0 +1,350 @@
+ticker: SKS
+period: FY24
+period_type: annual
+period_end_date: "2024-06-30"
+currency: AUD
+source_documents:
+  - financial-statements.pdf   # "Financial Report For year ended 30 June 2024" (audited statutory accounts) — primary source for all P&L/BS/CF figures and notes
+  - results-announcement.pdf   # ASX release "Strategy Validated with 10.5 Times NPAT on FY23", 20 Aug 2024 (4 pages)
+  - appendix-4e.pdf            # Preliminary Final Report, 20 Aug 2024 (2 pages) — cross-references financial-statements.pdf for all detail per its own text
+  - investor-presentation.pdf  # "FY24 Results Presentation", 20 Aug 2024 (20 pages) — used for facility-timeline detail, data-centre/traditional revenue split, FTE count, ROCE/operating margin
+  # no transcript.pdf located for this period (see metadata.yaml)
+
+pnl:
+  revenue_total:
+    value: 136309155
+    source: "financial-statements.pdf p.12 (Consolidated SOPL, Sales revenue); Note 4 p.24 (Revenue from Contracts with Customers — 'Revenue from services recognised over time'); matches Appendix 4E s.2 'Revenue from ordinary activities Up 64% to $136,309,155' and results-announcement.pdf p.1 ('Sales revenue for the year grew by 63.7% to $136.31 million')"
+    comparatives_disclosed_in_document:
+      FY23: 83268128
+      FY22: 67288383
+      FY21: 36299131
+      FY20: 36173248
+    note: "FY20-22 comparatives here are per Directors' Report p.9 KPI table (financial-statements.pdf), which differ slightly from the investor-presentation.pdf historical P&L appendix (p.17) figures of $35,599.2k (FY21) and $26,551.1k (FY20) — the presentation appendix appears to restate FY20/21 on a 'continuing operations' basis following a wholesale company restructure flagged with an asterisk ('* Wholesale company restructure completed'), whereas the Directors' Report KPI table uses as-originally-reported figures. Used the audited financial-statements.pdf/Directors' Report figures as primary; flagged the discrepancy rather than silently picking one - not material to FY24/FY23 figures which agree across all sources."
+  other_income:
+    value: 208429
+    source: "financial-statements.pdf p.12 (Total revenue and other income); Note 5 p.24 (interest revenue $25,289 + government training-subsidy incentives $44,954 + other $138,186 = $208,429)"
+  total_revenue_and_other_income:
+    value: 136517584
+    source: "financial-statements.pdf p.12 (Consolidated SOPL, 'Total revenue and other income'); matches results-announcement.pdf p.1 highlights box '$136.52M Total Revenue, 62.2% on pcp' — growth rate ties to FY23 total revenue and other income of $84,170,441 ((136,517,584/84,170,441)-1 = 62.2%)"
+    note: "Two different FY24 revenue growth rates are quoted in the press release: 63.7% (sales revenue only, $136.31M vs $83.27M) and 62.2% (total revenue incl. other income, $136.52M vs $84.17M). Both tie out exactly to their respective bases — not a contradiction, just two different denominators; recorded both to avoid ambiguity."
+  revenue_by_segment:
+    single_reportable_segment:
+      value: 136309155
+      source: "financial-statements.pdf p.30, Note 22 Operating Segment: 'The Group operates predominantly in Australia, in audio-visual, communication, IT and electrical markets which is regarded as a single segment, hence there is no information on operating segments provided in this report.' — unchanged wording from FY23 Note 24."
+    voluntary_non_statutory_split_data_centre_vs_traditional:
+      data_centre_revenue:
+        value: 31000000
+        pct_of_fy24_sales_revenue: 22.8
+        source: "investor-presentation.pdf p.6 ('Diversity & growth in traditional revenue base' — 'In 12 months, data centre revenue has grown to $31 million, comprising 22.8% of FY24 sales revenue')"
+      traditional_revenue:
+        value: 105000000
+        pct_growth_yoy: 26.5
+        source: "investor-presentation.pdf p.6 ('Traditional SKS revenue $83M -> $105M, 26.5%' — FY23 traditional base of $83M [= FY23 total sales revenue, since FY23 had no data centre revenue split disclosed] grew 26.5% to $105M in FY24)"
+      note: "IMPORTANT — this is a voluntary, investor-presentation-only disclosure, NOT a formal AASB 8 operating segment. Note 22 of the audited financial statements (statutory basis) explicitly continues to state SKS is a single reportable segment for FY24 — same wording as FY23. This is the first period a dollar data-centre-vs-traditional revenue split has been disclosed at all (even informally) — flagged in extraction_flags as a disclosure to monitor for whether it becomes a formal segment split in a future period. companies.yaml segments: [] is NOT changed this period since the formal/statutory position is unchanged, but the notes field there already anticipated watching for this and should be read alongside this flag."
+  gross_profit:
+    value: not_available
+    source: null
+    note: "P&L continues to be presented by nature of expense (AASB 101 format) — no cost-of-sales/gross-profit line disclosed, unchanged from FY23 and FY24H1. Expense lines: raw material/consumables/logistics, employee benefits, occupancy, admin, D&A, finance charges."
+  gross_margin_pct:
+    value: not_available
+    source: null
+  ebitda:
+    value: 9012873
+    source: "derived: PBT $6,498,791 + finance charges $588,349 + D&A $1,925,733 (financial-statements.pdf p.12, Consolidated SOPL) = $9,012,873 — ties out exactly to results-announcement.pdf p.1 highlights box '$9.01M EBITDA, 232.9% on pcp' and investor-presentation.pdf p.4/5 EBITDA chart ('9.0')"
+    comparatives_disclosed_in_document:
+      FY23: 2706670
+      FY22: 3450000
+      FY21: 2000000
+      FY20: -380000
+  ebitda_margin_pct:
+    value: 6.61
+    source: "derived: EBITDA $9,012,873 / sales revenue $136,309,155 (same basis as FY23 file's 3.25% calc)"
+    comparative_fy23_derived: 3.25
+  ebit:
+    value: 7087140
+    source: "derived: PBT $6,498,791 + finance charges $588,349 (financial-statements.pdf p.12/p.24 Note 6)"
+  ebit_margin_pct:
+    value: 5.20
+    source: "derived: EBIT $7,087,140 / sales revenue $136,309,155"
+  net_interest_expense:
+    value: 588349
+    label: "Finance charges (gross, per P&L face — not netted against interest revenue)"
+    source: "financial-statements.pdf p.12 (Consolidated SOPL, Finance charges); Note 6 p.24 splits this as interest – debtor finance/bank overdraft/other $78,863 + interest – lease liability $509,486 = $588,349"
+    net_of_interest_income_alt:
+      value: 563060
+      basis: "finance charges $588,349 less interest revenue $25,289 (Note 5) — not a company-reported figure, presented for completeness"
+    comparative_fy23: 772130
+    note: "Finance charges fell YoY ($772,130 -> $588,349) despite revenue growth of 63.7%, driven by the overdraft being repaid to nil during 1H24 (interest – debtor finance/bank overdraft/other fell from $383,264 to $78,863) even as lease-liability interest rose ($388,866 -> $509,486) on a larger ROU asset base. NOTE: investor-presentation.pdf p.17 historical P&L appendix shows the FY23 comparative finance charges as '(722.1)' — this appears to be a transposition typo in the deck (722 vs 772); the audited financial-statements.pdf Consolidated SOPL (both this year's and the FY23 file's own figure) is unambiguous at $772,130, which is what is used here. Flagged, not treated as a discontinuity in the underlying data."
+  pbt:
+    value: 6498791
+    source: "financial-statements.pdf p.12 (Profit before income tax, Consolidated SOPL); matches Directors' Report p.9 KPI table and investor-presentation.pdf p.5 ('Profit/(loss) before tax 6,498.8'); results-announcement.pdf p.2 ('profit before tax increased by a multiple of 12.3 times to $6.50 million' — 6,498,791/527,105 = 12.33x, ties out)"
+    pbt_margin_pct:
+      value: 4.77
+      source: "investor-presentation.pdf p.5 ('Profit/(loss) before tax (% to sales) 4.77%'); ties to 6,498,791/136,309,155"
+  tax:
+    value: 125817
+    label: "income tax benefit (not expense)"
+    source: "financial-statements.pdf p.12 (Income tax benefit); Note 7(a) p.25 (current income tax expense $(6,514) + deferred tax income $132,331 = total income tax benefit $125,817); effective tax rate (1.94%)"
+    note: "Benefit driven largely by a one-off 'Temporary differences from prior periods not previously booked' credit of $1,118,946 (Note 7(a)) — i.e. prior-period temporary differences (mostly lease liability / ROU asset timing differences, per Note 7(c) deferred tax asset movement) were only now recognised, alongside continued utilisation of the tax-consolidated group's carried-forward tax losses (all $1,665,000 of the opening recognised tax-loss DTA was fully utilised against FY24 taxable income per Note 7(c)). This is a one-off/non-recurring benefit worth flagging for QoE purposes — it will not repeat at this scale now that the recognised tax losses are exhausted."
+  npat_statutory:
+    value: 6624608
+    source: "financial-statements.pdf p.12 (Profit for the year, Consolidated SOPL); Directors' Report p.4 ('profit after tax of $6,624,608 for the year ended 30 June 2024'); matches Appendix 4E s.2 ('Profit from ordinary activities after tax attributable to members Up 948% to $6,624,608') and results-announcement.pdf p.1 ('after-tax profit of $6.62 million, representing a 10.5 times multiple on FY23 NPAT')"
+  npat_underlying:
+    value: not_available
+    source: null
+    reconciling_items: []
+    note: "SKS continues to report statutory results only — no underlying/normalised NPAT or non-IFRS earnings measure disclosed for FY24, consistent with FY23 and FY24H1."
+  npat_attributable_to_members:
+    value: 6559694
+    npat_attributable_to_nci:
+      value: 64914
+    source: "financial-statements.pdf p.12 (Total comprehensive income attributable to: Members of the parent entity / Non-controlling interest); Note 26(b) p.34 ('Profit/(loss) allocated to NCI $64,914') — NCI relates to the 51% non-controlling interest in SKS Indigenous Technologies Pty Ltd"
+    note: "NCI swung from a loss allocation of $(120,678) in FY23 to a profit allocation of $64,914 in FY24 — SKS Indigenous Technologies' own summarised P&L (Note 26) shows it moved from a $(236,624) loss in FY23 to a $127,282 profit in FY24 on revenue growth from $2.03M to $18.15M. Genuine underlying improvement, not a discontinuity."
+  eps:
+    value: 6.04
+    unit: "cents per share, basic and diluted (identical — no dilutive instruments outstanding at year end per Note 18(f), 'no options outstanding as at 30 June 2024')"
+    source: "financial-statements.pdf p.12 (Consolidated SOPL); Note 24 p.32 (EPS reconciliation: profit used $6,624,608 / weighted avg shares 109,715,174 basic and diluted)"
+    comparatives_disclosed_in_document:
+      FY23: 0.58
+      FY22: 2.80
+      FY21: 1.60
+      FY20: -1.80
+    note: "1H24 EPS was 1.66c (per FY24H1 structured-financials.yaml) — implies 2H24 EPS of ~4.38c, a substantial second-half skew consistent with the revenue/NPAT skew described in the continuity-check section below (large data centre contracts completing in 2H24)."
+  dps:
+    dividend_paid_during_fy24:
+      value: 0.20
+      unit: "cents per share, unfranked"
+      amount_total: 219470
+      source: "financial-statements.pdf Statement of Cash Flows p.15 ('Dividends paid $219,470'); Note 18(c) p.31 and Directors' Report p.5 ('An unfranked dividend of $0.002 per share has been declared from 2023 profits on 30 August 2023 and paid on 17 October 2023 amounting to $219,470'); Appendix 4E s.6 (identical wording and figures)"
+      note: "This is the dividend that was recorded as a SUBSEQUENT EVENT (declared, not yet paid) in the FY23 structured-financials.yaml — continuity confirmed: it was paid in cash during FY24 (17 Oct 2023) exactly as flagged. CONTINUITY CHECK: PASS."
+    dividend_declared_for_fy24_subsequent_event:
+      value: 1.00
+      unit: "cents per share, fully franked"
+      source: "financial-statements.pdf Note 30 Subsequent Events p.36 and Directors' Report p.5 ('A fully franked dividend of $0.01 per share has been declared on 19 August 2024'); results-announcement.pdf p.2 ('A final fully franked dividend of 1 cent per share has been declared') and highlights chart ('Dividend (cents)... 1.00' FY24)"
+      note: "This is a post-30-June-2024-balance-date subsequent event (declared 19 Aug 2024, one day before/on the day of the results release) — NOT recognised as a liability in the 30 June 2024 balance sheet, and NOT the same dividend shown in Appendix 4E s.2's dividend table (which reports the $0.20c FY23-related dividend paid during FY24, per the note above — a common ASX Appendix 4E convention where s.2 reports on dividends recognised/paid during the reporting period, and a newly-declared post-balance-date dividend appears only in the annual report's subsequent-events note). Flagged for clarity given how easily these two dividends could be conflated (as happened with the EPS/NTA mislabelling flagged in the FY24H1 file)."
+
+balance_sheet:
+  cash:
+    value: 3366688
+    source: "financial-statements.pdf p.13 (Consolidated Statement of Financial Position); Note 8 p.26 (Cash and Cash Equivalents — cash at bank)"
+    continuity_check_vs_fy23: "PASS — FY23 closing cash $8,584 (per FY23 structured-financials.yaml and Note 8/Statement of Cash Flows 'Cash and cash equivalents at the beginning of the year') ties out exactly as FY24's opening balance."
+    continuity_check_vs_fy24h1: "Not a discontinuity, but not a precise tie-out either — FY24H1 (31 Dec 2023) cash was disclosed only to 2dp $M precision ('$0.90 million') in the results-announcement press release (no interim balance sheet was available for that period). FY24 FY-end cash of $3,366,688 implies ~$2.47M of cash was generated in 2H24 alone, consistent with the heavy second-half revenue/NPAT skew (large data centre contracts completing in 2H24) — not treated as a discontinuity given the precision limitation on the 1H24 figure."
+  total_debt_by_facility:
+    cba_overdraft_facility:
+      drawn: 0
+      limit: 2500000
+      undrawn: 2500000
+      maturity_date: not_disclosed
+      interest_rate: "variable — weighted average rate not separately disclosed for FY24 (Note 3(d) shows only cash-and-cash-equivalents weighted avg rate of 4.15%, no overdraft rate since nil drawn all year)"
+      fixed_or_floating: "floating"
+      source: "financial-statements.pdf Note 21(c)/(d) p.33 (Financing Facilities — maximum available $2,500,000; facilities in use $0); Note 16 p.30 (Borrowings — current secured, bank overdraft $nil)"
+    cba_bank_guarantee_facility:
+      limit: 10000000
+      drawn: 7990977
+      undrawn: 2009023
+      maturity_date: not_disclosed
+      interest_rate: not_disclosed
+      source: "financial-statements.pdf Note 21(c)/(d) p.33; Note 28(c) p.36 (Parent entity guarantees — 'Guarantees provided by parent entity in relation to the debts of the subsidiaries $7,990,977')"
+    cba_bank_lease_facility:
+      facility_type: "new facility during FY24 (first appeared as a distinct financing facility line in Note 21(c); FY24H1 called this the 'equipment leasing facility', established during 1H24)"
+      limit: 2000000
+      drawn: 807160
+      undrawn: 1192840
+      source: "financial-statements.pdf Note 21(c)/(d) p.33"
+    total_cba_facility_limit:
+      value: 14500000
+      source: "financial-statements.pdf Note 21(c) p.33 ($2,500,000 + $10,000,000 + $2,000,000 = $14,500,000); matches results-announcement.pdf p.2 ('These CBA bank facilities totalling $8 million were first approved in September 2022 and have been increased twice since then to $14.5 million') and investor-presentation.pdf p.7 bank facilities chart"
+    total_cba_facilities_in_use:
+      value: 8798137
+      source: "financial-statements.pdf Note 21(d) p.33 ($0 overdraft + $7,990,977 guarantee + $807,160 lease)"
+    facility_timeline_per_investor_presentation:
+      sep_2022: {overdraft: 5000000, guarantee: 3000000, equipment_finance: 0, total: 8000000}
+      nov_2023: {overdraft: 5000000, guarantee: 5000000, equipment_finance: 2000000, total: 12000000}
+      may_2024: {overdraft: 2500000, guarantee: 10000000, equipment_finance: 2000000, total: 14500000}
+      source: "investor-presentation.pdf p.7 ('Bank facilities ($M)' chart — Sep-22/Nov-23/May-24 series)"
+    continuity_check_vs_fy24h1: "EXPLAINED CHANGE, NOT A DISCONTINUITY, but flagged because the composition shifted materially, not just the total. FY24H1 (31 Dec 2023, per results-announcement.pdf and the FY24H1 structured-financials.yaml) disclosed a total facility of $12m, inferring an unchanged $5m overdraft limit + $5m bank guarantee + $2m new equipment leasing facility. The investor-presentation.pdf facility-timeline chart (p.7) confirms this $12m/Nov-23 breakdown exactly (overdraft $5m, guarantee $5m, equipment finance $2m) — so the FY24H1 file's inferred $5m overdraft figure was correct as at Dec-23. However, between Nov-23 and the FY24 year-end (May-24 per the same chart), the facility was restructured again: total rose to $14.5m, but the OVERDRAFT limit was CUT from $5m to $2.5m while the bank guarantee limit was raised disproportionately from $5m to $10m (the equipment finance facility stayed at $2m). Net effect: total headroom grew, but overdraft (cash-drawable) capacity actually fell — the growth in facility headroom is almost entirely in the bank guarantee line, which makes sense given the guarantee facility is what backs large data-centre-contract performance bonds (drawn guarantee usage grew from $2,165,632 at FY23 to $7,990,977 at FY24). Not an extraction error — confirmed independently by two documents (Note 21 and the investor presentation chart) — but flagged since a naive reader could assume the FY24H1 $12m facility simply grew pro-rata to $14.5m, when in fact one sub-limit was cut."
+  net_debt:
+    value: -3366688
+    label: "net cash position (borrowings-only basis, i.e. negative net debt)"
+    basis: "borrowings $0 (Note 16) less cash $3,366,688 (Note 8)"
+    net_debt_including_leases:
+      value: 4228084
+      basis: "borrowings $0 + total lease liabilities current+non-current $7,594,772 (Note 13(b)) less cash $3,366,688"
+    source: "derived from financial-statements.pdf p.13, Note 8, Note 13(b), Note 16; SKS does not itself publish a net debt figure"
+    continuity_check_vs_fy23: "PASS (improvement, not a discontinuity) — FY23 net_debt_including_leases was $7,374,478 (per FY23 structured-financials.yaml); FY24 net_debt_including_leases fell to $4,228,084, a genuine deleveraging driven by strong operating cash flow (borrowings repaid to nil, cash built to $3.37M) even as lease liabilities grew ($5,621,812 -> $7,594,772) on a larger property/vehicle footprint supporting the higher revenue base."
+  gearing_ratio_as_reported:
+    value: not_available
+    source: null
+    note: "No gearing ratio, leverage ratio, or formal quantified capital-management metric disclosed by the company for FY24 — Note 18(e) Capital Management remains qualitative only, unchanged from FY23. Investor-presentation.pdf p.5 does disclose 'Return on Capital Employed %' (FY24: 0.38, i.e. ~38%, up from 0.26 FY23) and 'Operating Margin %' (FY24: 4.8%, up from 0.6% FY23) as company-reported non-GAAP performance ratios — recorded as non-schema metrics below, not a substitute for a gearing ratio."
+  return_on_capital_employed_pct:
+    value: 38
+    source: "investor-presentation.pdf p.5 ('Return on Capital Employed %' chart: FY21 0.40, FY22 0.27, FY23 0.26, FY24 0.38)"
+    note: "Non-schema metric as company-disclosed; calculation basis (definition of 'capital employed') not disclosed in the presentation."
+  operating_margin_pct:
+    value: 4.8
+    source: "investor-presentation.pdf p.5 ('Operating Margin %' chart: FY20 -4.6%, FY21 3.4%, FY22 3.0%, FY23 0.6%, FY24 4.8%) — appears to be PBT/sales revenue (ties to the 4.77% figure shown in the earnings-profile table on the same page, rounding to 4.8%)"
+  trade_debtors:
+    trade_debtors_gross_current:
+      value: 37067758
+      source: "financial-statements.pdf Note 9 p.27 (Trade and Other Receivables)"
+    retention_debtors_current:
+      value: 1388391
+      source: "financial-statements.pdf Note 9 p.27"
+    allowance_for_credit_losses:
+      value: -132365
+      source: "financial-statements.pdf Note 9 p.27 — up modestly from $(125,942) in FY23 despite receivables growing >2x; ageing analysis shows only $672,645 gross past-due >90 days (FY23: $887,811), i.e. absolute overdue balances fell even as the book grew substantially — a positive receivables-quality signal"
+    contract_assets:
+      value: 3932540
+      source: "financial-statements.pdf Note 9 p.27 (included within trade and other receivables)"
+    other_receivables:
+      value: 51671
+      source: "financial-statements.pdf Note 9 p.27"
+    total_trade_and_other_receivables_current:
+      value: 42307995
+      source: "financial-statements.pdf p.13, Note 9 p.27"
+  trade_creditors:
+    value: 19215071
+    source: "financial-statements.pdf Note 15 p.30 (Trade and Other Payables — 'Trade payables'); note states settled on 30-60 day terms, unchanged from FY23"
+  inventory:
+    value: 142120
+    source: "financial-statements.pdf Note 10 p.27 (Inventories — 'Project materials at the warehouse, at cost')"
+  contract_assets:
+    value: 3932540
+    source: "financial-statements.pdf Note 9 p.27 (see trade_debtors section above — duplicated here per schema)"
+  contract_liabilities:
+    value: 12753680
+    label: "Unearned revenue"
+    source: "financial-statements.pdf Note 15 p.30; Note 4 p.24 confirms performance obligations expected to be completed within 12 months — up sharply from $3,707,767 in FY23, consistent with the much larger scale of contracted (and partly pre-billed) data centre work"
+  provisions:
+    employee_benefits_current:
+      value: 3115313
+      source: "financial-statements.pdf Note 17(a) p.31"
+    employee_benefits_non_current:
+      value: 43775
+      source: "financial-statements.pdf Note 17(b) p.31"
+    total:
+      value: 3159088
+      source: "financial-statements.pdf Note 17 p.31 — 'Balance at 1 July 1,728,796' ties out exactly to FY23 closing provisions balance ($1,728,796, per FY23 structured-financials.yaml). CONTINUITY CHECK: PASS. Only provision type disclosed continues to be employee benefits (annual leave/LSL) — no new provision classes (warranty, onerous contract, etc.) introduced."
+  goodwill:
+    value: 1867660
+    source: "financial-statements.pdf Note 14(a) p.29 (Intangible Assets — Goodwill at cost); unchanged from FY23 and FY22, single CGU 'Communication & electrical'"
+    continuity_check_vs_fy23: "PASS — identical carrying value, no additions/impairment/disposals."
+  intangibles_total:
+    value: 1883717
+    source: "financial-statements.pdf Note 14 p.29 (goodwill $1,867,660 + computer software $16,057)"
+  impairment_charges:
+    value: 0
+    source: "financial-statements.pdf Note 14 p.29-30 (recoverable amount testing — CGU carrying value $1,867,660 vs recoverable amount $27,477,669, i.e. >14x headroom; even a +5% discount-rate sensitivity would not trigger impairment). Also confirmed as a Key Audit Matter in the Independent Auditor's Report (p.42) — auditor performed sensitivity analysis on discount rate, gross profit margin and cash flow forecasts and raised no impairment concern."
+  net_tangible_assets_per_share:
+    value: 7.57
+    unit: "cents"
+    comparative_fy23: 1.76
+    source: "appendix-4e.pdf s.8 ('Net tangible asset backing per ordinary security* — Current period 7.57 cents, Previous corresponding period 1.76 cents'; *includes right-of-use assets); investor-presentation.pdf p.4 NTA/Share chart confirms 7.6 (FY24) vs 1.8 (FY23)"
+    note: "Progression across the three periods extracted so far: FY23 (30 Jun 23) 1.76c -> 1H24 (31 Dec 23) 3.28c (per FY24H1 file) -> FY24 (30 Jun 24) 7.57c. Consistent upward trajectory, no discontinuity."
+  employee_count:
+    value: 739
+    unit: "effective fulltime employees, per Directors' Report"
+    source: "financial-statements.pdf Directors' Report p.5 ('The Group now employs 739 effective fulltime highly qualified employees across five states and two territories')"
+    alt_fte_count:
+      value: 622
+      unit: "FTEs at 30 June 2024, per investor presentation"
+      comparative_fy23: 305
+      source: "investor-presentation.pdf p.5 ('Employee numbers increasing from 305 FTEs in June 23 to 622 FTEs in June 24')"
+    note: "Two different headcount figures are disclosed for the same balance date (739 vs 622) using different methodologies/wording ('effective fulltime' vs 'FTEs') — not reconciled from available documents; flagged rather than assuming one supersedes the other."
+
+cash_flow:
+  net_operating_cashflow:
+    value: 8419101
+    source: "financial-statements.pdf Statement of Cash Flows p.15; Note 21(a) p.32 (reconciliation of profit to operating cash flow — reconciles exactly from NPAT $6,624,608 through non-cash items and working-capital movements); matches results-announcement.pdf highlights box '$8.42M Cash from Ops, 188.1% on pcp' and Directors' Report p.5"
+    comparatives_disclosed_in_document:
+      FY23: 2922480
+      FY22: -895600
+      FY21: 1430000
+      FY20: -123000
+  capex:
+    payment_for_ppe:
+      value: 2179656
+      confidence: high
+      source: "financial-statements.pdf Statement of Cash Flows p.15; investor-presentation.pdf p.19 historical cash flows appendix confirms '(2,179.7)'"
+    payment_for_intangibles:
+      value: 4499
+      confidence: high
+      source: "financial-statements.pdf Statement of Cash Flows p.15; cross-checked against Note 14(b) p.29 ('Software costs capitalised $4,499') — exact match"
+    proceeds_from_disposal_of_ppe:
+      value: 19564
+      source: "financial-statements.pdf Statement of Cash Flows p.15"
+    net_proceeds_from_bank_guarantees:
+      value: 7230
+      source: "financial-statements.pdf Statement of Cash Flows p.15 (investing activities)"
+    maintenance_vs_growth_split:
+      value: not_disclosed
+      note: "SKS does not split capex between maintenance and growth in the FY24 annual report — same flag as FY23. Capex grew >3x YoY ($656,035 -> $2,179,656), plausibly almost entirely growth-related given the scale of new project mobilisation (see PP&E note additions: plant & equipment, motor vehicles and leasehold improvements all grew materially, Note 12 p.27) but this is an inference, not a disclosed split."
+  free_cash_flow:
+    value: 6234946
+    basis: "derived: net operating cash flow $8,419,101 less capex ($2,179,656 PP&E + $4,499 intangibles) — not a company-reported metric; same methodology as FY23 file (excludes disposal proceeds and bank guarantee movements)"
+    alt_basis_total_investing:
+      value: 6261740
+      basis: "operating CF $8,419,101 + total net investing cash flow $(2,157,361) — includes disposal proceeds and bank guarantee net proceeds"
+  acquisition_cashflows:
+    value: 0
+    note: "No acquisitions during FY24 — Note 26(a) confirms unchanged group structure and ownership percentages (SKS Technologies Pty Ltd 100%, SKS Technologies Construction Pty Ltd 100%, SKS Indigenous Technologies Pty Ltd 49%, SKS Energy Technologies Pty Ltd 100%, all unchanged from FY23)."
+  financing_cashflows:
+    payments_for_issue_of_shares_options:
+      value: -3729
+      source: "financial-statements.pdf Statement of Cash Flows p.15"
+    payment_of_lease_liability:
+      value: -919187
+      source: "financial-statements.pdf Statement of Cash Flows p.15; cross-checked exactly against Note 13(c) p.29 ('Cash outflow in relation to payment of lease liabilities $919,187')"
+    net_repayment_of_borrowings:
+      value: -1761250
+      source: "financial-statements.pdf Statement of Cash Flows p.15; corroborated by Note 16 movement (bank overdraft $1,761,250 at FY23 -> $0 at FY24)"
+    repayment_of_rd_liability:
+      value: 0
+      source: "financial-statements.pdf Statement of Cash Flows p.15 — nil, R&D liability was already fully settled in FY23 (per FY23 structured-financials.yaml)"
+    dividends_paid:
+      value: -219470
+      source: "financial-statements.pdf Statement of Cash Flows p.15; see dps.dividend_paid_during_fy24 above for detail"
+    net_financing_cashflow:
+      value: -2903636
+      confidence: high
+      source: "financial-statements.pdf Statement of Cash Flows p.15 — the itemised components above sum to exactly $(2,903,636), i.e. this year's financing cash flow reconciles cleanly with no unexplained gap (unlike the FY23 extraction, which had a ~$179k unreconciled gap in the financing subtotal)."
+  net_increase_in_cash:
+    value: 3358103
+    source: "financial-statements.pdf Statement of Cash Flows p.15; results-announcement.pdf p.2 ('net cash flows turned around by $3.39 million' — 3,358,103 - (-30,950) = 3,389,053, ties to the 'turnaround' framing, though the FY24-only increase itself is $3,358,103) and highlights chart 'Net cash flows ($M)... 3.36' (FY24, rounded)"
+    note: "Cross-check: opening cash $8,584 + net increase $3,358,103 = $3,366,687 (vs $3,366,688 exact per rounding) — ties out to the cash balance reported above."
+
+consensus:
+  source: "FactSet MCP — not queried"
+  as_at_date: not_available
+  revenue:
+    value: not_available
+  ebitda:
+    value: not_available
+  npat:
+    value: not_available
+  eps:
+    value: not_available
+  note: >
+    Per task instructions, the FactSet AI-Ready Data MCP connector requires an interactive
+    OAuth authentication flow that was not completed earlier in this backfill session (FY23,
+    FY24H1) and was not re-attempted mid-extraction here either. Consensus is recorded as
+    not_available rather than inferred from web search or a single broker note, consistent
+    with project guardrails. Note SKS's share price rose ~567% over FY24 (per Directors'
+    Report p.9 KPI table, 'Change in share price (%) 567%') and market cap reached $173.84M
+    at 16 Aug 2024 (investor-presentation.pdf p.16) — a small-cap of this size and float may
+    have thin or no broker consensus coverage even once FactSet access is available; this
+    should be verified rather than assumed once the OAuth flow is completed.
+
+extraction_flags:
+  - "Full document set (financial-statements.pdf, results-announcement.pdf, appendix-4e.pdf, investor-presentation.pdf) was available for FY24, unlike FY23 and FY24H1 which each had only one source document — this is the first period in the backfill with materially complete balance-sheet and cash-flow detail. No transcript.pdf located (per metadata.yaml)."
+  - "NEW VOLUNTARY DISCLOSURE — investor-presentation.pdf p.6 discloses, for the first time, a dollar revenue split between 'data centre revenue' ($31M, 22.8% of FY24 sales) and 'traditional SKS revenue' ($105M, +26.5% YoY). This is NOT a formal AASB 8 segment (Note 22 of the audited accounts continues to state single-segment reporting, unchanged wording from FY23) — it is presentation-only. Flagged per project convention as a disclosure to monitor: if this split is formalised into segment notes in a future period, companies.yaml segments: [] for SKS should be updated at that point. Not changed this period since the statutory basis is unchanged."
+  - "Bank facility composition changed materially within 2H24, not just in aggregate — flagged in detail under balance_sheet.total_debt_by_facility.continuity_check_vs_fy24h1. Total facility grew from $12m (Nov-23) to $14.5m (May-24, confirmed by investor-presentation.pdf p.7 timeline chart), but the overdraft sub-limit was actually CUT from $5m to $2.5m while the bank guarantee sub-limit nearly doubled from $5m to $10m. A naive reader assuming pro-rata growth across sub-facilities would be wrong; the growth is concentrated in the guarantee facility (which backs data-centre-contract performance bonds)."
+  - "Income tax benefit of $125,817 (effective tax rate -1.94%) includes a one-off $1,118,946 credit for 'Temporary differences from prior periods not previously booked' (Note 7(a)) plus utilisation of the full $1,665,000 opening recognised tax-loss deferred tax asset. This is a non-recurring benefit for QoE purposes — flagged for the profitability-earnings-analyst, since the scale of this benefit will not repeat once prior-period adjustments and carried-forward losses are exhausted."
+  - "Two different dividends must not be conflated (same risk as the EPS/NTA mislabelling flagged in FY24H1): (1) $0.20c/share unfranked, $219,470, paid 17 Oct 2023 — this is the FY23-related dividend, already flagged as a subsequent event in the FY23 file, now confirmed paid during FY24 (continuity PASS); (2) $1.00c/share fully franked, declared 19 Aug 2024 — this is the NEW FY24-related dividend, a subsequent event not yet reflected in the 30 June 2024 balance sheet, and notably absent from Appendix 4E s.2's dividend table (which only shows dividend (1))."
+  - "investor-presentation.pdf p.17 historical P&L appendix shows FY23 finance charges as '(722.1)' vs the audited financial-statements.pdf figure of $772,130 (also used identically in the FY23 structured-financials.yaml) — apparent transposition typo in the deck (722 vs 772). Not used; audited figure used throughout this file. Similarly, the same appendix's FY20/FY21 sales revenue figures ($26,551.1k / $35,599.2k) differ slightly from the Directors' Report KPI table figures used here ($36,173,248 / $36,299,131) — appears to reflect a 'continuing operations' restatement following a flagged 'wholesale company restructure' in FY20, not relevant to FY23/FY24 which agree across all sources."
+  - "Employee headcount is disclosed two ways for the same 30 June 2024 date: 739 'effective fulltime highly qualified employees' (Directors' Report) vs 622 FTEs (investor presentation, up from 305 FTEs at June 2023). Not reconciled from available documents — flagged rather than assuming either supersedes the other."
+  - "No gross profit / cost-of-sales line disclosed — nature-of-expense P&L format unchanged from FY23. No maintenance-vs-growth capex split disclosed — unchanged flag from FY23."
+  - "No formal gearing ratio disclosed by the company (unchanged from FY23) — Return on Capital Employed % (38% FY24 vs 26% FY23) and Operating Margin % (4.8% FY24 vs 0.6% FY23) are the only company-disclosed non-GAAP performance ratios, recorded as non-schema metrics in balance_sheet above."
+  - "CONTINUITY CHECK SUMMARY vs FY23 (prior structured-financials.yaml): CASH — PASS (exact tie-out, $8,584 -> $8,584 opening). BORROWINGS — PASS (overdraft $1,761,250 -> $0, consistent with FY24H1's mid-year disclosure of full repayment). PROVISIONS — PASS (exact tie-out, $1,728,796 -> $1,728,796 opening per Note 17). GOODWILL — PASS (unchanged $1,867,660, no impairment). DIVIDEND SUBSEQUENT EVENT — PASS (FY23's flagged $219,470 declared-but-unpaid dividend confirmed paid in FY24). NET DEBT INCL. LEASES — improved from $7,374,478 to $4,228,084 (genuine deleveraging, not a discontinuity). TOTAL FACILITY LIMIT — grew from $8m to $14.5m via two disclosed increases (explained, not a discontinuity, but composition shift flagged separately above)."
+  - "CONTINUITY CHECK SUMMARY vs FY24H1 (prior structured-financials.yaml, press-release-only source): REVENUE — 1H24 $53.69M + implied 2H24 $82.62M = FY24 $136.31M; a pronounced second-half skew (61% of FY revenue in 2H) consistent with management's own commentary that 'the large contracts recently won will undoubtedly skew the results in the current financial year towards a concentration of data centre revenue' (results-announcement.pdf p.3). EBITDA — 1H24 $2.99M + implied 2H24 $6.02M = FY24 $9.01M, consistent with margin improvement into 2H as major contracts progressed/completed. NPAT — 1H24 $1.82M + implied 2H24 ~$4.80M = FY24 $6.62M, same skew. EPS — 1H24 1.66c + implied 2H24 ~4.38c = FY24 6.04c. CASH — 1H24 ~$0.90M (rounded) -> FY24 $3.37M, a further ~$2.47M build in 2H24; not a discontinuity, just the precision limitation of the 1H24 press-release-only source noted again for completeness. FACILITY — see detailed flag above; FY24H1's inferred $5m overdraft limit at Dec-23 is now CONFIRMED correct by the investor-presentation.pdf timeline chart, resolving that period's flagged uncertainty."
+  - "Consensus not queried — FactSet MCP requires OAuth authentication not completed this session (per task instructions, not re-attempted mid-extraction); same treatment as FY23 and FY24H1."

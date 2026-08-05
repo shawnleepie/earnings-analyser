@@ -1,0 +1,247 @@
+ticker: SKS
+period: FY23
+period_type: annual
+period_end_date: "2023-06-30"
+currency: AUD
+source_documents:
+  - financial-statements.pdf   # SKS Technologies Group 2023 Annual Report (statutory accounts) — only source document located for this period; no standalone results-announcement, appendix-4E, investor-presentation, or transcript found (see metadata.yaml extraction_flags)
+
+pnl:
+  revenue_total:
+    value: 83268128
+    source: "financial-statements.pdf p.33 (Consolidated Statement of Profit and Loss — Sales revenue); also Note 4 p.51 (Revenue from Contracts with Customers, 'revenue recognised over time')"
+  other_income:
+    value: 902313
+    source: "financial-statements.pdf p.33 (Total revenue and other income); Note 5 p.51 breaks this into interest revenue $2,464, government training-subsidy incentives $759,439, other $140,410"
+  revenue_by_segment:
+    single_reportable_segment:
+      value: 83268128
+      source: "financial-statements.pdf p.63, Note 24 Operating Segment: 'The Group operates predominantly in Australia, in audio-visual, communication, IT and electrical markets which is regarded as a single segment, hence there is no information on operating segments provided in this report.'"
+    note: "No divisional/segment revenue breakdown disclosed for FY23. companies.yaml segments list for SKS correctly remains empty — no update needed, this is a confirmed single-segment reporter for this period, not a gap in extraction."
+  gross_profit:
+    value: not_available
+    source: null
+    note: "P&L presented by nature of expense (AASB 101 format), not by function — no cost-of-sales or gross profit line is disclosed anywhere in the statutory accounts. Expense lines are: raw material/consumables/logistics, employee benefits, occupancy, admin, D&A, finance charges. Not inferring a gross margin from a partial expense subset to avoid presenting an estimate as a confirmed figure."
+  gross_margin_pct:
+    value: not_available
+    source: null
+    note: "See gross_profit note above."
+  ebitda:
+    value: 2706670
+    source: "financial-statements.pdf p.14 (Chair's Letter, 'Earnings summary' table: EBITDA $2.71M, down 21.6% from $3.45M FY22); precise figure derived and cross-checked as PBT ($527,105) + finance charges ($772,130) + D&A ($1,407,435) from Consolidated SOPL p.33 — ties out exactly to the $2.71M headline"
+  ebitda_margin_pct:
+    value: 3.25
+    source: "derived: EBITDA $2,706,670 / revenue $83,268,128 (financial-statements.pdf p.33/p.14)"
+  ebit:
+    value: 1299235
+    source: "derived: PBT $527,105 + finance charges $772,130, financial-statements.pdf p.33"
+  ebit_margin_pct:
+    value: 1.56
+    source: "derived: EBIT $1,299,235 / revenue $83,268,128"
+  net_interest_expense:
+    value: 772130
+    source: "financial-statements.pdf p.33 (Finance charges, Consolidated SOPL); Note 6 p.51 splits this as interest – debtor finance/bank overdraft/other $383,264 + interest – lease liability $388,866 = $772,130"
+  pbt:
+    value: 527105
+    source: "financial-statements.pdf p.33 (Profit before income tax, Consolidated SOPL); also Chair's Letter p.14 earnings summary ('Net Profit Before Tax $0.53M')"
+  tax:
+    value: 105000
+    label: "income tax benefit (not expense)"
+    source: "financial-statements.pdf p.33 (Income tax benefit); Note 7(a) p.52 reconciliation of prima facie tax to income tax benefit"
+  npat_statutory:
+    value: 632105
+    source: "financial-statements.pdf p.33 (Profit for the year, Consolidated SOPL); Directors' Report p.24 ('profit after tax of $632,105 for the year ended 30 June 2023')"
+  npat_underlying:
+    value: not_available
+    source: null
+    reconciling_items: []
+    note: "SKS does not present an underlying/normalised NPAT distinct from statutory NPAT in the FY23 annual report — no non-IFRS earnings measure disclosed for this period. Statutory NPAT is the only NPAT figure reported."
+  npat_attributable_to_members:
+    value: 752783
+    npat_attributable_to_nci:
+      value: -120678
+    source: "financial-statements.pdf p.33 (Total comprehensive income attributable to: Members of the parent entity / Non-controlling interest); NCI relates to the 51% non-controlling interest in SKS Indigenous Technologies Pty Ltd, sold down 26 July 2022, Note 28(b) p.66 — first period with a reported NCI loss"
+  eps:
+    value: 0.58
+    unit: "cents per share, basic and diluted"
+    source: "financial-statements.pdf p.33 (Consolidated SOPL); Note 26 p.64 (EPS reconciliation: profit used $632,105 / weighted avg shares 109,158,091 basic, 109,158,091 diluted)"
+  dps:
+    value: 0.002
+    unit: "AUD per share, unfranked"
+    source: "financial-statements.pdf p.25 (Directors' Report, Events Subsequent to Balance Date: 'An unfranked dividend of $0.002 per share has been declared on 30 August 2023')"
+    note: "This is the dividend declared in respect of FY23 earnings but is a post-balance-date (subsequent) event — not recognised as a liability in the 30 June 2023 balance sheet per AASB 110. The dividend actually PAID during FY23 ($273,455, $0.0025/share unfranked) related to FY22 profits and was declared 29 Aug 2022, paid 17 Oct 2022 (Directors' Report p.25)."
+
+balance_sheet:
+  cash:
+    value: 8584
+    source: "financial-statements.pdf p.34 (Consolidated Statement of Financial Position); Note 9 p.53 (Cash and Cash Equivalents — cash at bank)"
+  total_debt_by_facility:
+    cba_overdraft_facility:
+      facility_type: "Bank overdraft (secured)"
+      limit: 5000000
+      drawn: 1761250
+      undrawn: 3238750
+      maturity_date: not_disclosed
+      interest_rate: "floating/variable — weighted average ~6.33% p.a. at 30 June 2023 (2022: 4.75%, then via invoice finance facility)"
+      fixed_or_floating: "floating"
+      security: "Secured by fixed and floating charge over SKS Technologies Group Limited, SKS Technologies Pty Ltd, SKS Technologies Construction Pty Ltd and SKS iNet Pty Ltd"
+      source: "financial-statements.pdf p.60 (Note 17: Borrowings); p.63 (Note 23(c)/(d): Financing Facilities — maximum available and facilities in use); p.49-50 (Note 3(d): Interest Rate Risk table)"
+    cba_bank_guarantee_facility:
+      facility_type: "Bank guarantee facility (secured)"
+      limit: 3000000
+      drawn: 2165632
+      undrawn: 834368
+      maturity_date: not_disclosed
+      interest_rate: not_disclosed
+      fixed_or_floating: not_disclosed
+      source: "financial-statements.pdf p.63 (Note 23(c)/(d)); p.68 (Note 30(c): Parent entity guarantees — 'guarantee amount includes bank guarantee amount of $2,165,632')"
+    total_facility_headroom:
+      value: 4073118
+      note: "$8,000,000 total facility (overdraft $5m + bank guarantee $3m) less $3,926,882 drawn across both facilities at 30 June 2023"
+      source: "financial-statements.pdf p.63 (Note 23(c)/(d))"
+    fy22_comparative:
+      facility_type: "Invoice finance facility (secured), superseded during FY23 by the CBA facility above"
+      drawn_fy22: 2663989
+      source: "financial-statements.pdf p.60 (Note 17); p.63 (Note 23(d))"
+    note: "FY23 was the first year of the CBA facility (per Chair's Letter p.14: 'securing of bank debt with CBA in the form of a $5 million overdraft and a $3 million bank guarantee facility'), replacing a prior invoice finance facility. No stated maturity date for either facility in the FY23 notes — typical of an at-call/annually-reviewed overdraft, but not explicitly confirmed in the text; flagged in extraction_flags."
+  net_debt:
+    value: 1752666
+    basis: "borrowings only ($1,761,250 drawn overdraft) less cash ($8,584) — excludes lease liabilities"
+    net_debt_including_leases:
+      value: 7374478
+      basis: "borrowings ($1,761,250) + total lease liabilities current+non-current ($5,621,812) less cash ($8,584)"
+    source: "derived from financial-statements.pdf p.34, p.53, p.60, Note 14(b) p.57; SKS does not itself publish a net debt figure"
+  gearing_ratio_as_reported:
+    value: not_available
+    source: null
+    note: "No gearing ratio, leverage ratio, or formal capital management metric disclosed by the company. Note 3(e)/Capital Management (p.58) is qualitative only ('monitoring of historical and forecast performance and cash flows') with no quantified ratio."
+  trade_debtors:
+    trade_debtors_gross_current:
+      value: 14948944
+      source: "financial-statements.pdf p.54 (Note 10: Trade and Other Receivables)"
+    retention_debtors_current:
+      value: 1355026
+      source: "financial-statements.pdf p.54 (Note 10)"
+    retention_debtors_non_current:
+      value: 0
+      prior_year_comparative: 414891
+      source: "financial-statements.pdf p.54 (Note 10) — non-current retention debtors fell to nil in FY23 from $414,891 in FY22"
+    allowance_for_credit_losses:
+      value: -125942
+      source: "financial-statements.pdf p.54 (Note 10) — up from $(27,411) in FY22; ageing analysis shows $887,811 gross past-due >90 days (FY22: $219,440)"
+    total_trade_and_other_receivables_current:
+      value: 18080510
+      source: "financial-statements.pdf p.34, p.54 (Note 10) — includes trade debtors, retention debtors, contract assets, other receivables, net of allowance"
+  trade_creditors:
+    value: 8685512
+    source: "financial-statements.pdf p.59 (Note 16: Current Trade and Other Payables — 'Trade payables'); note states settled on 30-60 day terms"
+  inventory:
+    value: 49337
+    source: "financial-statements.pdf p.55 (Note 11: Inventories — 'Project materials at the warehouse, at cost')"
+  contract_assets:
+    value: 1786893
+    source: "financial-statements.pdf p.54 (Note 10, included within trade and other receivables)"
+  contract_liabilities:
+    value: 3707767
+    label: "Unearned revenue"
+    source: "financial-statements.pdf p.59 (Note 16); note states performance obligations expected to be completed within 12 months (also cross-referenced at Note 4 p.51)"
+  provisions:
+    employee_benefits_current:
+      value: 1642021
+      source: "financial-statements.pdf p.61 (Note 19: Provisions – Employee Benefits)"
+    employee_benefits_non_current:
+      value: 86775
+      source: "financial-statements.pdf p.61 (Note 19)"
+    total:
+      value: 1728796
+      source: "financial-statements.pdf p.61 (Note 19) — only provision type disclosed is employee benefits (annual leave/LSL); no other provision classes (e.g. warranty, onerous contract) disclosed for FY23"
+  goodwill:
+    value: 1867660
+    source: "financial-statements.pdf p.58 (Note 15(a): Intangible Assets — Goodwill at cost); unchanged from FY22, single CGU 'Communication & electrical'"
+  intangibles_total:
+    value: 1901013
+    source: "financial-statements.pdf p.58 (Note 15: goodwill $1,867,660 + computer software $33,353)"
+  impairment_charges:
+    value: 0
+    source: "financial-statements.pdf p.58-59 (Note 15: recoverable amount testing — 'the Group still would not have recognised an impairment loss' even at a +5% discount rate sensitivity; discount rate used 25%, growth rate 2.5%, 5-year value-in-use projection). No impairment recognised in FY23 or FY22."
+  r_and_d_legacy_liability:
+    value: 0
+    prior_year_comparative: 729809
+    source: "financial-statements.pdf p.60 (Note 18: R&D Liability Payable) — fully settled during FY23; relates to a historic (FY2015/16) ineligible R&D tax offset claim voluntarily disclosed to the ATO, original repayment $2,332,681 plus interest"
+
+cash_flow:
+  net_operating_cashflow:
+    value: 2922480
+    source: "financial-statements.pdf p.36 (Consolidated Statement of Cash Flows); p.62 (Note 23(a): reconciliation of profit to operating cash flow — reconciles exactly from NPAT $632,105 through non-cash items and working-capital movements)"
+  capex:
+    payment_for_ppe:
+      value: 656035
+      confidence: moderate
+      note: "Cash-flow-statement line item; PP&E note (Note 13(a), p.56) shows total additions to owned PP&E of $727,138 across all classes for the year — the ~$71k gap is not reconciled in the extracted text (could reflect accrued-but-unpaid additions at year end). Flagged for lower confidence given PDF table extraction quality on the primary cash flow statement (see extraction_flags)."
+    payment_for_intangibles:
+      value: 6935
+      confidence: high
+      source: "financial-statements.pdf p.36; cross-checked against Note 15(b) p.58 ('Software costs capitalised $6,935') — exact match"
+    maintenance_vs_growth_split:
+      value: not_disclosed
+      note: "SKS does not split capex between maintenance and growth in the FY23 annual report."
+  free_cash_flow:
+    value: 2259510
+    basis: "derived: net operating cash flow $2,922,480 less capex ($656,035 PP&E + $6,935 intangibles) — not a company-reported metric"
+  acquisition_cashflows:
+    value: 0
+    note: "No acquisitions during FY23 — the only M&A-adjacent item is the 26 July 2022 transfer of 51% of SKS Indigenous Technologies Pty Ltd shares to C.L.A.P. Aust Pty Ltd for a nominal $51 (Directors' Report p.24), not a cash acquisition."
+  financing_cashflows:
+    net_repayment_of_borrowings:
+      value: -902740
+      source: "financial-statements.pdf p.36; corroborated by CEO's Review p.18 ('a net reduction in short-term borrowings of $0.90 million') and by the borrowings balance movement Note 17 ($2,663,989 FY22 to $1,761,250 FY23, a reduction of $902,739)"
+    repayment_of_rd_liability:
+      value: -729809
+      source: "financial-statements.pdf p.36; corroborated by Chair's Letter p.14/15 ('full retirement of the legacy R&D liability, which stood at $0.73 million at the start of the year') and Note 18 p.60 (opening balance $729,809, closing $nil)"
+    payment_of_lease_liability:
+      value: -870081
+      source: "financial-statements.pdf p.36; cross-checked exactly against Note 14(c) p.57 ('Cash outflow in relation to payment of lease liabilities $870,081')"
+    dividends_paid:
+      value: -273455
+      source: "financial-statements.pdf p.36; corroborated by CEO's Review p.18 ('$0.27 million payment for the FY22 final dividend') and Directors' Report p.25 (FY22 final dividend $0.0025/share, $273,455, paid 17 Oct 2022)"
+    net_financing_cashflow:
+      value: -2596935
+      confidence: moderate
+      note: "Subtotal as shown on the face of the Consolidated Statement of Cash Flows (p.36). The four itemised components above sum to $(2,776,085) — a ~$179k gap versus this subtotal that is not fully reconciled from the extracted text; likely a small share/option-issue cash inflow (equity statement shows non-cash 'shares issued — exercise of options' movements of $752,783 and $197,681, but the cash-vs-non-cash split of these is not clear from the extraction). Flagged in extraction_flags rather than guessed."
+  equity_raised_or_returned:
+    value: "no cash equity raising in FY23; share issues during the year (500,000 shares from vested options, 19 July 2022; 898,551 shares from exercised performance rights, 20 September 2022) appear to be non-cash/nil-cost issuances per the executive incentive plan structure (interest-free loan funding mechanism described in Remuneration Report p.27-28)"
+    source: "financial-statements.pdf p.24 (Directors' Report, Capital Structure); p.27-28 (Remuneration Report)"
+
+consensus:
+  source: "FactSet MCP — not queried"
+  as_at_date: not_available
+  revenue:
+    value: not_available
+  ebitda:
+    value: not_available
+  npat:
+    value: not_available
+  eps:
+    value: not_available
+  note: >
+    FactSet AI-Ready Data MCP connector is installed but requires an interactive OAuth
+    authentication flow that was not completed in this extraction session (requires the
+    user to authorise via browser). Consensus estimates were therefore not queried — this
+    is recorded as not_available rather than inferred from any other source. Separately,
+    FY23 (result released 30 Aug 2023) is close to the edge of useful broker consensus
+    history for a company of SKS's size at the time (small-cap, thin coverage plausible
+    regardless of FactSet access) — this does not change the guardrail: no consensus
+    figure has been inferred from web search or a single broker note.
+
+extraction_flags:
+  - "No prior period structured-financials.yaml exists in archive/SKS/ to diff against for continuity checks — FY23 is the oldest period in this 6-period backfill, so this is expected, not an extraction gap. Future runs (FY24H1 onward) should reconcile opening debt/cash/provisions against the FY23 closing balances recorded here."
+  - "results-announcement.pdf, appendix-4e.pdf, investor-presentation.pdf and transcript.pdf were not located for FY23 (per metadata.yaml, carried over from document-fetcher) — all figures in this file are sourced solely from financial-statements.pdf (the statutory annual report)."
+  - "No segment/divisional revenue breakdown disclosed — Note 24 explicitly states SKS is regarded as a single reportable segment for FY23. companies.yaml segments: [] for SKS is correct and requires no update for this period."
+  - "No gross profit / cost of sales line disclosed — P&L is presented by nature of expense (AASB 101), not by function. gross_margin_pct recorded as not_available rather than estimated from a partial expense subset."
+  - "No underlying/normalised NPAT disclosed — SKS reports statutory results only for FY23, no non-IFRS earnings measure or reconciliation presented."
+  - "No gearing ratio or other quantified leverage/capital-management metric disclosed by the company; net_debt figures in this file are derived by the extractor, not company-reported, and are labelled as such."
+  - "No maturity date disclosed for either the CBA overdraft facility or the CBA bank guarantee facility (Note 17, Note 23(c)/(d)) — consistent with an at-call/annually-reviewed overdraft structure but not explicitly stated in the text."
+  - "Interest rate risk table (Note 3(d), p.49-50) is a complex multi-column table that extracted with some column misalignment; the borrowings weighted-average rate of ~6.33% (FY23) / ~4.75% (FY22) is inferred from positional matching against known borrowings balances and cross-referenced against the qualitative statement that borrowings are floating-rate (Note 3(a)) — moderate rather than high confidence on the precise rate figure."
+  - "Cash flow statement (face statement, p.36) extracted with some line-item ambiguity in a PDF-to-text pass (multi-column layout). Headline operating cash flow ($2,922,480) is high-confidence, cross-validated exactly against the clean Note 23(a) reconciliation table. Individual investing/financing line items (capex split, and a ~$179k gap in the financing subtotal) are lower confidence and flagged individually above rather than presented as precise without caveat."
+  - "Material related-party item worth carrying forward to the disclosure-tone analysis (section 4 of the framework): 700 Spencer Street Pty Ltd (owned by the executive directors/senior executives) is the landlord for the Group's registered office/principal place of business and invoiced the Group $300,000 in FY23 vs $62,500 in FY22 (a ~380% increase) — Note 28(c), p.66. Directors state the transaction was 'on an arm's length basis on normal commercial terms and conditions' but the quantum of increase is material enough to track in future periods."
+  - "Consensus not queried — FactSet MCP requires OAuth authentication not completed this session (see consensus section note above)."

@@ -1,0 +1,24 @@
+ticker: SKS
+period: FY25H1
+period_type: half_year
+period_end_date: "2024-12-31"
+fiscal_year_end: "30 June"
+currency: AUD
+release_datetime: "2025-02-24T00:00:00+11:00"
+source_urls:
+  results_announcement: "https://hotcopper.com.au/data/announcements/ASX/3A662323_SKS.pdf"
+  appendix_4d: "https://hotcopper.com.au/data/announcements/ASX/3A662320_SKS.pdf"
+  financial_statements: "https://hotcopper.com.au/data/announcements/ASX/3A662320_SKS.pdf"
+  investor_presentation: null
+  transcript: null
+downloaded_at: "2026-08-04T00:00:00+10:00"
+extraction_flags:
+  - "investor-presentation.pdf not located for FY25H1 — could not confirm via ASX/marketindex/hotcopper in this fetch whether a separate slide deck was lodged for this half (as distinct from FY24 annual and FY26H1, where one was confirmed)."
+  - "transcript.pdf not located for FY25H1."
+  - "Segment reporting: Note 9 of financial-statements.pdf confirms SKS's statutory single-operating-segment position is unchanged from FY24/FY23 (companies.yaml segments: [] left as-is). However, the voluntary non-statutory data-centre-vs-traditional revenue $ split (first seen in FY24's investor-presentation.pdf p.6) was NOT repeated this period — likely because no investor presentation was lodged this half (see flag above), not necessarily a withdrawal of the disclosure. Re-check when FY25 annual is extracted."
+  - "EBITDA/EBIT reported by the company this period (per results-announcement.pdf: EBITDA $9.81M, EBIT $8.46M) reconcile only on a NET-of-interest-income finance-cost basis, diverging from the GROSS finance-cost addback methodology used as primary in the FY23/FY24 structured-financials.yaml (which coincidentally matched in those periods because interest income was then immaterial). See structured-financials.yaml for full detail — both bases recorded, flagged for QoE/comparability."
+  - "Goodwill ($1,867,660 carried over from FY24) is NOT separately re-disclosed in the FY25H1 condensed interim report (no intangibles-breakdown note this half) — recorded as an inference in structured-financials.yaml pending confirmation in the FY25 annual report."
+  - "Debt facility composition (sub-limits, drawn amounts, maturities, rates by facility) is not disclosed this half beyond the total ($21M, up from $14.5M at FY24) and the drawn bank-guarantee balance ($12,812,435, tying exactly to FY24's $7,990,977 opening) — no Note 21-equivalent or investor-presentation facility-timeline chart available this period."
+  - "First-ever interim dividend declared this period (1.0c/share fully franked, 24 Feb 2025 subsequent event, payable 4 Apr 2025) — a new capital-management milestone not seen in prior periods."
+  - "Company issued explicit quantitative FY25 guidance for the first time in this backfill: FY25 revenue of $260M at a ~7% before-tax margin (results-announcement.pdf p.4). No FactSet consensus available to compare against (see structured-financials.yaml consensus section)."
+notes: "appendix-4d.pdf and financial-statements.pdf are the SAME lodged document (Appendix 4D + Interim Financial Report for the half year ended 31 December 2024, combined in one PDF as SKS does not lodge these separately) — archived under both standard filenames per convention rather than picking one. results-announcement.pdf ('1H25 Record Results Comparable to Full Year 2024') is the separate ASX market-release/commentary document. Both retrieved via HotCopper's ASX-announcement PDF mirror and verified by opening the documents (not just filename matching)."

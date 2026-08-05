@@ -1,0 +1,29 @@
+ticker: SKS
+period: FY25
+period_type: annual
+period_end_date: "2025-06-30"
+fiscal_year_end: "30 June"
+currency: AUD
+release_datetime: "2025-08-25T00:00:00+10:00"  # per report content ("financial highlights as of 25 August 2025"); results were publicised around 26 Aug 2025
+source_urls:
+  financial_statements: "https://a-ap.storyblok.com/f/3000934/x/17675132d3/sks-annual-report-2025.pdf"
+  results_announcement: null
+  appendix_4e: null
+  investor_presentation: null
+  transcript: null
+downloaded_at: "2026-08-04T00:00:00+10:00"
+extraction_flags:
+  - "results-announcement.pdf not located as a standalone document separate from the annual report for FY25 in this fetch."
+  - "appendix-4e.pdf not located as a standalone lodged form for FY25 — the annual report itself (financial-statements.pdf) includes an embedded 'FY25 Summary Appendix 4E' page, so the headline results-for-announcement-to-market figures ARE present in the archived document, just not as an isolated cover-form PDF."
+  - "investor-presentation.pdf not located for FY25 — press coverage references an FY25 results presentation/webinar (CEO Matthew Jinks, CFO Gary Beaton) but the slide deck itself could not be independently retrieved via ASX/marketindex/hotcopper in this fetch."
+  - "transcript.pdf not located for FY25."
+  # --- added by financial-data-extractor on structured-financials.yaml extraction ---
+  - "GOODWILL: FY25H1's inferred goodwill figure ($1,867,660, not directly disclosed in the condensed interim report) is CONFIRMED directly via this period's Note 14(a) — unchanged all year. No discontinuity."
+  - "PROVISIONS COMPLETENESS GAP (minor, pre-existing): Note 17 'Provisions - other' ($15,000 at FY24 close, growing to $45,000 at FY25 close) was not captured as a distinct line in either the FY24 or FY25H1 structured-financials.yaml files (both recorded provisions as employee-benefits-only). Note 17 shows this balance was flat at $15,000 since at least the FY24 opening, so it likely existed in FY23/FY24 too but was omitted from those extractions rather than newly arising. Immaterial (<1.1% of total provisions) but flagged for completeness; check for an equivalent note in FY26H1's interim report."
+  - "TRADE PAYABLES: FY24 comparative in this year's Note 15 ($19,200,071) differs by ~$15,000 (<0.1%) from the figure recorded in the FY24 structured-financials.yaml ($19,215,071) — likely a minor sub-line reclassification between annual report formats, not a restatement or extraction error. Immaterial, flagged for completeness only."
+  - "DOCUMENT QUALITY: the Auditor's Independence Declaration (p.66) and the opening paragraph of the Independent Auditor's Report (p.67) both reference 'the year ended 30 June 2024' and are dated 19 August 2024 — apparently boilerplate carried over from the FY24 annual report rather than updated for FY25 in the extracted text layer (the Directors' Declaration and Directors' Report elsewhere in the same document correctly reference 30 June 2025 / 25 August 2025). The actual signed audit opinion pages render as non-extractable images in this text layer, so it could not be confirmed whether this is a genuine lodgement error or a text-extraction artifact. Does not appear to affect any extracted financial figure; worth independently verifying against the source PDF if audit-opinion or going-concern language becomes analytically material."
+  - "GEARING/ROCE/ROE: Directors' Report p.13-14 presents 'Return on Capital Employed %' and 'Return on Equity %' charts and states ROCE 'increased by 73.1% since FY24', but the specific per-year percentage figures could not be confidently mapped from the extracted PDF text (ambiguous infographic label/value pairing in this text layer). Recorded as not independently verifiable rather than guessed; only the qualitative 73.1% YoY ROCE growth statement was retained with confidence."
+  - "INVENTORY: unusual HoH swing (-89.3%, $406,921 at 1H25 to $43,432 at FY25 close) on a small, non-core 'project materials at warehouse' balance — plausible given its small absolute size, but flagged given the magnitude of the percentage change."
+  - "Consensus not queried — FactSet MCP OAuth authentication not re-attempted this session per explicit task instruction; same treatment as FY23, FY24H1, FY24, and FY25H1 in this backfill. Recorded as not_available in structured-financials.yaml rather than inferred."
+  - "No discontinuities identified in the FY25H1 -> FY25 continuity check (cash, goodwill, net debt incl. leases, total facility limit, NTA/share, EPS, dividends, revenue/PBT vs guidance bridge all reconciled or explained) beyond the minor completeness/documentation flags listed above — see structured-financials.yaml extraction_flags for the full continuity check summary."
+notes: "financial-statements.pdf sourced from SKS's own official investor page (sks.com.au/investors) via its Storyblok CDN — first-party source. Contains full audited financial report plus an embedded FY25 Summary Appendix 4E page. FY25 headline (per press coverage, not yet independently verified against the financial statements line-by-line): revenue $261.7M (+92% YoY), EBITDA $23.47M (+161.2%), NPAT $14.03M (+111.8%), full-year dividend 6.0cps fully franked."

@@ -1,0 +1,21 @@
+ticker: SKS
+period: FY23
+period_type: annual
+period_end_date: "2023-06-30"
+fiscal_year_end: "30 June"
+currency: AUD
+release_datetime: "2023-08-30T00:00:00+10:00"  # dividend/subsequent-events date stated in the report; directors' declaration and directors' report both signed 30 Aug 2023 (Melbourne)
+source_urls:
+  financial_statements: "https://a-ap.storyblok.com/f/3000934/x/68b8556071/sks_2023_statutory_accounts_and_annual_report.pdf"
+  results_announcement: null
+  appendix_4e: null
+  investor_presentation: null
+  transcript: null
+downloaded_at: "2026-08-04T00:00:00+10:00"
+extraction_flags:
+  - "results-announcement.pdf not located: could not confirm a standalone ASX market-release/media-release document for the FY23 full-year result separate from the statutory annual report. The annual report itself (financial-statements.pdf) contains the directors' report, financial statements, and equivalent disclosures, so headline figures are still extractable from it, but no short-form release was found."
+  - "appendix-4e.pdf not located as a standalone lodged form. Not fabricated — the FY24 and FY25 periods in this archive show SKS lodges a separate Appendix 4E form alongside the annual report, but the equivalent FY23 document could not be found via ASX/marketindex/hotcopper mirrors in this fetch."
+  - "investor-presentation.pdf not located for FY23."
+  - "transcript.pdf not located for FY23 (plausible given SKS's smaller market cap at the time; no evidence an earnings call was held)."
+  - "structured-financials.yaml extraction (data-extraction pass): no gross profit/cost-of-sales line disclosed (P&L presented by nature, not function); no segment revenue split disclosed (Note 24 confirms single reportable segment for FY23); no underlying/normalised NPAT disclosed (statutory only); no company-reported gearing ratio; no maturity date disclosed for either CBA facility (overdraft or bank guarantee); borrowings weighted-average interest rate (~6.33% FY23) inferred with moderate confidence from a poorly-aligned interest-rate-risk table; cash flow statement face figures for capex split and a ~$179k gap in the financing-activities subtotal are lower-confidence than the (fully cross-validated) operating cash flow figure. Full detail in structured-financials.yaml extraction_flags. Consensus not queried — FactSet MCP requires OAuth authentication not completed this session."
+notes: "financial-statements.pdf sourced from SKS's own official investor page (sks.com.au/investors) via its Storyblok CDN — first-party source, not a third-party mirror. Confirms fiscal_year_end = 30 June and currency = AUD (both previously 'unconfirmed' in companies.yaml). Report signed by Executive Chairman Peter Jinks, Melbourne, 30 August 2023. FY23 revenue $83.27M (+23.7% YoY), NPAT $0.63M, EBITDA $2.71M — a materially weaker profit conversion year than FY22 despite revenue growth, per the Chair's letter (investment phase into new sectors)."

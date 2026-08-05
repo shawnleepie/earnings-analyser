@@ -1,0 +1,22 @@
+ticker: SKS
+period: FY26H1
+period_type: half_year
+period_end_date: "2025-12-31"
+fiscal_year_end: "30 June"
+currency: AUD
+release_datetime: "2026-02-24T00:00:00+11:00"
+source_urls:
+  results_announcement: "https://hotcopper.com.au/data/announcements/ASX/3A687804_SKS.pdf"
+  appendix_4d: "https://hotcopper.com.au/data/announcements/ASX/3A687799_SKS.pdf"
+  financial_statements: "https://hotcopper.com.au/data/announcements/ASX/3A687799_SKS.pdf"
+  investor_presentation: "https://hotcopper.com.au/data/announcements/ASX/3A687805_SKS.pdf"
+  transcript: null
+downloaded_at: "2026-08-04T00:00:00+10:00"
+extraction_flags:
+  - "transcript.pdf not located for FY26H1 (no evidence of a publicly lodged transcript; SKS's practice appears to be a live results webinar rather than a formal call transcript)."
+  - "Consensus not queried this period — FactSet MCP OAuth authentication was not re-attempted mid-extraction, per explicit task instruction (same treatment as every prior period in the 6-period backfill: FY23, FY24H1, FY24, FY25H1, FY25). Recorded as not_available in structured-financials.yaml rather than inferred from web search or a single broker note."
+  - "Equipment-finance/lease facility DRAWN balance at 31 Dec 2025 not disclosed in the condensed interim report (only the facility LIMIT of $4.0M is available, via investor-presentation.pdf, not the financial statements themselves) — the drawn amount was last confirmed at $1,644,787 as at 30 June 2025 per the FY25 annual report. See structured-financials.yaml balance_sheet.total_debt_by_facility for detail."
+  - "NTA/share internal discrepancy between the ASX-lodged Appendix 4D (20.63 cents, used as primary/authoritative) and the investor-presentation.pdf's own metrics table (21.05 cents) for the 1H26 current period specifically — unexplained in either document. See structured-financials.yaml for detail."
+  - "Delta Elcom acquisition (business and assets) legally completed 12 January 2026 — a subsequent event, AFTER the 31 December 2025 half-year end, with zero impact on this half's financial statements. Featured prominently in the investor-presentation.pdf's '1H26' progress narrative despite the legal completion falling outside the reporting period — flagged for the disclosure-tone-analyst as a period-boundary framing point, not a financial-figure extraction issue."
+  - "Continuity check against archive/SKS/FY25/structured-financials.yaml: comprehensive PASS. Every balance-sheet sub-line with a directly comparable FY25 closing figure (cash, all Note-4 receivables sub-lines, trade payables, contract liabilities, inventory, all provisions sub-lines, intangible assets total, NCI equity, bank guarantee drawn) ties out exactly or within immaterial ($1) rounding. No unexplained discontinuities — see structured-financials.yaml's final extraction_flags entry for the full reconciliation summary."
+notes: "This is the most recent half-yearly result available at fetch time (2026-08-04) — the FY26 full-year result (year ending 30 June 2026) had not yet been released; only a 'Market Update - Profit Guidance Exceeded' trading update (2 Aug 2026) and an 'SKS FY26 Results Presentation Webinar' notice (30 Jun 2026, i.e. announcing the upcoming briefing, not the results themselves) were on the public record as of this fetch. appendix-4d.pdf and financial-statements.pdf are the SAME lodged document (combined Appendix 4D + Interim Financial Report for the half year ended 31 December 2025). All three documents retrieved via HotCopper's ASX-announcement PDF mirror and verified by opening the documents. Reported PBT of A$12.80M, up 52.8% YoY per press coverage (not yet independently verified against the financial statements)."

@@ -1,0 +1,452 @@
+ticker: SKS
+period: FY26H1
+period_type: half_year
+period_end_date: "2025-12-31"
+currency: AUD
+source_documents:
+  - financial-statements.pdf   # = appendix-4d.pdf (identical lodged document): Interim Financial Report for the half-year ended 31 December 2025 (16pp), incl. Appendix 4D "Results for announcement to the market" (p.1-4), Directors' Report (p.7-9), Condensed Consolidated financial statements and Notes 1-11 (p.11-19), Directors' Declaration and Independent Auditor's Review Report (unqualified conclusion, p.19-21 of the combined PDF page numbering used here). Reviewed (not audited) by DFK BKM Audit Services, signed 23 February 2026.
+  - results-announcement.pdf   # ASX release "Strong performance on track to deliver FY26 forecasts", 24 Feb 2026 (5pp) — CEO (Matthew Jinks) commentary, headline metrics, dividend/guidance detail.
+  - investor-presentation.pdf  # "1H26 Results Presentation", 24 Feb 2026 (24pp) — includes full historical P&L/balance sheet/cash flow tables by half-year back to 1H22, key financial metrics ratios, data-centre/traditional revenue split, bank facilities detail, orderbook/pipeline detail.
+  # no transcript.pdf located — per metadata.yaml, SKS's practice appears to be a live results webinar rather than a lodged transcript.
+
+pnl:
+  revenue_total:
+    value: 131754301
+    source: "financial-statements.pdf p.11 (Condensed Consolidated SOPL, Sales revenue); Note 2 p.16 ('Revenue from services recognised over time'); matches Appendix 4D p.1 ('Revenue up 14% to $131,754,301' — NB Appendix 4D's 14% reflects Total revenue & other income growth, not sales-revenue-only growth of 13.6%, see note) and results-announcement.pdf p.2 ('sales revenue of $131.75 million rising by 13.6% above the $115.94 million achieved in 1H25')"
+    comparative_1h25: 115940182
+    comparative_fy25: 261655008
+    implied_2h25: 145714826
+    note: "HoH: 1H26 revenue of $131.75M is DOWN 9.6% vs implied 2H25 of $145.71M (131,754,301/145,714,826 - 1 = -9.58%) — confirmed verbatim by Directors' Report p.7 ('sales growth...increased by 13.6% compared to the same time last year and decreased by 9.6% compared to the second half of last year'). This is a genuine, company-disclosed HoH decline despite strong YoY growth — normal seasonality for this business (large data-centre project revenue is lumpy and 2H has historically been the stronger half; FY25's own 1H/2H split showed 2H25 ($145.71M) well above 1H25 ($115.94M)). Not a discontinuity; flagged per framework requirement to report HoH alongside YoY."
+  other_income:
+    value: 1165344
+    source: "financial-statements.pdf p.11 (Total revenue and other income less sales revenue); Note 2 p.16 (Interest income $841,884 + Other income* $323,460 = $1,165,344; *'Other income comprises of government training incentives and other sundry income')"
+    comparative_1h25: 555485
+    note: "Interest income grew 257.8% YoY ($235,253 -> $841,884) on the much larger average cash balance held through the half — see ebit/net_interest_expense notes below for the QoE implication."
+  total_revenue_and_other_income:
+    value: 132919645
+    source: "financial-statements.pdf p.11 (Condensed Consolidated SOPL, 'Total revenue and other income'); investor-presentation.pdf p.4 ('Total Revenue & other income 14.1% $132,919,645 vs $116,495,667')"
+    comparative_1h25: 116495667
+  revenue_by_segment:
+    single_reportable_segment:
+      value: 131754301
+      source: "financial-statements.pdf p.18, Note 9 Operating Segments: 'The Group operates predominantly in Australia, in the audio-visual, communications, technology and electrical markets which is regarded as a single segment, hence there is no information on operating segments provided in this report.' Statutory single-segment position UNCHANGED from FY23/FY24/FY25 Note 22 and FY25H1 Note 9. Wording reverts to 'technology' (matching FY25H1's phrasing) rather than the FY25 annual report's 'IT' — CONFIRMS this is a repeating stylistic alternation between half-year and annual document wording (not a substantive change), a pattern now visible across two half-year/annual cycles. companies.yaml segments: [] correctly remains unchanged."
+    voluntary_non_statutory_data_centre_vs_traditional_split:
+      value:
+        data_centre_revenue: 66500000
+        traditional_revenue: 65300000
+        data_centre_pct_of_sales: 50.5
+      source: "investor-presentation.pdf p.5 ('1H26 sales revenue' pie chart: Data centre revenue $66.5M / Traditional (labelled implicitly) $65.3M; 'In 1H26...traditional revenue rose by 14.2% from 1H25')"
+      comparative_1h25_note: "No half-year split was disclosed for 1H25 itself (no investor-presentation.pdf was lodged for FY25H1, per that period's structured-financials.yaml) — this is the FIRST half-year-granularity data-centre/traditional split available in the backfill; prior periods only had full-year splits (FY24: DC $31M/22.8%; FY25: DC $140.7M/53.8%). $66.5M + $65.3M = $131.8M, ties closely to the $131,754,301 statutory sales revenue figure (rounding to nearest $0.1M in the company's own chart)."
+      note: "Data centre revenue is now roughly HALF of sales (50.5%), continuing the steady mix-shift from FY24's 22.8% -> FY25's 53.8% (full-year) -> 1H26's 50.5% (half-year, not directly comparable to the FY25 full-year % but consistent with the same trajectory). Traditional revenue grew a healthy 14.2% YoY in its own right despite the mix skew toward data centres — company's own framing (results-announcement.pdf p.2, investor-presentation.pdf p.5) is that this reflects continued strength in the legacy business, not decline."
+  gross_profit:
+    value: not_available
+    source: null
+    note: "P&L continues to be presented by nature of expense (AASB 101 format) — no cost-of-sales/gross-profit line disclosed, unchanged from all prior periods (FY23/FY24H1/FY24/FY25H1/FY25)."
+  gross_margin_pct:
+    value: not_available
+    source: null
+  ebitda:
+    value: 14019003
+    basis: "PBT $12,796,258 + D&A $1,766,924 + net finance costs (finance costs $297,705 less interest income $841,884 = net finance INCOME of $(544,179)) = $14,019,003 — company-consistent NET-of-interest-income basis, per methodology established in FY25H1 and confirmed for a full year in FY25"
+    source: "EXACT MATCH to the company's own disclosed figure: investor-presentation.pdf p.4 ('EBITDA increased by 42.9% from $9.81 million in 1H25 to $14.02 million in 1H26') and p.21 historical P&L table (EBITDA 1H26 $14,019.0k, explicit line item, confirms net-finance-basis methodology to the dollar); results-announcement.pdf p.1 snapshot ('EBITDA $14.02M, 42.9% on pcp')"
+    comparative_1h25: 9807422
+    comparative_fy25: 23473027
+    implied_2h25: 13665605
+    note: "METHODOLOGY FULLY CONFIRMED — for the first time in the backfill, the company's own historical P&L table (investor-presentation.pdf p.21) explicitly presents EBITDA and EBIT as named line items (not just narrative text), and both tie EXACTLY to the net-of-interest-income basis established in FY25H1/FY25 (EBITDA $14,019.0k here vs $14,019,003 derived; EBIT $12,252.1k vs $12,252,079 derived — see ebit below). This retrospectively validates the methodology across the whole backfill with the highest-confidence source yet. HoH: 1H26 EBITDA of $14.02M is UP 2.6% vs implied 2H25 ($13.67M), a much smaller increase than the 42.9% YoY growth — consistent with the revenue HoH decline noted above being offset by margin expansion."
+  ebitda_margin_pct:
+    value: 10.64
+    basis: "sales-revenue basis (company convention for EBITDA/EBIT margins, per investor-presentation.pdf p.20 'EBITDA/sales revenue' row): $14,019,003 / $131,754,301"
+    source: "investor-presentation.pdf p.20 (Key financial metrics: 'EBITDA/sales revenue 1H26 10.6%, 1H25 8.5%, change +24.7%'); matches derived 10.64% (rounds to 10.6%)"
+    comparative_1h25_pct: 8.46
+    comparative_fy25_pct: 8.97
+    note: "CONVENTION CLARIFIED THIS PERIOD: the company's own metrics table (p.20) explicitly labels this ratio 'EBITDA/sales revenue' (i.e. sales revenue only as denominator, NOT total revenue including other income) — same basis already used in the FY25/FY25H1 files, now directly confirmed rather than inferred."
+  ebit:
+    value: 12252079
+    basis: "PBT $12,796,258 + net finance costs ($297,705 finance costs less $841,884 interest income = net finance INCOME of $(544,179)) = $12,252,079"
+    source: "EXACT MATCH: investor-presentation.pdf p.4 ('EBIT increased by 44.6% from $8.46 million in 1H25 to $12.25 million in 1H26') and p.21 historical P&L table (EBIT 1H26 $12,252.1k, explicit line item — matches derived $12,252,079 to the dollar)"
+    comparative_1h25: 8463784
+    comparative_fy25: 20635710
+    implied_2h25: 12171926
+    note: "QoE POINT — CONTINUES AND AMPLIFIES the FY25 flag: net finance is now an INCOME of $544,179 for this half ALONE (interest income $841,884 vs gross finance costs $297,705), already larger in absolute $ terms than the FULL-YEAR FY25 net finance income of $149,990. EBIT remains LOWER than PBT (by the $544,179 net finance income), the reverse of the conventional relationship, driven entirely by interest earned on the cash pile (opening $32.48M, closing $51.77M this half) rather than any operating change. This is a growing, genuine, quantifiable balance-sheet-driven (not operating) contributor to the PBT/EBIT gap — the gap has more than 3.6x'd since FY25's full-year $149,990 in just this one half. Flagged strongly for the profitability-earnings-analyst's QoE section: as cash continues to build (no acquisition cash outflow recorded this half; Delta Elcom completion falls just after period end), this tailwind is structural and likely to keep growing, and should be isolated from 'core' operating EBIT trend analysis."
+  ebit_margin_pct:
+    value: 9.30
+    basis: "sales-revenue basis: $12,252,079 / $131,754,301"
+    source: "investor-presentation.pdf p.20 ('EBIT/sales revenue' 1H26 9.3%, 1H25 7.3%, change +27.4%); matches derived 9.30%"
+    comparative_1h25_pct: 7.30
+    comparative_fy25_pct: 7.89
+  net_interest_expense:
+    value: 297705
+    label: "Finance costs (gross, per P&L face); no note-level breakdown of lease-interest vs other interest disclosed this half (condensed interim report has no Note 6-equivalent — unlike the FY25 annual report's Note 6 breakdown of $36,362 debtor-finance/overdraft + $611,527 lease interest)"
+    source: "financial-statements.pdf p.11 (Condensed Consolidated SOPL, Finance costs)"
+    net_of_interest_income_alt:
+      value: -544179
+      label: "net finance INCOME (not a company-reported line) — finance costs $297,705 less interest income $841,884 = $(544,179)"
+      basis: "this is the basis that reconciles to the company's own disclosed EBIT/EBITDA figures this period (confirmed exactly, see ebitda/ebit notes)"
+    comparative_1h25: 326132
+    comparative_1h25_net: 90879
+    note: "Gross finance costs FELL 8.7% YoY ($326,132 -> $297,705) despite the business growing strongly — consistent with the confirmed nil-borrowings position (no bank loan drawn; overdraft facility now fully retired to a $0 limit during 1H26, see balance_sheet.total_debt_by_facility). Cash-flow-statement (accrual-vs-cash) cross-check: interest paid on lease liability $298,412 + interest paid $725 = $299,137 cash paid, close to the $297,705 P&L accrual (minor timing difference). Interest RECEIVED in cash was $691,054 vs the $841,884 P&L accrual — ~$150,830 of accrued-but-not-yet-received interest income, consistent with growing term-deposit-style cash balances."
+  pbt:
+    value: 12796258
+    source: "financial-statements.pdf p.11 (Profit before income tax, Condensed Consolidated SOPL); matches Directors' Report p.7 and results-announcement.pdf p.1 ('Profit Before Tax $12.80m, 52.8% on pcp') and investor-presentation.pdf p.21"
+    pbt_margin_pct:
+      value: 9.63
+      basis: "TOTAL-REVENUE basis (company convention for PBT/NPAT margins, confirmed explicitly this period): $12,796,258 / total revenue & other income $132,919,645"
+      alt_sales_revenue_basis_pct: 9.71
+      source: "investor-presentation.pdf p.4/p.20 ('PBT margin' / 'Net profit before tax as a % of total revenue': 1H26 9.6%, 1H25 7.2%, change +33.9%); results-announcement.pdf p.2 ('pre-tax profit...to $12.80 million on a 9.6% margin')"
+    comparative_1h25: 8372905
+    comparative_fy25: 20785700
+    implied_2h25: 12412795
+    note: "CONVENTION CLARIFIED THIS PERIOD (new insight for the backfill): the company's own metrics table (investor-presentation.pdf p.20) explicitly defines PBT margin and NPAT margin as '% of TOTAL revenue' (sales + other income), NOT sales revenue alone — a subtly different convention from EBITDA/EBIT margins (sales-revenue-only, see above). This distinction was invisible in prior periods because other income was small relative to sales revenue; it is now visible because interest income has grown large enough to matter (total-revenue-basis 9.63% vs sales-revenue-basis 9.71%, an 8bp gap). Restated the FY25 PBT margin under this convention for consistency: PBT $20,785,700/total revenue $263,228,273 = 7.90%, effectively identical to the FY25 file's sales-revenue-basis 7.94% (negligible gap at FY25's smaller other-income share) — no restatement needed for FY25, but flagging the convention explicitly for all FUTURE periods where interest income is material. HoH: PBT UP 3.1% vs implied 2H25 ($12.41M), a smaller increase than the 52.8% YoY, consistent with the revenue HoH decline being offset by margin expansion (as per ebitda/ebit HoH notes)."
+  tax:
+    value: 3984214
+    label: "income tax expense"
+    source: "financial-statements.pdf p.11 (Income tax expense); Note 7(a) p.17 (current income tax expense $4,176,713 less deferred tax income $192,499 = $3,984,214)"
+    effective_tax_rate_pct: 31.14
+    comparative_1h25: 2594261
+    comparative_1h25_effective_rate_pct: 30.99
+    comparative_fy25_effective_rate_pct: 32.51
+    note: "Effective rate of 31.14% is modestly above the 30% statutory rate (as was 1H25's 30.99%), continuing the clean, representative run-rate established since FY24's anomalous one-off benefit fully reversed. Trending slightly down from FY25's full-year 32.51% toward the statutory rate — no new one-off items evident; Note 7(a) provides only the current/deferred split this half (no permanent-difference reconciliation breakdown, unlike the FY25 annual report's Note 7(a))."
+  npat_statutory:
+    value: 8812044
+    source: "financial-statements.pdf p.11 (Profit after income tax, Condensed Consolidated SOPL); Appendix 4D p.1 ('Net profit...after tax attributable to members +55% to $8,722,814'; NB the 55% figure is for the MEMBERS-attributable NPAT, not group NPAT — see below); Directors' Report p.7 ('net profit of $8,812,044...compared to $5,778,644'); results-announcement.pdf p.1 ('52.5% increase on pcp in net profit after tax to $8.81 million')"
+    comparative_1h25: 5778644
+    comparative_fy25: 14029009
+    implied_2h25: 8250365
+  npat_underlying:
+    value: not_available
+    source: null
+    reconciling_items: []
+    note: "SKS continues to report statutory results only — no underlying/normalised NPAT or non-IFRS earnings measure disclosed, consistent with all prior periods."
+  npat_attributable_to_members:
+    value: 8722814
+    npat_attributable_to_nci:
+      value: 89230
+    source: "financial-statements.pdf p.11 (Total comprehensive Income attributable to: Members of the parent entity $8,722,814 / Non-controlling interest $89,230); Appendix 4D p.1; Directors' Report p.7 ('profit attributable to the non-controlling interest of the group is $89,230...compared to $148,529')"
+    comparative_1h25: 5630115
+    comparative_1h25_nci: 148529
+    comparative_fy25: 13770461
+    comparative_fy25_nci: 258548
+    note: "NCI profit allocation FELL both in $ terms ($148,529 -> $89,230, -39.9% YoY) and as a % of group NPAT (2.57% of 1H25 NPAT -> 1.01% of 1H26 NPAT) — a reversal of the growth trend flagged in FY25H1/FY25 (where NCI profit had been rising steadily). SKS Indigenous Technologies (the underlying 49%-SKS/51%-NCI entity, per FY25 Note 26(b)) is disclosed in investor-presentation.pdf p.12 as having 1H26 revenue of $12.6M and work on hand of $13.1M, but no 1H26 NPAT figure for that entity is given in the released materials (only historical FY24 $127.3k / FY25 $504.0k) — cannot independently verify whether the NCI profit decline is driven by SKS Indigenous Technologies' own performance or a change in the NCI ownership/allocation mechanics. Flagged for the disclosure-tone-analyst / other-disclosure section to cross-check against the FY26 annual report's Note 26(b)-equivalent when available; not treated as a discontinuity (NCI remains profitable and equity-positive), but a genuine reversal worth tracking."
+  eps:
+    value: 7.72
+    unit: "cents per share, basic and diluted (identical, per P&L face)"
+    source: "financial-statements.pdf p.11 (Condensed Consolidated SOPL, Earnings per share); matches results-announcement.pdf p.1 ('earnings per share increase of 49.6%') and investor-presentation.pdf p.3/p.20/p.21 (EPS 1H26 7.72c, 1H25 5.16c, change +49.6%)"
+    comparative_1h25: 5.16
+    comparative_fy25: 12.49
+    continuity_check_vs_fy25: "PASS — FY25 recorded implied 2H25 EPS of 7.33c (12.49 - 5.16); 1H26's actual 7.72c continues the upward HoH trajectory (implied 2H24 4.38c -> actual 1H25 5.16c -> implied 2H25 7.33c -> actual 1H26 7.72c). No discontinuity."
+  dps:
+    dividend_paid_during_1h26_cash_basis:
+      fy25_final_dividend_paid:
+        value: 5.00
+        unit: "cents per share, fully franked"
+        amount_total_members: 5735297
+        amount_total_incl_nci: 5934197
+        paid_date: "2025-10-16"
+        source: "financial-statements.pdf p.5 (Note 3, Dividends: 'A dividend of $0.05 per ordinary share has been paid during the half-year ended 31 December 2025'; also Statement of Changes in Equity p.13: dividend paid/provided for $(5,735,297) members + $(198,900) NCI = $(5,934,197)); Appendix 4D p.3 (item 5: Final dividend, year ended 30 June 2025, paid 16 October 2025, $5,735,297); Statement of Cash Flows p.14 ('Payment of dividends $(5,934,197)')"
+        continuity_check_vs_fy25: "PASS — this is the FY25 final dividend (5.0c, declared as a subsequent event in the FY25 annual report, amount not precisely disclosed there beyond an approximation) — now CONFIRMED at exactly $5,735,297 to members ($5,934,197 incl. NCI distribution). Closes the FY25 file's flagged approximation gap ('does not tie cleanly to a single figure') with a precise, confirmed number."
+      comparative_1h25_paid:
+        fy24_final_dividend:
+          value: 1.00
+          unit: "cents per share, fully franked"
+          amount_total: 1120699
+          paid_date: "2024-10-14"
+          source: "financial-statements.pdf Note 3 p.5; matches FY25 file's confirmed figure exactly"
+    dividend_declared_for_1h26_subsequent_event:
+      value: 3.50
+      unit: "cents per share, 100% franked"
+      declared_date: "2026-02-23"
+      amount_total: not_disclosed_precisely
+      source: "financial-statements.pdf p.5 (Note 3: 'On 23 February 2026, the directors declared an interim dividend for the year ending 30 June 2026 of $0.035 per ordinary share. The financial effect...are not reflected in the 31 December 2025 financial statements'); Note 11 Subsequent Events p.18 (identical wording); results-announcement.pdf p.1 ('a 3.5 cents per share fully franked interim dividend will be paid for the half, up from the 1 cent per share inaugural interim dividend paid for 1H25'); investor-presentation.pdf p.3/p.20 (Dividend per share 1H26 3.5c, change +250% vs 1H25's 1.0c)"
+      note: "NOT recognised as a liability in the 31 December 2025 balance sheet (correctly treated as a subsequent event, consistent with AASB 110 and the identical treatment of prior periods' interim/final dividends). A 3.5x step-up from the inaugural 1H25 interim dividend of 1.0c — company's own framing (results-announcement.pdf p.1) explicitly calls out this multiple. NOTE ON APPENDIX 4D PRESENTATION: Appendix 4D p.1's dividend table shows 'Interim Dividend - Current period: Nil' — this refers to dividends of the INTERIM type PAID DURING the reporting period (none were, since the FY25 interim was already paid in April 2025, before this half began), which is a DIFFERENT concept from the 3.5c FY26 interim DECLARED as a subsequent event covered here. Flagged to avoid the two figures (Nil vs 3.5c) being read as inconsistent — they answer different questions (cash paid in the period vs declared for the period after period-end)."
+    total_dividend_pcp_comparator:
+      note: "investor-presentation.pdf p.20 'Dividend per share' row shows 1H26 3.5c vs 1H25 1.0c (both being the INTERIM dividend declared for/attributed to that respective half, on a declared-not-paid basis) — consistent with the dividend_declared_for_1h26_subsequent_event figure above."
+
+cash_flow_pnl_cross_check_ebitda_gross_alt:
+  value: 14316708
+  basis: "PBT $12,796,258 + D&A $1,766,924 + GROSS finance costs $297,705 (no interest-income netting) = $14,860,887 [correction: see below] — retained only for methodology continuity with FY23/FY24 files' gross-basis convention; NOT the primary/company-matching figure this period"
+  note: "Gross-finance-cost alt basis = PBT $12,796,258 + D&A $1,766,924 + finance costs $297,705 = $14,860,887 (EBIT gross alt = $13,093,963). Net basis (primary, above) is the one that exactly matches the company's own disclosed $14.02M/$12.25M EBITDA/EBIT figures."
+
+balance_sheet:
+  cash:
+    value: 51769018
+    source: "financial-statements.pdf p.12 (Condensed Consolidated Statement of Financial Position, Cash and cash equivalents)"
+    comparative_fy25_close: 32476963
+    comparative_1h25: 19626850
+    continuity_check_vs_fy25: "PASS, near-exact — FY25 file's closing cash of $32,476,963 (30 June 2025) is recorded as the opening balance for this half at $32,476,964 (Statement of Cash Flows p.14) — a $1 gap, immaterial rounding (ASIC Instrument 2016/191 rounding to nearest dollar in the directors' report vs the cash-flow statement's own roll-forward), not a discontinuity. Net increase in cash of $19,292,054 for the half reconciles exactly: $32,476,964 + $19,292,054 = $51,769,018."
+  total_debt_by_facility:
+    overdraft:
+      limit: 0
+      drawn: 0
+      undrawn: 0
+      comparative_fy25_close_limit: 2000000
+      maturity_date: not_disclosed
+      interest_rate: not_disclosed
+      fixed_or_floating: "floating (facility now fully retired)"
+      source: "investor-presentation.pdf p.6/p.20 (Bank facilities chart and Key financial metrics table: overdraft 1H26 $0.0m, FY25 $2m); results-announcement.pdf p.2 ('With strong cash balances, the overdraft became redundant and has been retired')"
+      note: "Overdraft facility RETIRED to a nil limit during 1H26 (down from $2.0M at FY25 close), continuing the multi-period trend of the overdraft shrinking as headroom shifted to the guarantee/equipment lines (flagged in FY24/FY25 files) — this period it reaches zero entirely. No standalone financial-statements.pdf note discloses the exact date of retirement within the half; sourced from the investor presentation only (the condensed interim report itself has no Note 21-equivalent facilities breakdown this period — a genuine disclosure-depth gap vs the annual report, consistent with FY25H1's equivalent gap)."
+    bank_guarantee_facility:
+      limit: 28000000
+      drawn: 13741633
+      undrawn: 14258367
+      comparative_fy25_close_limit: 17000000
+      comparative_fy25_close_drawn: 11687302
+      maturity_date: not_disclosed
+      interest_rate: not_disclosed
+      source: "financial-statements.pdf p.18, Note 10 Contingent Liabilities ('The Group has provided bank guarantees to customers to support contract performance as at 31 December 2025 of $13,741,633 (30 June 2025: $11,687,302)'); limit of $28.0M per investor-presentation.pdf p.6/p.20 bank facilities chart and table"
+      continuity_check_vs_fy25: "PASS, drawn amount ties exactly to the FY25 file's closing figure ($11,687,302). Limit increased from $17.0M (FY25 close) via the TWO subsequent-event/in-period steps described in total_facility_limit below."
+    equipment_finance_lease_facility:
+      limit: 4000000
+      drawn: not_disclosed_this_period
+      comparative_fy25_close_limit: 2000000
+      comparative_fy25_close_drawn: 1644787
+      source: "investor-presentation.pdf p.6/p.20 (limit only: 'equipment finance' $4.0m 1H26 vs $2.0m FY25)"
+      note: "DRAWN amount for this facility is NOT disclosed in the condensed interim report this period (no Note 21-equivalent breakdown exists, unlike the FY25 annual report's Note 21(c)/(d) which gave a precise $1,644,787 drawn figure at 30 June 2025). Flagged as a genuine extraction gap for this half — only the facility LIMIT is confirmed, not the amount drawn. Total lease liabilities on the balance sheet ($1,350,662 current + $6,341,694 non-current = $7,692,356) are a distinct AASB 16 right-of-use lease liability concept and should NOT be conflated with this equipment-finance facility drawn balance, per the same distinction maintained in the FY25 file."
+    total_facility_limit:
+      value: 32000000
+      comparative_fy25_close: 21000000
+      pct_change: 52.4
+      source: "results-announcement.pdf p.2 ('a 52.4% increase in bank facilities in 1H26 to $32 million compared to the $21 million level of 1H25' [sic — comparing to FY25/Dec-24 level, see note]); investor-presentation.pdf p.6 ('Bank Facilities have been further augmented from $21.0 million in FY25 to $34 million in 1H26...the overdraft became redundant and has been retired leaving the total level of the bank facilities at $32 million')"
+      note: "TWO-STEP FACILITY REVISION during 1H26, both confirmed and reconciled — NOT a discontinuity: (1) the ~$34M revision (guarantee to $28M, equipment finance to $4M, overdraft unchanged at $2M = $34M total) that the FY25 structured-financials.yaml flagged as a POST-YEAR-END subsequent event (25 Aug 2025) is confirmed to have occurred WITHIN this half (Aug-25 falls inside the Jul-Dec-25 reporting window) — closing that file's forward-looking flag; (2) subsequently within the same half, the $2M overdraft was retired to nil (given ample cash reserves), bringing the total DOWN from $34M to the $32M figure disclosed at period end/report date. Both steps are corroborated by the investor-presentation.pdf p.6 bank-facilities timeline chart (Sep-22 $8M -> Nov-23 $12M -> May-24 $14.5M -> Sep-24 $21.0M -> Aug-25 $34M -> Feb-26 $32M) — a clean, fully-explained mechanical bridge, not an extraction error. results-announcement.pdf's own text simplifies this to a single $21M->$32M comparison, omitting the intermediate $34M step — a minor difference in disclosure granularity between the two company documents, not a numerical inconsistency."
+  net_debt:
+    value: -51769018
+    label: "net cash position (borrowings-only basis) — no bank borrowings drawn, consistent with all periods since FY23"
+    basis: "borrowings $0 less cash $51,769,018"
+    net_debt_including_leases:
+      value: -44076662
+      basis: "borrowings $0 + total lease liabilities (current $1,350,662 + non-current $6,341,694 = $7,692,356) less cash $51,769,018 = net cash surplus of $44,076,662"
+    source: "derived from financial-statements.pdf p.12; SKS does not itself publish a net debt figure"
+    comparative_fy25_close: -24086590
+    comparative_1h25: -11665836
+    continuity_check_vs_fy25: "PASS (continued, accelerated deleveraging/cash build) — net cash surplus incl. leases grew from $24,086,590 (FY25 close) to $44,076,662 (1H26 close), +83.0% in a single half. No discontinuity."
+  gearing_ratio_as_reported:
+    value: not_available
+    source: null
+    note: "No formal gearing/leverage ratio disclosed, consistent with all prior periods. However, this period's investor-presentation.pdf p.4/p.20 DOES disclose a precise 'Shareholder equity as a % of total assets' ratio (SHE/total assets): 1H26 25.8% vs 1H25 22.6%, +14.2% change — this RESOLVES the FY25 file's flagged inability to independently verify the company's ROE/ROCE/ROA infographic figures (that file could only confirm a qualitative '73.1% ROCE growth since FY24' statement). This period's Key financial metrics table (p.20) gives precise historical ROE/ROCE/ROA by half AND full year back to FY23: FY25 ROE 57.2%/ROCE 65.3%/ROA 12.7%; FY24 ROE 54.5%/ROCE 37.7%/ROA 11.1%; 1H26 ROE 31.5%/ROCE 35.6%/ROA 8.1% vs 1H25 ROE 33.2%/ROCE 34.9%/ROA 7.5%. Recorded here as a non-schema supplementary disclosure (not 'gearing' in the debt/equity sense) — flagged for the balance-sheet-cashflow-analyst as a useful capital-efficiency cross-check, noting ROE actually FELL 5.1% YoY (31.5% vs 33.2%) despite NPAT growth of 52.5%, because the equity base grew even faster (shareholder equity +60.4% YoY per results-announcement.pdf p.3, driven by strong retained-earnings accumulation) — a genuine dilution-of-return effect from the rapid equity build, not a performance concern."
+  working_capital_non_schema_metric:
+    value: 18370000
+    comparative_fy25_close: 16020000
+    comparative_1h25: 9850000
+    pct_change_yoy: 86.5
+    pct_change_hoh: 14.7
+    source: "investor-presentation.pdf p.6/p.20 ('Working capital ($M)' chart and table: 1H22 -0.73, 1H23 -0.24, 1H24 1.65, 1H25 9.85, FY25 16.02, 1H26 18.37); results-announcement.pdf p.3 ('Working capital has effectively doubled from $9.85 million in 1H25 to $18.37 million in 1H26')"
+    note: "Company-defined non-schema metric, basis/formula not disclosed (not the same as the schema's trade debtors/creditors/inventory line items below). Continuity PASS — continues the upward trajectory from FY25's $16.02M close."
+  trade_debtors:
+    trade_receivables_gross_current:
+      value: 35107932
+      source: "financial-statements.pdf p.15, Note 4 (Trade and other receivables — 'Trade receivables')"
+      comparative_fy25_close: 55403318
+      continuity_check: "PASS — FY25 file's closing 'trade_debtors_gross_current' of $55,403,318 ties exactly to this period's comparative column."
+    retention_debtors:
+      value: 1111047
+      source: "financial-statements.pdf p.15, Note 4"
+      comparative_fy25_close: 1030917
+      continuity_check: "PASS — exact tie to FY25 file's closing $1,030,917."
+    allowance_for_credit_losses:
+      value: -236012
+      source: "financial-statements.pdf p.15, Note 4"
+      comparative_fy25_close: -107929
+      continuity_check: "PASS — exact tie to FY25 file's closing $(107,929). Allowance MORE THAN DOUBLED this half ($107,929 -> $236,012, +118.7%) — receivables-quality signal worth monitoring (reverses the improving-allowance trend flagged in the FY25 file), though still small in absolute terms (0.67% of gross trade receivables) and no ageing-analysis note is disclosed in this condensed interim to assess whether it reflects specific-customer risk or a general provisioning-policy change."
+    contract_assets:
+      value: 2458573
+      source: "financial-statements.pdf p.15, Note 4"
+      comparative_fy25_close: 5471974
+      continuity_check: "PASS — exact tie to FY25 file's closing $5,471,974."
+    other_receivables:
+      value: 166210
+      source: "financial-statements.pdf p.15, Note 4"
+      comparative_fy25_close: 105583
+      continuity_check: "PASS — exact tie to FY25 file's closing $105,583."
+    total_trade_and_other_receivables:
+      value: 38607750
+      source: "financial-statements.pdf p.12, Note 4 p.15"
+      comparative_fy25_close: 61903863
+      comparative_1h25: 41656003
+      continuity_check_vs_fy25: "PASS, exact tie to FY25 file's closing $61,903,863. Receivables FELL 37.6% HoH ($61.90M -> $38.61M) despite revenue growth — a strong positive cash-conversion signal, consistent with the very strong operating cash flow this half (see cash_flow section) and the disclosed increase in cash receipts from customers ($164.3M vs $146.6M pcp, i.e. cash collections outpaced revenue recognition)."
+  trade_creditors:
+    value: 14150822
+    source: "financial-statements.pdf p.15, Note 6 (Trade and Other Payables — 'Trade payables')"
+    comparative_fy25_close: 12577298
+    continuity_check: "PASS — exact tie to FY25 file's closing $12,577,298. Trade payables UP 12.5% HoH, consistent with investor-presentation.pdf p.6 ('trade payables has increased by 12.5% since FY25')."
+  inventory:
+    value: 151039
+    source: "financial-statements.pdf p.12 (Inventories)"
+    comparative_fy25_close: 43432
+    comparative_1h25: 406921
+    continuity_check_vs_fy25: "PASS — exact tie to FY25 file's closing $43,432. Inventory rebounded sharply this half (+247.7% HoH, $43,432 -> $151,039), continuing the volatile pattern flagged in the FY25 file (-89.3% HoH into FY25 close) — still a small-dollar, non-core balance ('project materials at the warehouse' per the FY25 annual report's Note 10 description; no equivalent note this interim), consistent with project-timing effects rather than a data-quality concern."
+  contract_assets:
+    value: 2458573
+    source: "financial-statements.pdf p.15, Note 4 (see trade_debtors section above — duplicated here per schema)"
+  contract_liabilities:
+    value: 39944058
+    label: "Contract liabilities (per Note 6, within Trade and Other Payables)"
+    source: "financial-statements.pdf p.15, Note 6 (Trade and Other Payables: Contract liabilities)"
+    comparative_fy25_close: 45568167
+    continuity_check_vs_fy25: "PASS, exact tie to FY25 file's closing $45,568,167. Contract liabilities FELL 12.3% HoH ($45.57M -> $39.94M), consistent with investor-presentation.pdf p.6 ('Contract liabilities have decreased by 12.5%') — a genuine business-driven movement (pre-billed/unearned revenue being recognised as underlying performance obligations, mostly <12 months, are delivered) rather than a discontinuity; still up materially on a longer view (contract liabilities were $12.75M at FY24 close, per FY25 file)."
+  provisions:
+    employee_benefits_current:
+      value: 4622713
+      source: "financial-statements.pdf p.12 (Provisions - employee benefits)"
+      comparative_fy25_close: 4337363
+      continuity_check: "PASS — exact tie to FY25 file's closing $4,337,363, proportionate growth continuing with payroll/headcount (5.3% increase in employee numbers per investor-presentation.pdf p.14)."
+    employee_benefits_non_current:
+      value: 58057
+      source: "financial-statements.pdf p.12"
+      comparative_fy25_close: 74503
+      continuity_check: "PASS — exact tie to FY25 file's closing $74,503."
+    other_provisions_current:
+      value: 20000
+      source: "financial-statements.pdf p.12 (Provisions - other)"
+      comparative_fy25_close: 45000
+      continuity_check: "PASS, exact tie to FY25 file's closing $45,000 — AND THIS PERIOD CLOSES THE COMPLETENESS GAP FLAGGED IN THE FY25 FILE: the FY25 file specifically asked to 'check whether Note 17-equivalent exists in FY26H1's interim report to close this gap' — CONFIRMED: this interim's condensed Statement of Financial Position DOES separately present 'Provisions - other' as its own line item ($20,000 vs $45,000 comparative), so this line item is now correctly captured going forward without needing to infer or omit it. Balance fell 55.6% HoH ($45,000 -> $20,000) — small-dollar, immaterial, consistent with the FY25 file's assessment (Note 17 in that report showed this as a minor, slow-moving balance)."
+    total:
+      value: 4700770
+      label: "all provisions (employee benefits + other)"
+      total_employee_benefits_only: 4680770
+      comparative_fy25_close_all_provisions: 4456866
+      comparative_fy25_close_employee_benefits_only: 4411866
+      source: "financial-statements.pdf p.12"
+      continuity_check_vs_fy25: "PASS on both employee-benefits and all-provisions bases — $4,411,866 (FY25 close, employee benefits only) -> $4,680,770 (1H26); $4,456,866 (FY25 close, all provisions) -> $4,700,770 (1H26). No discontinuity."
+  goodwill:
+    value: 1867660
+    confidence: inferred
+    source: "no Note 14-equivalent intangibles/goodwill breakdown disclosed in this condensed interim report (consistent with FY25H1's equivalent gap, closed only at each annual report). Inferred UNCHANGED from the FY25 annual report's confirmed closing balance (Note 14(a): '$1,867,660, no movement FY25'), on the basis that: (a) intangible_assets_total grew by only $11,951 this half (see below), consistent with continued small-scale capitalised software spend and no goodwill-relevant transaction; (b) no acquisition completed WITHIN the 31 Dec 2025 balance date (Delta Elcom's legal completion was 12 Jan 2026, a subsequent event — see extraction_flags — so it cannot have affected this half's goodwill); (c) no impairment indicator or impairment charge is disclosed."
+    comparative_fy25_close: 1867660
+    continuity_check_vs_fy25: "Inference basis PASS — same inference methodology the FY25H1 file used (and which the FY25 annual report subsequently confirmed as sound) is repeated here; cannot be independently confirmed until the FY26 annual report's own goodwill note."
+  intangible_assets_total:
+    value: 2010462
+    source: "financial-statements.pdf p.12 (Intangible assets)"
+    comparative_fy25_close: 1998511
+    continuity_check: "PASS — exact tie to FY25 file's closing $1,998,511. Movement of +$11,951 this half is consistent with the cash-flow statement's $38,010 of intangibles (software) additions less amortisation over the half, implying no goodwill movement (supports the inference above)."
+  impairment_charges:
+    value: not_disclosed_this_period
+    source: null
+    note: "No impairment testing note exists in this condensed interim (consistent with the general pattern that formal CGU-level impairment testing with recoverable-amount disclosure appears only in annual reports, e.g. FY25's Note 14). No impairment INDICATOR is otherwise flagged in the Directors' Report or notes, and no impairment charge appears on the face of the P&L (Total expenses in Note-level breakdown do not include any impairment line) — recorded as not_disclosed rather than assumed nil, to distinguish from FY25's directly-CONFIRMED nil impairment."
+  net_tangible_assets_per_share:
+    value: 20.63
+    unit: "cents"
+    source: "financial-statements.pdf/appendix-4d.pdf p.2 (Appendix 4D item 3: 'Net tangible asset backing per ordinary security: Current Period 20.63 Cents, Previous Corresponding Period 12.08 Cents'; includes right-of-use assets per the accompanying note)"
+    comparative_1h25: 12.08
+    comparative_fy25_close: 18.07
+    continuity_check_vs_fy25: "PASS — continues the upward trajectory across all periods (FY23 1.76c -> 1H24 3.28c -> FY24 7.57c -> 1H25 12.08c -> FY25 18.07c -> 1H26 20.63c). No discontinuity."
+    internal_document_discrepancy_flag: "investor-presentation.pdf p.20's Key financial metrics table shows 1H26 NTA/share as 21.05 cents (not 20.63 cents) — a ~0.42c (2.0%) discrepancy against the ASX-lodged, statutory Appendix 4D figure of 20.63 cents used as the PRIMARY figure above. The 1H25 comparator (12.08c) and FY25 comparator (18.1c, rounds to the FY25 file's 18.07c) both tie correctly between the two documents, isolating the discrepancy to the 1H26 current-period figure only. Likely a minor calculation or rounding-basis difference (e.g. shares on issue at a slightly different date, or inclusion/exclusion of a small intangibles balance) between the two company-produced documents — flagged as an internal inconsistency rather than resolved, since neither document explains the gap; the statutory Appendix 4D figure (20.63c) is treated as authoritative."
+
+cash_flow:
+  net_operating_cashflow:
+    value: 27843058
+    source: "financial-statements.pdf p.13 (Condensed Consolidated Statement of Cash Flows, Net cash flows provided by operating activities); matches results-announcement.pdf p.1 ('Cash From Ops $27.84m, 46.6% on pcp') and investor-presentation.pdf p.3/p.21"
+    comparative_1h25: 18986202
+    comparative_fy25: 34988029
+    implied_2h25: 16001827
+    note: "HoH: 1H26 operating cash flow of $27.84M is UP 74.0% vs implied 2H25 ($16.00M) — a strong acceleration, driven primarily by the sharp reduction in trade receivables noted above (receivables fell $23.3M HoH, directly boosting cash collections: 'Receipts from customers' of $164.3M this half vs sales revenue of only $131.75M). Income tax paid of $6,803,475 this half (vs $0 paid in 1H25, when the FY24 tax losses were still being utilised) is a genuine cash outflow now embedded in the run-rate as the business becomes a full taxpayer."
+  capex:
+    payment_for_ppe:
+      value: 1969088
+      confidence: high
+      source: "financial-statements.pdf p.13 (Statement of Cash Flows, Payment for plant and equipment)"
+      comparative_1h25: 1028293
+    payment_for_intangibles:
+      value: 38010
+      confidence: high
+      source: "financial-statements.pdf p.13"
+      comparative_1h25: 39277
+    proceeds_from_disposal_of_ppe:
+      value: 94878
+      source: "financial-statements.pdf p.13"
+      comparative_1h25: 28273
+    net_payment_for_bank_guarantees:
+      value: -6520
+      source: "financial-statements.pdf p.13 (investing activities: '(Payment for)/Receipts from bank guarantee-net')"
+      comparative_1h25: 6943
+    maintenance_vs_growth_split:
+      value: not_disclosed
+      note: "SKS does not split capex between maintenance and growth — same flag as all prior periods. Total capex ($2,007,098) equals ~1.52% of sales revenue, up modestly from FY25's ~0.98% full-year intensity but still modest for a business of this scale and growth rate, consistent with the labour-driven (not capital-intensive) service delivery model."
+  free_cash_flow:
+    value: 25835960
+    basis: "derived: net operating cash flow $27,843,058 less capex ($1,969,088 PP&E + $38,010 intangibles) = $25,835,960 — same methodology as all prior periods' files"
+    comparative_1h25: 17918632
+    comparative_fy25: 32434884
+    implied_2h25: 14516252
+    pct_change_yoy: 44.2
+    pct_change_hoh: 78.0
+  acquisition_cashflows:
+    value: 0
+    note: "No acquisitions completed WITHIN the half — the Delta Elcom acquisition (business and assets) was completed 12 January 2026, i.e. AFTER the 31 December 2025 balance date, and is disclosed only as a subsequent event (Note 11 p.18: 'SKS Technologies Pty Ltd has completed the acquisition of the business and assets of Delta Elcom, on 12 January 2026'). No acquisition-related cash flow, goodwill, or purchase-price-allocation impact is reflected in this half's financial statements. See extraction_flags for a tone/disclosure observation on how prominently the acquisition features in the investor-presentation.pdf despite this timing."
+  financing_cashflows:
+    payment_for_share_issue_cost:
+      value: -20036
+      source: "financial-statements.pdf p.13"
+      comparative_1h25: -18722
+    payment_of_lease_liability:
+      value: -678031
+      source: "financial-statements.pdf p.13"
+      comparative_1h25: -554265
+    net_repayment_of_borrowings:
+      value: 0
+      source: "financial-statements.pdf p.13 — nil, consistent with the confirmed nil-borrowings position maintained since FY23 (Directors' Report p.9 confirms 'Debt levels have remained at zero since the retirement of long-term debt in FY23' — per investor-presentation.pdf p.6)"
+    dividends_paid:
+      value: -5934197
+      source: "financial-statements.pdf p.13; see pnl.dps.dividend_paid_during_1h26_cash_basis above for detail"
+      comparative_1h25: -1120699
+      note: "5.3x YoY increase in cash dividends paid, tracking the FY25 final dividend step-up from 1.0c to 5.0c."
+    net_financing_cashflow:
+      value: -6632264
+      confidence: high
+      source: "financial-statements.pdf p.13 — itemised components sum exactly, no unreconciled gap"
+      comparative_1h25: -1693686
+  net_increase_in_cash:
+    value: 19292054
+    source: "financial-statements.pdf p.13; matches investor-presentation.pdf p.3/p.6/p.21 ('Net cash flows ($M)': 1H26 19.29) and results-announcement.pdf p.1/p.3 ('net cash flow increase of 18.6% to $19.29 million' — NB the 18.6% figure appears to compare 1H26's $19.29M to 1H25's $16.26M using a slightly different rounding basis than the exact 18.6% derivable from the underlying $000s, immaterial)"
+    comparative_1h25: 16260162
+    note: "Cross-check: opening cash $32,476,964 + net increase $19,292,054 = $51,769,018 — ties out exactly to the closing cash balance reported above."
+
+consensus:
+  source: "FactSet MCP — not queried"
+  as_at_date: not_available
+  revenue:
+    value: not_available
+  ebitda:
+    value: not_available
+  npat:
+    value: not_available
+  eps:
+    value: not_available
+  note: >
+    Per explicit task instruction for this extraction run, the FactSet AI-Ready Data MCP
+    connector's interactive OAuth authentication flow was NOT re-attempted mid-extraction —
+    consistent with every prior period in this backfill (FY23, FY24H1, FY24, FY25H1, FY25),
+    where the same auth requirement could not be completed. Consensus recorded as
+    not_available rather than inferred from web search or a single broker note, per project
+    guardrails. In the absence of FactSet consensus, the only external benchmark available is
+    the company's OWN guidance evolution: FY25's annual report gave an "initial forecast of
+    $300 million in sales revenue" for FY26 (no margin/PBT guidance at that point); this has
+    since been raised via a 5 February 2026 ASX announcement (referenced in this release but
+    not separately archived) to a specific FY26 revenue forecast of $340 million PLUS an
+    explicit ~10% PBT margin / ~$34 million PBT forecast — a materially more specific and
+    higher guidance set than 6 months prior. 1H26 actuals (revenue $131.75M, PBT $12.80M)
+    imply a 2H26 bridge requirement of ~$208.25M revenue (+58.6% HoH) and ~$21.20M PBT
+    (+65.6% HoH) to hit the full FY26 guidance — a demanding but not unprecedented step-up
+    given the business's own history of large HoH swings driven by lumpy data-centre project
+    completions. Work on hand of $325M (as at Feb-2026) includes $148M already allocated to
+    2H26 (per investor-presentation.pdf p.10), covering roughly 71% of the implied 2H26
+    revenue requirement from already-secured contracts — a genuine, quantifiable positive
+    data point for the guidance bridge, not merely aspirational. Flagged for the
+    profitability-earnings-analyst's guidance-analysis section. A further "Market Update -
+    Profit Guidance Exceeded" trading update (2 August 2026, per metadata.yaml) exists on the
+    public record but relates to the FY26 FULL YEAR result (outside this half's scope) and is
+    noted here only as forward context should a FY26 annual extraction follow this one.
+
+extraction_flags:
+  - "SEGMENT DISCLOSURE: statutory position UNCHANGED — Note 9 (Operating Segments) confirms SKS continues to report as a single operating segment; wording reverts to 'technology' (matching FY25H1's half-year phrasing) rather than the FY25 annual report's 'IT' — CONFIRMS a repeating stylistic alternation between half-year and annual document wording across two full cycles now, not a one-off drift. The VOLUNTARY non-statutory data-centre-vs-traditional $ revenue split is disclosed at HALF-YEAR granularity for the first time in this backfill (DC $66.5M / Traditional $65.3M, ~50.5%/49.5% split) — previously only available at full-year granularity. No action needed on companies.yaml (segments: [] remains correct)."
+  - "DELTA ELCOM ACQUISITION — SUBSEQUENT EVENT, TONE OBSERVATION: legally completed 12 January 2026 (per Note 11), i.e. AFTER the 31 December 2025 half-year end — zero impact on this half's P&L, balance sheet, or cash flow (acquisition_cashflows correctly recorded as 0). However, the investor-presentation.pdf (slide 7, 'Snapshot of progress against strategy') lists 'Acquired Delta Elcom' under the '1H26' column alongside genuinely-in-period achievements, and the CEO commentary in results-announcement.pdf describes it in a way that could read as an in-period achievement rather than a post-period-end completion (the DUE DILIGENCE and negotiation were completed in 1H26; the legal completion was not). Flagged for the disclosure-tone-analyst: this is a genuine, disclosed subsequent event (correctly excluded from the financial statements), but the prominence and placement of the acquisition in the investor-facing narrative is worth noting as a tone point when assessing how the company frames period boundaries. A related administrative item: 'SKS Energy Technologies Pty Ltd' was renamed to 'SKS Technologies NSW Pty Ltd' effective 18 December 2025 (Directors' Report p.7) — an existing subsidiary renamed, not a new entity, likely in preparation for the NSW/Delta Elcom integration."
+  - "DEBT/FACILITIES: total CBA-group facility limit rose from $21.0M (FY25 close) through a confirmed two-step path to $32.0M at 1H26 close/report date — (1) the ~$34M revision flagged as a POST-YEAR-END subsequent event in the FY25 file is confirmed to have occurred WITHIN this half (Aug-25), closing that forward-looking flag; (2) the $2.0M overdraft facility was then retired to nil within the same half (given ample cash reserves), landing at the $32.0M figure disclosed in both results-announcement.pdf and investor-presentation.pdf. This is a clean, fully-reconciled two-step revision, NOT a discontinuity. GENUINE GAP: this period's condensed interim report contains NO Note 21-equivalent facility breakdown (no drawn amounts for the overdraft or equipment-finance facilities, only the bank-guarantee drawn amount via the Contingent Liabilities note, and only facility LIMITS via the investor presentation, not the statutory financial statements) — the equipment-finance/lease facility's DRAWN balance at 31 Dec 2025 is NOT independently confirmed this period (last confirmed at $1,644,787 as at 30 June 2025). This mirrors the same disclosure-depth gap flagged in FY25H1, to be closed again only at the FY26 annual report."
+  - "NTA/SHARE INTERNAL DISCREPANCY: the ASX-lodged, statutory Appendix 4D figure (20.63 cents) and the investor-presentation.pdf's own Key financial metrics table (21.05 cents) disagree for the 1H26 current period specifically (a ~0.42c/2.0% gap), while both documents agree exactly on the 1H25 and FY25 comparatives. Treated the statutory Appendix 4D figure as authoritative; the source of the discrepancy is not explained in either document."
+  - "PBT/NPAT MARGIN CONVENTION CLARIFIED: this period's investor-presentation.pdf (p.4/p.20) is the first document in the backfill to explicitly label its margin denominators, revealing that PBT margin and NPAT margin are computed on a TOTAL-REVENUE basis (sales + other income), while EBITDA margin and EBIT margin are computed on a SALES-REVENUE-ONLY basis — a subtle inconsistency in the company's own convention that was invisible in prior periods (where other income was too small to matter) but now creates an ~8bp gap for PBT margin (9.63% total-revenue-basis vs 9.71% sales-revenue-basis) as interest income has grown. No restatement of prior periods needed (FY25's gap under either basis is negligible: 7.90% vs 7.94%), but flagged for the profitability-earnings-analyst to use the TOTAL-REVENUE basis for PBT/NPAT margin comparability with the company's own quoted figures (9.6%, 7.2%, 3.4%, 0.9%, 3.1% for 1H26 through 1H22) and the SALES-REVENUE basis for EBITDA/EBIT margins, going forward."
+  - "EBITDA/EBIT METHODOLOGY — HIGHEST-CONFIDENCE CONFIRMATION YET: investor-presentation.pdf p.21 presents EBITDA and EBIT as explicit named line items in the company's own historical P&L table for the first time in the backfill (rather than only narrative/chart references), and both tie EXACTLY (to the dollar) to the net-of-interest-income finance-cost basis established in FY25H1 and confirmed for FY25. NEW/AMPLIFIED QoE POINT: net finance is an INCOME of $544,179 for this half alone — already larger than the FULL-YEAR FY25 net finance income of $149,990 — continuing to widen the gap between EBIT (now structurally BELOW PBT) and PBT, driven entirely by interest earned on the growing cash pile (not operating performance). This is a structural, growing, balance-sheet-driven tailwind that should be isolated in any underlying-earnings-quality assessment; it is likely to keep growing while the company remains debt-free and cash-accumulating."
+  - "TAX: effective rate of 31.14% for 1H26 (comparative 1H25: 30.99%), both modestly above the 30% statutory rate and continuing to trend down from FY25's full-year 32.51% — a clean, representative rate with no evidence of one-off items. Note 7(a) in this condensed interim gives only the current/deferred tax split, not the permanent-difference reconciliation the FY25 annual report's Note 7(a) provided — a normal reduction in interim-report disclosure depth, not a concern."
+  - "PROVISIONS COMPLETENESS GAP — RESOLVED: the FY25 file flagged a 'Provisions - other' completeness gap (a small $15,000-$45,000 balance that had not been captured as a distinct line in the FY24/FY25H1 files) and specifically asked to check whether an equivalent note/line exists in FY26H1. CONFIRMED RESOLVED: this period's condensed Statement of Financial Position DOES present 'Provisions - other' as its own separate line ($20,000, down from $45,000 at FY25 close), so this item is now correctly and separately captured going forward."
+  - "RECEIVABLES ALLOWANCE: the allowance for credit losses on trade receivables more than doubled this half ($107,929 at FY25 close -> $236,012 at 1H26 close, +118.7%), reversing the improving trend flagged in the FY25 file. Still small in absolute terms (0.67% of gross trade receivables of $35.1M) and no ageing-analysis note is available in this condensed interim to assess the driver (specific customer risk vs a general provisioning-policy change) — flagged for follow-up at the FY26 annual report, where a full ageing note should again be available."
+  - "NCI PROFIT ALLOCATION REVERSED: NCI-attributable profit fell both in $ terms ($148,529 in 1H25 -> $89,230 in 1H26, -39.9%) and as a % of group NPAT (2.57% -> 1.01%), reversing the growth trend flagged across FY25H1/FY25. SKS Indigenous Technologies' 1H26 revenue ($12.6M) and work on hand ($13.1M) are disclosed in investor-presentation.pdf p.12, but no 1H26 NPAT figure for that entity is given in the released materials — cannot independently attribute the NCI decline to that entity's own performance vs. an allocation-mechanics change. Flagged for the FY26 annual report's Note 26(b)-equivalent to confirm."
+  - "GOODWILL: remains INFERRED (not directly disclosed) at $1,867,660, unchanged from the FY25 annual report's confirmed closing balance — consistent with the FY25H1 pattern (goodwill is only directly confirmable via the annual report's full intangibles note). Supported by the modest ($11,951) movement in total intangibles this half, consistent with capitalised-software-only activity and no acquisition/impairment event within the balance date."
+  - "IMPAIRMENT: no impairment testing note exists in this condensed interim (as expected — full CGU-level testing appears only in annual reports). No impairment charge or indicator otherwise disclosed. Recorded as not_disclosed_this_period rather than assumed nil, to distinguish from FY25's directly-CONFIRMED nil impairment (which had a full testing note)."
+  - "No gross profit / cost-of-sales line disclosed — nature-of-expense P&L format unchanged from all prior periods. No maintenance-vs-growth capex split disclosed — unchanged flag. Consensus not queried this period — FactSet MCP OAuth authentication not re-attempted, per explicit task instruction and consistent with every prior period in the backfill (FY23, FY24H1, FY24, FY25H1, FY25)."
+  - "CONTINUITY CHECK SUMMARY vs FY25 (prior structured-financials.yaml) — comprehensive PASS across every balance-sheet sub-line checked: CASH ($32,476,963 -> opening $32,476,964, $1 immaterial rounding gap -> closing $51,769,018). TRADE RECEIVABLES (all 5 Note-4 sub-lines tie exactly to FY25's closing comparatives: gross trade receivables, retention debtors, allowance for credit losses, contract assets, other receivables). TRADE PAYABLES ($12,577,298 exact tie). CONTRACT LIABILITIES ($45,568,167 exact tie). INVENTORY ($43,432 exact tie). PROVISIONS (employee benefits current/non-current and other-provisions all tie exactly: $4,337,363/$74,503/$45,000). INTANGIBLE ASSETS TOTAL ($1,998,511 exact tie). NCI EQUITY BALANCE ($202,835 opening, reconciles exactly through the equity roll-forward to $93,165 closing: 202,835+89,230-198,900=93,165). NET ASSETS/EQUITY ROLL-FORWARD (self-consistent, $24,544,210 opening ties to FY25 close). NTA/SHARE (PASS, continued upward trajectory 18.07c -> 20.63c). EPS (PASS, implied 2H25 7.33c -> actual 1H26 7.72c continues the upward HoH trajectory). BANK GUARANTEE DRAWN ($11,687,302 exact tie). TOTAL FACILITY LIMIT (fully reconciled two-step bridge from $21.0M through $34.0M to $32.0M, see debt/facilities flag above). No unexplained discontinuities identified anywhere between FY25 and FY26H1 — every variance is either an exact reconciliation or a business-explained movement (receivables decline on strong collections, contract liabilities decline on delivery, overdraft retirement on strong cash, etc.)."
