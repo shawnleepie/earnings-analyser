@@ -1,4 +1,4 @@
-﻿# Ignore downloaded source documents — large binaries, copyrighted third-party
-# content, OneDrive already backs these up. Keep metadata.yaml and
-# structured-financials.yaml tracked (small, valuable, text-based).
-archive/**/*.pdf
+﻿archive/**/*.pdf
+scripts/__pycache__/
+__pycache__/
+*.pyc
