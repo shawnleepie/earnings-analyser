@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 telegram_listener.py
 
@@ -77,34 +77,31 @@ def send_telegram_message(text):
     )
 
 
+def log(msg):
+    print(f"[{time.strftime('%H:%M:%S')}] {msg}", flush=True)
+
+
 def trigger_analysis(ticker):
+    log(f"Starting /analyse-earnings {ticker} (headless, this may take 20-60+ minutes)...")
     send_telegram_message(f"Got it — running earnings analysis for {ticker} now. This can take a while (expect 15-40+ minutes).")
     try:
-        # --allowedTools pre-authorizes these tool types so the headless (-p)
-        # run doesn't stall on a permission prompt nobody's there to click.
-        # This is a genuinely broader grant than news-crawler's daily-briefing.ps1
-        # (which only needed WebSearch/WebFetch/Read/Write) because this
-        # pipeline's document-fetcher and financial-data-extractor agents rely
-        # heavily on Bash (curl downloads, python parsing scripts, file ops) —
-        # see CLAUDE.md for the reasoning. A Telegram-triggered run therefore
-        # executes with pre-approved Bash access and zero per-command human
-        # review, unlike an interactive session. Acceptable here because the
-        # blast radius is limited to this project folder and public web
-        # fetches, but worth remembering this is a different trust model than
-        # watching an interactive session step by step.
-        subprocess.run(
+        result = subprocess.run(
             ["claude", "-p", f"/analyse-earnings {ticker}",
              "--allowedTools", "WebSearch", "WebFetch", "Read", "Write", "Bash",
-             "--max-turns", "150",
-             "--output-format", "json"],
+             "--max-turns", "150"],
             cwd=os.path.join(os.path.dirname(__file__), ".."),
             check=True,
-            timeout=3600,  # 1 hour safety ceiling — kill it rather than hang forever
+            timeout=3600,
+            capture_output=True,
+            text=True,
         )
+        log(f"{ticker} run finished. Last 500 chars of output:\n{result.stdout[-500:]}")
         send_telegram_message(f"{ticker} analysis run finished — check Telegram for the report, or archive/{ticker}/analysis/ if delivery didn't fire.")
     except subprocess.TimeoutExpired:
+        log(f"{ticker} run exceeded 1 hour timeout — killed.")
         send_telegram_message(f"{ticker} analysis run exceeded 1 hour and was stopped — check logs before retrying.")
     except subprocess.CalledProcessError as e:
+        log(f"{ticker} run failed (exit {e.returncode}). stderr:\n{e.stderr[-1000:] if e.stderr else '(none)'}")
         send_telegram_message(f"Analysis run for {ticker} failed: {e}")
 
 
@@ -115,7 +112,7 @@ def main():
 
     alias_map = load_aliases()
     offset = None
-    print("Telegram listener running (Ctrl+C to stop)...")
+    log("Telegram listener running (Ctrl+C to stop)...")
 
     while True:
         try:
@@ -133,13 +130,17 @@ def main():
                 text = msg.get("text", "")
                 if not text:
                     continue
+                log(f"Received message: {text!r}")
                 ticker = match_company(text, alias_map)
                 if ticker:
+                    log(f"Matched ticker: {ticker}")
                     trigger_analysis(ticker)
-                # Reload aliases periodically in case companies.yaml changed
+                    log("Back to listening for new messages...")
+                else:
+                    log("No ticker match — ignoring.")
                 alias_map = load_aliases()
         except requests.exceptions.RequestException as e:
-            print(f"Poll error (will retry): {e}", file=sys.stderr)
+            log(f"Poll error (will retry): {e}")
             time.sleep(POLL_INTERVAL_SECONDS)
 
 
