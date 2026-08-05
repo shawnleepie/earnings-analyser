@@ -71,7 +71,7 @@ foreach ($ticker in $Tickers) {
     $stderrLog = Join-Path $LogDir "$ticker-stderr.log"
 
     $proc = Start-Process -FilePath "claude" -ArgumentList @(
-        "-p", "/backfill-archive $ticker",
+        "-p", "`"/backfill-archive $ticker`"",
         "--allowedTools", "WebSearch", "WebFetch", "Read", "Write", "Bash",
         "--max-turns", "150"
     ) -WorkingDirectory $ProjectPath -PassThru -NoNewWindow `
