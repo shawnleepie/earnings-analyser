@@ -76,10 +76,10 @@ entities:
     full_name: Symal Group
     aliases: ["Symal", "Symal Group"]
     sector: Civil construction / infrastructure (Victoria-centric, vertically integrated)
-    fiscal_year_end: "June (unconfirmed)"
+    fiscal_year_end: "30 June"
     reporting_cadence: half_yearly
     currency: AUD
-    segments: []
+    segments: ["Contracting Services", "Plant and Equipment", "Other"]
     notes: "Vertically integrated via owned quarries — less third-party input cost exposure than peers; working capital dynamics may differ from typical contractor comparables as a result."
 
   - ticker: SRG
@@ -87,11 +87,11 @@ entities:
     full_name: SRG Global
     aliases: ["SRG Global", "SRG"]
     sector: Engineering, maintenance, mining services
-    fiscal_year_end: "June (unconfirmed)"
+    fiscal_year_end: "30 June"
     reporting_cadence: half_yearly
     currency: AUD
-    segments: []
-    notes: "Multiple long-dated maintenance contracts (Alcoa to 2030, Rio Tinto to 2030, South32 to 2032, Roy Hill to 2030, Tianqi to 2029) — contract renewal/repricing news is a genuine revenue-visibility signal to watch each release."
+    segments: ["Maintenance and Industrial Services", "Engineering and Construction"]
+    notes: "Multiple long-dated maintenance contracts (Alcoa to 2030, Rio Tinto to 2030, South32 to 2032, Roy Hill to 2030, Tianqi to 2029) — contract renewal/repricing news is a genuine revenue-visibility signal to watch each release. Segments were Asset Maintenance / Mining Services / Engineering and Construction per Note 29 of the FY23 annual report, then COLLAPSED to two segments (Maintenance and Industrial Services / Engineering and Construction) effective FY24 (Note 28 restated FY23 comparatives accordingly, Group totals unaffected) — confirmed during backfill 7 Aug 2026. Diona acquisition (agreed 20 Aug 2024, completed 2 Sep 2024) is a subsequent event relative to FY24 year-end (30 Jun 2024) — zero consolidation impact on FY24 figures; watch FY25H1 for its first appearance in segment/consolidated numbers."
 
   - ticker: DUR
     exchange: ASX
@@ -120,11 +120,11 @@ entities:
     full_name: Lycopodium
     aliases: ["Lycopodium"]
     sector: Engineering / EPCM — minerals processing, primarily gold
-    fiscal_year_end: "June (unconfirmed)"
+    fiscal_year_end: "30 June"
     reporting_cadence: half_yearly
     currency: AUD
-    segments: []
-    notes: "EPCM revenue is project-award-driven and lumpy — HoH/YoY comparisons need context on where each named project (Doropo, Nyanzaga, Kiaka, Séguéla, Yanqul) sits in its lifecycle."
+    segments: ["Asia Pacific", "Africa", "Americas", "Other"]
+    notes: "EPCM revenue is project-award-driven and lumpy — HoH/YoY comparisons need context on where each named project (Doropo, Nyanzaga, Kiaka, Séguéla, Yanqul, Ahafo North, CGP3, Boto, Bomboré, Twin Hills, Blackwater) sits in its lifecycle. Fiscal year end CONFIRMED as 30 June directly from FY23 Appendix 4E / Financial Report cover pages (backfilled 7 Aug 2026). SEGMENT STRUCTURE HAS NOW CHANGED TWICE — three distinct, non-comparable structures across the archive: (1) FY23: 6-way geography/service basis (Minerals - Asia Pacific/North America/Africa, Project Services - Africa, Process Industries, Other); (2) FY24H1-FY25 (4 consecutive periods: FY24H1, FY24, FY25H1, FY25): service-line basis, Resources / Rail Infrastructure / Industrial Processes / Other (Other = Metallurgical only); (3) FY26H1 onward: geographic basis, Asia Pacific / Africa / Americas / Other — CHANGED AGAIN at FY26H1 (half ended 31 Dec 2025), per FY26H1 extraction (archive/LYL/FY26H1/structured-financials.yaml). No like-for-like segment comparability across any of these three boundaries — treat pre/post-change segment revenue as non-comparable in analysis. The FY26H1 reclassification coincides with SAXUM (US-based) first consolidating following completion of that acquisition on 3 Jul 2025; the shift to a geographic structure plausibly reflects SAXUM's Americas presence needing its own reportable segment. FLAG: confirm at FY26 annual whether this geographic structure holds or changes a third time. Separately, Lycopodium's investor presentation uses a narrative, non-statutory regional/sector split which has historically been directionally consistent with but not numerically reconciled to the statutory segment note (disclosure granularity varied — FY24 gave $ and %, FY25H1 gave neither, FY25 gave % only); at FY26H1 this divergence widened materially — the presentation's regional split differs from the statutory segment note by 25-45pp per region — so the investor presentation split should now be treated as directional/marketing framing only, not reconciled to statutory figures."
 
   - ticker: SPZ
     exchange: ASX
@@ -262,12 +262,12 @@ entities:
     exchange: ASX
     full_name: Kinatico
     aliases: ["Kinatico"]
-    sector: RegTech — background screening (CVCheck), workforce compliance (ComplianceX)
-    fiscal_year_end: "June (unconfirmed)"
+    sector: "RegTech — background screening (Transactional: criminal history/other checks), SaaS-based workforce compliance technology (branded Cited/OnCite/Enable)"
+    fiscal_year_end: "30 June"
     reporting_cadence: half_yearly
     currency: AUD
-    segments: []
-    notes: "Management is highlighting ComplianceX as the margin-expansion driver — check whether segment disclosure actually breaks this out separately from legacy CVCheck screening revenue, or if it's still commentary-only."
+    segments: ["Australia", "New Zealand"]
+    notes: "Segments confirmed as geographic (Australia / New Zealand) per Note 5 Segment Information, both in FY24H1 (interim, Note 3) and FY24 (annual, Note 5) financial statements — CODM reviews monthly on this geographic basis. 'ComplianceX' does NOT appear anywhere in either the FY24H1 interim report or the FY24 full annual report (confirmed via full-document text search of the 106-page FY24 annual report) — the SaaS product is branded Cited/OnCite/Enable, not ComplianceX. Revenue is separately disclosed by type of service (Transactional [criminal history checks + other checks] vs SaaS) in the Revenue note each period — this is a non-CODM disclosure axis, not a reportable segment. No underlying/normalised NPAT is presented in any period to date (only statutory NPAT). UPDATE FY25 (year ended 30 Jun 2025, confirmed via FY25H1 interim and FY25 annual report): segment structure STILL unchanged (still Australia/New Zealand geographic, Note 5 in the FY25 annual report). The company launched a new product, 'Kinatico Compliance', during FY25 (built throughout the year per CEO's Report) and incorporated a new wholly-owned subsidiary 'Kinatico Compliance Pty Ltd' (29 Jul 2024) — this is the concrete evolution of the previously-watched 'ComplianceX' narrative, but it has NOT become a reportable segment or a new revenue-by-type category as of FY25; segment reporting and revenue-by-type disclosure both remain unchanged (geographic AU/NZ; Transactional/SaaS respectively). Basic and diluted EPS diverged for the first time in FY25 (0.270c vs 0.269c, driven by dilutive loan-funded shares) — all prior periods had basic=diluted. UPDATE FY26H1 (half-year ended 31 Dec 2025, confirmed via that period's own interim report): segment structure STILL unchanged (geographic AU/NZ, Note 3) despite the October 2025 commercial launch of the 'Kinatico Compliance' SaaS platform — this launch is now a live product-transition event (management disclosed a temporary revenue pause as existing customers awaited the new platform) rather than just a subsidiary/narrative item, but it has NOT triggered a segment or revenue-by-type reclassification. Note the Directors' Report now names only TWO product pillars (Kinatico Compliance, Kinatico CVCheck) vs FOUR named at FY25H1 (...+ OnCite + Kinatico Enable) — watch whether OnCite/Enable have been folded into Kinatico Compliance or simply de-emphasised; not yet confirmed either way. Gross margin, which had been contracting FY24H1->FY25 (67.76%->64.07%->64.82%), REVERSED to expand at FY26H1 (64.07% pcp -> 65.86%) as SaaS mix rose past 55% of revenue — a genuine QoE-positive turn worth tracking for persistence into H2 FY26. UPDATE FY26 (year ended 30 Jun 2026, confirmed via that period's own Annual Report, cross-checked against FY26H1): segment structure STILL unchanged (still geographic AU/NZ, Note 5) — no update needed to the segments list itself. The FY26H1 two-vs-four-pillar ambiguity above is RESOLVED: the FY26 Directors' Report reverts to naming FOUR core product offerings again (Kinatico Compliance, Kinatico CVCheck, Kinatico Cited, Kinatico Enable) — presentational only, no segment/revenue-by-type change resulted. Gross margin expansion PERSISTED into the full year (66.05% FY26 vs 64.82% FY25, +1.23pp), confirming the FY26H1 reversal was not a one-off. FY26 is also the first period where the tax line swung to a net BENEFIT ($30,226, vs an expense of $90,897 at FY25), driven by increased Australian tax-loss utilisation — this materially assisted NPAT growth (+78.5%) over PBT growth (+62.75%) and is a genuine sustainability watch-item for FY27, since the unrecognised tax-loss pool funding it is shrinking. Revenue growth decelerated sharply H1->H2 within FY26 across every segment/revenue-type cut (see archive/KYP/FY26/structured-financials.yaml prior_period_continuity_check for the full velocity analysis) — worth checking at FY27H1 whether this was a temporary product-transition effect (as management characterised it) or a more durable slowdown. FY26 Annual Report is also the FIRST period this company has disclosed a company-defined 'Free Cashflow' KPI directly (5-year table) — recommend using the company's own FCF figures for comparability from FY26 onward rather than the narrower analyst-derived FCF methodology used in the FY25 file (see that period's own reconciliation note)."
 
   - ticker: IKE
     exchange: "NZX/ASX (dual-listed)"
