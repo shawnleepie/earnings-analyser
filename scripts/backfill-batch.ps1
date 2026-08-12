@@ -33,6 +33,25 @@ function Log($msg) {
     Add-Content -Path $LogFile -Value $line
 }
 
+# CRITICAL: a period "counts" only if structured-financials.yaml actually
+# exists in it. A bare folder, or a folder with only metadata.yaml (fetch
+# succeeded but extraction never ran, or extraction was interrupted), is
+# NOT complete. Counting folders alone caused several companies to be
+# wrongly reported DONE on 10 Aug 2026 when they were only partially
+# fetched — this function is the fix for that.
+function Get-CompletePeriodCount($archivePath) {
+    if (-not (Test-Path $archivePath)) { return 0 }
+    $periodDirs = Get-ChildItem -Path $archivePath -Directory -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -ne "analysis" }
+    $complete = 0
+    foreach ($p in $periodDirs) {
+        if (Test-Path (Join-Path $p.FullName "structured-financials.yaml")) {
+            $complete++
+        }
+    }
+    return $complete
+}
+
 Set-Location $ProjectPath
 
 $listenerRunning = Get-CimInstance Win32_Process -Filter "Name='python.exe'" -ErrorAction SilentlyContinue |
@@ -53,19 +72,26 @@ $results = @()
 
 foreach ($ticker in $Tickers) {
     $archivePath = Join-Path $ProjectPath "archive\$ticker"
-    $periodCount = 0
+    $periodCount = Get-CompletePeriodCount $archivePath
+
     if (Test-Path $archivePath) {
-        $periodCount = (Get-ChildItem -Path $archivePath -Directory -ErrorAction SilentlyContinue |
-            Where-Object { $_.Name -ne "analysis" }).Count
+        $allPeriodDirs = Get-ChildItem -Path $archivePath -Directory -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -ne "analysis" }
+        $incomplete = $allPeriodDirs | Where-Object {
+            -not (Test-Path (Join-Path $_.FullName "structured-financials.yaml"))
+        }
+        if ($incomplete) {
+            Log "$ticker - NOTE: $($incomplete.Count) period folder(s) exist without structured-financials.yaml: $($incomplete.Name -join ', ')"
+        }
     }
 
     if (-not $Force -and $periodCount -ge $MinPeriodsToSkip) {
-        Log "$ticker - SKIPPED (already has $periodCount period(s) archived)."
-        $results += "$ticker : skipped ($periodCount periods already archived)"
+        Log "$ticker - SKIPPED (already has $periodCount complete period(s))."
+        $results += "$ticker : skipped ($periodCount complete periods already archived)"
         continue
     }
 
-    Log "$ticker - starting backfill (currently $periodCount period(s) archived)..."
+    Log "$ticker - starting backfill (currently $periodCount complete period(s) archived)..."
 
     $stdoutLog = Join-Path $LogDir "$ticker-stdout.log"
     $stderrLog = Join-Path $LogDir "$ticker-stderr.log"
@@ -87,18 +113,14 @@ foreach ($ticker in $Tickers) {
         continue
     }
 
-    $newPeriodCount = 0
-    if (Test-Path $archivePath) {
-        $newPeriodCount = (Get-ChildItem -Path $archivePath -Directory -ErrorAction SilentlyContinue |
-            Where-Object { $_.Name -ne "analysis" }).Count
-    }
+    $newPeriodCount = Get-CompletePeriodCount $archivePath
 
     if ($newPeriodCount -gt $periodCount) {
-        Log "$ticker - DONE. Periods archived: $newPeriodCount (was $periodCount). Exit code: $($proc.ExitCode)."
-        $results += "$ticker : done ($newPeriodCount periods)"
+        Log "$ticker - DONE. Complete periods: $newPeriodCount (was $periodCount). Exit code: $($proc.ExitCode)."
+        $results += "$ticker : done ($newPeriodCount complete periods)"
     } else {
-        Log "$ticker - WARNING: exited (code $($proc.ExitCode)) but no new periods detected. Check $stdoutLog / $stderrLog manually."
-        $results += "$ticker : WARNING - no progress detected"
+        Log "$ticker - WARNING: exited (code $($proc.ExitCode)) but no new COMPLETE periods detected (still $newPeriodCount). Check $stdoutLog / $stderrLog manually."
+        $results += "$ticker : WARNING - no progress detected ($newPeriodCount complete periods)"
     }
 
     Start-Sleep -Seconds 5
