@@ -25,7 +25,13 @@ entities:
     reporting_cadence: half_yearly
     currency: AUD
     segments: []
-    notes: "Recently acquired Nilsen's Switchboards Division (announced 13 Jul 2026) — watch for segment/divisional restructure disclosure and integration costs in next 1-2 results."
+    notes: >
+      Recently acquired Nilsen's Switchboards Division (announced 13 Jul 2026) — watch for
+      segment/divisional restructure disclosure and integration costs in next 1-2 results.
+      FY23 annual report (Note 4) explicitly confirms MYG reports as a single operating
+      segment (electrical and telecommunications infrastructure) and single geographic
+      segment (Australia) — segments: [] is a confirmed fact for FY23, not a gap; re-check
+      each period, especially post-Nilsen's, in case this changes.
 
   - ticker: SKS
     exchange: ASX
@@ -43,22 +49,45 @@ entities:
     full_name: IPD Group
     aliases: ["IPD Group", "IPD"]
     sector: Electrical products distribution
-    fiscal_year_end: "June (unconfirmed)"
+    fiscal_year_end: "30 June"
     reporting_cadence: half_yearly
     currency: AUD
-    segments: []
-    notes: "ABB is ~26% of product supply (largest single-supplier concentration) — any ABB pricing/terms change is a genuine margin risk worth checking each release."
+    segments: ["Products division", "Services division"]
+    notes: >
+      Fiscal year end CONFIRMED as 30 June and segment structure CONFIRMED as
+      "Products division" / "Services division" (AASB 8 reportable segments,
+      reviewed by the Board as CODM) — the SEVENTH consecutive period
+      (FY23, FY24H1, FY24, FY25H1, FY25, FY26H1, FY26) confirming both facts
+      identically, with no restructuring even through the FY26 Platinum
+      Cables acquisition (folded into Products division rather than forming
+      a new reportable segment). ABB is a cornerstone supplier at ~31% of
+      Group revenue (FY26; ~26-44% range across FY21-FY26) — the largest
+      single-supplier concentration — any ABB pricing/terms change is a
+      genuine margin risk worth checking each release.
 
   - ticker: ACF
     exchange: ASX
     full_name: Acrow
-    aliases: ["Acrow"]
+    aliases: ["Acrow", "Acrow Formwork and Construction Services Limited"]
     sector: Formwork / falsework / scaffolding
-    fiscal_year_end: "June (unconfirmed)"
+    fiscal_year_end: "30 June"
     reporting_cadence: half_yearly
     currency: AUD
-    segments: []
-    notes: "SE Queensland branch concentration; Main Roads WA Esperance corridor ($200m) is a named material contract to track through to completion/renewal."
+    segments: ["Formwork", "Industrial Services", "Commercial Scaffold"]
+    notes: >
+      SE Queensland branch concentration; Main Roads WA Esperance corridor ($200m) is a named
+      material contract to track through to completion/renewal. Fiscal year end CONFIRMED as 30
+      June directly from the FY23 Appendix 4E cover page's own "Details of Reporting Period"
+      statement (backfilled 11 Aug 2026; previously marked "June (unconfirmed)"). Company traded
+      as "Acrow Formwork and Construction Services Limited" through at least FY23. SEGMENTS: the
+      three divisions above (Formwork, Industrial Services, Commercial Scaffold) are the
+      company's consistently-used MANAGEMENT/investor-reporting divisions (confirmed from FY23
+      appendix-4e.pdf p.3 and investor-presentation.pdf p.20) — but note that the FY23 statutory
+      financial statements' own segment note (Note 23) states "There are no operating segments
+      for which discrete financial information exists" under AASB 8, i.e. there is NO statutory
+      reportable-segment structure. Treat the three divisions as management-reporting/disclosure
+      convention, not an AASB 8 segment note, and re-check each period in case a statutory
+      segment note is introduced.
 
   - ticker: SHA
     exchange: ASX
@@ -186,11 +215,11 @@ entities:
     full_name: Generation Development Group
     aliases: ["Generation Development", "Generation Development Group", "Generation Life"]
     sector: Financial services — investment bonds (Generation Life), asset consulting/ratings (Lonsec), managed accounts (Evidentia)
-    fiscal_year_end: "June (unconfirmed)"
+    fiscal_year_end: "30 June"
     reporting_cadence: half_yearly
     currency: AUD
     segments: ["Generation Life (investment bonds)", "Lonsec", "Evidentia (managed accounts)"]
-    notes: "Multi-segment reporter following the Lonsec/Evidentia combination — check whether segment reporting has changed structure period to period as these businesses integrate."
+    notes: "Multi-segment reporter following the Lonsec/Evidentia combination — check whether segment reporting has changed structure period to period as these businesses integrate. Fiscal year end CONFIRMED as 30 June directly from Appendix 4D/4E cover pages across FY23-FY26H1 (previously marked 'June (unconfirmed)'). Half-year interim reports cover 1 Jul-31 Dec (reported late Feb); the second half is not separately reported as a standalone half-year document -- instead the full year (1 Jul-30 Jun) is reported as an Appendix 4E/Annual Report in late Aug, so archive periods alternate FY<YY>H1 (half) / FY<YY> (full year), not FY<YY>H1/FY<YY>H2. IMPORTANT segment-structure change confirmed in this backfill: Lonsec was equity-accounted as an associate (49.2%) through FY24 and FY24H1; GDG completed the acquisition of the remaining stake on 1 Aug 2024 (effective 1 Jul 2024), making Lonsec a consolidated subsidiary from FY25H1 onward and triggering a reportable-segment restructure to two segments -- 'Benefit Funds Management & Funds Administration' and 'Investment solutions, research and ratings' (Lonsec) -- plus a non-operating 'Benefit Funds' consolidation segment. FY24H1 comparatives were restated in the FY25H1 report to reflect this. Evidentia was acquired 18 Feb 2025 (after FY25H1 period end) for $320m, so it first affects segment reporting in FY25 (annual) and is fully in-period from FY26H1. The segments listed above (Generation Life / Lonsec / Evidentia as three co-equal segments) do NOT match the company's own reportable-segment labels at any point in this backfill window -- treat as a business-description shorthand, not the literal segment note structure, when doing segment-level analysis. CONFIRMED from the FY23 financial statements' own segment note (Note V): at FY23 (and, per FY25H1's restated comparatives, presumably through FY24H1 too) the reportable structure was TWO operating segments -- 'Benefit Funds Management and Fund Administration' and 'Other Business' (the latter being GDG's equity-accounted associate income from Lonsec 49% and Claimfast 0% at FY23) -- plus the non-operating 'Benefit Funds' consolidation segment. Lonsec is not a segment in its own right at FY23; it sits inside 'Other Business'."
 
   - ticker: L1G
     exchange: ASX
@@ -208,11 +237,11 @@ entities:
     full_name: COG Financial Services
     aliases: ["COG Financial Services", "COG"]
     sector: Equipment finance broking/aggregation; novated leasing
-    fiscal_year_end: "June (unconfirmed)"
+    fiscal_year_end: "30 June (confirmed FY23 Appendix 4E & Annual Financial Report, financial-statements.pdf p.1: 'Year ended 30 June 2023')"
     reporting_cadence: half_yearly
     currency: AUD
-    segments: []
-    notes: "Sector undergoing active M&A consolidation (PEP/SG Fleet/FleetPartners, Smartgroup) — any corporate activity involving COG itself or its close comparables is directly earnings-relevant, not just background noise."
+    segments: ["Finance Broking & Aggregation (FB&A)", "Funds Management and Lending (FM&L)", "All Other / Intersegment"]
+    notes: "Sector undergoing active M&A consolidation (PEP/SG Fleet/FleetPartners, Smartgroup) — any corporate activity involving COG itself or its close comparables is directly earnings-relevant, not just background noise. Three-segment structure confirmed from FY23 Note A1 Operating Segments (financial-statements.pdf p.34): FB&A, FM&L, and All Other/Intersegment (includes 20.14% equity interest in associate Earlypay Ltd (ASX:EPY) and corporate office costs)."
 
   - ticker: AYA
     exchange: ASX
@@ -318,11 +347,11 @@ entities:
     full_name: Cedar Woods Properties
     aliases: ["Cedar Woods", "Cedar Woods Properties"]
     sector: Residential & commercial property developer — WA/VIC/QLD/SA
-    fiscal_year_end: "June (unconfirmed)"
+    fiscal_year_end: "30 June"
     reporting_cadence: half_yearly
     currency: AUD
     segments: []
-    notes: "Project-based developer — revenue/margin recognition timing (settlement-driven) makes HoH comparisons lumpy by nature; check for JV-related equity-accounted earnings (Tokyo Gas, QIC) reported separately from consolidated figures."
+    notes: "Project-based developer — revenue/margin recognition timing (settlement-driven) makes HoH comparisons lumpy by nature; check for JV-related equity-accounted earnings (Tokyo Gas, QIC) reported separately from consolidated figures. FY23 confirmed from financial-statements.pdf (FY23 = year ended 30 June 2023; fiscal_year_end confirmed, no longer unconfirmed). Segments confirmed empty: FY23 Annual Report Note 36 states the group has ONE reportable segment (property development & investment, whole of group) — no revenue/EBIT split by state or product type is disclosed in the financial statements (geographic/product mix is disclosed only as lot-count/presales KPIs in the investor presentation, not as $ segment data). Tokyo Gas and QIC capital partnerships (announced FY23) were not yet equity-accounted joint ventures as at 30 June 2023 — Tokyo Gas funding is recognised as a due to project partners financial liability, not a JV investment; re-check each period as this may change."
 
   - ticker: GDF
     exchange: ASX
@@ -335,13 +364,24 @@ entities:
     segments: []
     notes: "Top 10 tenants = 65.6% of gross income (high concentration) — any tenant-level disclosure change (lease expiry, rent review, vacancy) is disproportionately material given this concentration."
 
+  - ticker: MAH
+    exchange: ASX
+    full_name: Macmahon Holdings
+    aliases: ["Macmahon", "Macmahon Holdings", "MAH"]
+    sector: Contract mining / mining services (Australia, Indonesia, Mongolia)
+    fiscal_year_end: "June (unconfirmed)"
+    reporting_cadence: half_yearly
+    currency: AUD
+    segments: []
+    notes: "Added via /add-company 10 Aug 2026 — fiscal_year_end, segments unconfirmed pending first extraction; do not treat as fact until document-fetcher verifies against a lodged document."
+
   - ticker: LGI
     exchange: ASX
     full_name: LGI Limited
     aliases: ["LGI", "LGI Limited"]
     sector: Landfill gas-to-energy, carbon abatement (ACCUs/LGCs), battery storage
-    fiscal_year_end: "June (unconfirmed)"
+    fiscal_year_end: "30 June (confirmed - see archive/LGI structured-financials.yaml, FY23 through FY25H1)"
     reporting_cadence: half_yearly
     currency: AUD
-    segments: []
+    segments: ["Renewable Energy", "Carbon abatement", "Infrastructure construction and management", "Unallocated"]
     notes: "ACCU/LGC revenue is regulatorily exposed (Nov 2025 method change, LGC revenue expected to decline/cease by 2030) — treat carbon credit revenue as a separate, declining-quality line from generation revenue in the profitability table, not blended together. Wholesale electricity price collapse (NEM-wide) is a genuine headwind management has already flagged — check whether hedging adjustments show up in guidance."

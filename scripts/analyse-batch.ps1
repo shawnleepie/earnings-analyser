@@ -11,6 +11,14 @@
 # synthesis, PDF generation, and Telegram delivery - much faster than a
 # full backfill+analysis run.
 #
+# CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS=0 is set below because Claude Code's
+# own -p (headless) mode has an internal 600-second ceiling on how long it
+# waits for background subagent tasks before force-terminating them. Long
+# synthesis/extraction steps (especially on same-day-released results) can
+# exceed that, causing a silent mid-write failure. Setting this to 0 makes
+# it wait indefinitely instead, relying on our own script-level timeout
+# below as the real safety net.
+#
 # Usage:
 #   .\scripts\analyse-batch.ps1 -Tickers SRG,SKS
 #   .\scripts\analyse-batch.ps1 -Tickers SRG,SKS -TimeoutMinutes 90
@@ -33,6 +41,7 @@ function Log($msg) {
 }
 #
 Set-Location $ProjectPath
+$env:CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS = "0"
 #
 $listenerRunning = Get-CimInstance Win32_Process -Filter "Name='python.exe'" -ErrorAction SilentlyContinue |
     Where-Object { $_.CommandLine -match "telegram_listener\.py" }
